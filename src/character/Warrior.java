@@ -11,15 +11,18 @@ public class Warrior {
     private boolean sheild = false;
 
     public Warrior() {
-
+        name = "";
     }
 
     public Warrior(String selectedName) {
-
+        name = selectedName;
     }
 
-    public Warrior(String selectedName, String url, int life, int attack) {
-
+    public Warrior(String selectedName, String url, int warriorLife, int warriorAttack) {
+        name = selectedName;
+        image = url;
+        life = warriorLife;
+        attack = warriorAttack;
     }
 
 

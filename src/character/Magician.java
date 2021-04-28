@@ -9,14 +9,18 @@ public class Magician {
     private boolean philtre = false;
 
     public Magician() {
-
+        name = "";
     }
 
     public Magician(String selectedName) {
+        name = selectedName;
 
     }
 
-    public Magician(String selectedName, String url, int magicSpell, int elixir) {
-
+    public Magician(String selectedName, String url, int magicianLife, int magicianAttack) {
+        name = selectedName;
+        image = url;
+        life = magicianLife ;
+        attack = magicianAttack;
     }
 }
