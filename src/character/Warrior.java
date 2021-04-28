@@ -10,6 +10,17 @@ public class Warrior {
     private boolean weapon = false;
     private boolean sheild = false;
 
+    private Warrior() {
+
+    }
+
+    private Warrior(String selectedName) {
+
+    }
+
+    private Warrior(String selectedName, String url, int life, int attack) {
+
+    }
 
 
 }

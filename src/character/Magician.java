@@ -7,4 +7,16 @@ public class Magician {
     private int attack;
     private boolean spell = false;
     private boolean philtre = false;
+
+    private Magician() {
+
+    }
+
+    private Magician(String selectedName) {
+
+    }
+
+    private Magician(String selectedName, String url, int magicSpell, int elixir) {
+
+    }
 }
