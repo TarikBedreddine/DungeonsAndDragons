@@ -10,15 +10,15 @@ public class Warrior {
     private boolean weapon = false;
     private boolean sheild = false;
 
-    private Warrior() {
+    public Warrior() {
 
     }
 
-    private Warrior(String selectedName) {
+    public Warrior(String selectedName) {
 
     }
 
-    private Warrior(String selectedName, String url, int life, int attack) {
+    public Warrior(String selectedName, String url, int life, int attack) {
 
     }
 

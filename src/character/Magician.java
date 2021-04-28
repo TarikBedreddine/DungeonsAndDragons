@@ -8,15 +8,15 @@ public class Magician {
     private boolean spell = false;
     private boolean philtre = false;
 
-    private Magician() {
+    public Magician() {
 
     }
 
-    private Magician(String selectedName) {
+    public Magician(String selectedName) {
 
     }
 
-    private Magician(String selectedName, String url, int magicSpell, int elixir) {
+    public Magician(String selectedName, String url, int magicSpell, int elixir) {
 
     }
 }
