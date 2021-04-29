@@ -41,6 +41,10 @@ public class Navigation
         Scanner scanner = new Scanner(System.in);
         System.out.println("Voulez-vous changer le nom de votre personnage ? (Oui ou Non)");
         String userAnswer = scanner.nextLine();
+        while (!userAnswer.equalsIgnoreCase("Oui") && !userAnswer.equalsIgnoreCase("Non")) {
+            System.out.println("Voulez-vous changer le nom de votre personnage ? (Oui ou Non)");
+            userAnswer = scanner.nextLine();
+        }
         if(userAnswer.equalsIgnoreCase("Oui")) {
             System.out.println("Veuillez saisir le nouveau nom !");
             String newName = scanner.nextLine();
