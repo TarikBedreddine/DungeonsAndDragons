@@ -93,6 +93,7 @@ public class Navigation
 
         } else {
             System.out.println("Super ! poursuivons notre aventure !");
+            startMenu();
         }
     }
 }
