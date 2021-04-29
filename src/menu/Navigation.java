@@ -7,6 +7,15 @@ public class Navigation
     // All attributes
     private String character;
 
+    // Set the value of character (Warrior or magician)
+    public void setCharacter(String whichCharacter) {
+        this.character = whichCharacter;
+    }
+    // Get the value of the attribute character
+    public String getCharacter() {
+        return character;
+    }
+
     // This method will get the character & name chosen by the user. The return is an String array
     public String[] userChoices () {
         String[] allChoices = new String[2];
@@ -19,13 +28,16 @@ public class Navigation
             System.out.println("Magicien ou Guerrier ? ");
             // Store the name of the character chosen at the index 1 of the allChoices array
             allChoices[0] = scanner.nextLine();
+
         }
         System.out.println("Quel nom voulez-vous lui donner ?");
         allChoices[1] = scanner.nextLine();
+        setCharacter(allChoices[0]);
         return allChoices;
     }
 
-    public void modifyNameChoice (String character) {
+    public void modifyNameChoice () {
+        String character = getCharacter();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Voulez-vous changer le nom de votre personnage ? (Oui ou Non)");
         String userAnswer = scanner.nextLine();

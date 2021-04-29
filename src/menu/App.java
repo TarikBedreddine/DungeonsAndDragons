@@ -14,13 +14,12 @@ public class App {
         Navigation userChoices = new Navigation();
         // Store in an array the return of userChoices method
         String[] allUserChoices = userChoices.userChoices();
-        String selectedCharacter = allUserChoices[0];
         // Instance of CreateCharacter class constructor
         CreateCharacter character = new CreateCharacter();
         // Method of the CreateCharacter class that permit to retrieve all attributes of the character
         character.createAndDisplayCharacter(allUserChoices[0], allUserChoices[1]);
         // Offer the possibility to the user to change the name of the character
-        userChoices.modifyNameChoice(selectedCharacter);
+        userChoices.modifyNameChoice();
     }
 }
 
