@@ -1,4 +1,7 @@
 package menu;
+import character.Magician;
+import character.Warrior;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -7,6 +10,28 @@ public class Navigation
     // All attributes
     private String character;
     Scanner scanner = new Scanner(System.in);
+
+    // Method to instance a Character and display information of the character
+    public void createAndDisplayCharacter(String character, String name) {
+        if (character.equalsIgnoreCase("Guerrier")) {
+            // Instance of the Warrior class
+            Warrior warriorIsSelected = new Warrior(name);
+            // Store the name attribute
+            String nameSelected = warriorIsSelected.getName();
+            // Store the life attribute
+            int life = warriorIsSelected.getLife();
+            // Store the attack attribute
+            int attack = warriorIsSelected.getAttack();
+            // Display a message of the attributes
+            System.out.println("Le nom de votre personnage est " + nameSelected + " il a " + life + " points de vie et " + attack + " d'attaque" );
+        } else if (character.equalsIgnoreCase("Magicien")) {
+            Magician magicianIsSelected = new Magician(name);
+            String nameSelected = magicianIsSelected.getName();
+            int life = magicianIsSelected.getLife();
+            int attack = magicianIsSelected.getAttack();
+            System.out.println("Le nom de votre personnage est " + nameSelected + " il a " + life + " points de vie et " + attack + " d'attaque" );
+        }
+    }
 
     // Set the value of character (Warrior or magician)
     public void setCharacter(String whichCharacter) {
@@ -28,10 +53,8 @@ public class Navigation
             System.out.println("Nous allons commencer la création d'un nouveau personnage !" );
             // Store in an array the return of userChoices method
             String[] allUserChoices = userChoices();
-            // Instance of CreateCharacter class constructor
-            CreateCharacter character = new CreateCharacter();
             // Method of the CreateCharacter class that permit to retrieve all attributes of the character
-            character.createAndDisplayCharacter(allUserChoices[0], allUserChoices[1]);
+            createAndDisplayCharacter(allUserChoices[0], allUserChoices[1]);
             // Offer the possibility for the user to change the name of the character
             modifyNameChoice();
             // Ask the user to start or end the game
@@ -74,8 +97,7 @@ public class Navigation
         if(userAnswer.equalsIgnoreCase("Oui")) {
             System.out.println("Veuillez saisir le nouveau nom !");
             String newName = scanner.nextLine();
-            CreateCharacter applyModification = new CreateCharacter();
-            applyModification.createAndDisplayCharacter(character, newName);
+            createAndDisplayCharacter(character, newName);
         } else {
             System.out.println("C'est noté ! le nom de votre personnage reste inchangé");
         }
