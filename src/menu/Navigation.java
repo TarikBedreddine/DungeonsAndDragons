@@ -1,8 +1,7 @@
 package menu;
-import character.Magician;
+import character.Wizard;
 import character.Warrior;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Navigation
@@ -15,25 +14,25 @@ public class Navigation
     public void createAndDisplayCharacter(String character, String name) {
         if (character.equalsIgnoreCase("Guerrier")) {
             // Instance of the Warrior class
-            Warrior warriorIsSelected = new Warrior(name);
+            Warrior warriorIsSelected = new Warrior(name, "none", 5, 5);
             // Store the name attribute
-            String nameSelected = warriorIsSelected.getName();
+            String nameSelected = warriorIsSelected.name();
             // Store the life attribute
-            int life = warriorIsSelected.getLife();
+            int life = warriorIsSelected.life();
             // Store the attack attribute
-            int attack = warriorIsSelected.getAttack();
+            int attack = warriorIsSelected.attack();
             // Display a message of the attributes
-            System.out.println("Le nom de votre personnage est " + nameSelected + " il a " + life + " points de vie et " + attack + " d'attaque" );
+            System.out.println("Le nom de votre personnage est " + nameSelected + ", il a " + life + " points de vie et " + attack + " d'attaque" );
         } else if (character.equalsIgnoreCase("Magicien")) {
-            Magician magicianIsSelected = new Magician(name);
-            String nameSelected = magicianIsSelected.getName();
-            int life = magicianIsSelected.getLife();
-            int attack = magicianIsSelected.getAttack();
-            System.out.println("Le nom de votre personnage est " + nameSelected + " il a " + life + " points de vie et " + attack + " d'attaque" );
+            Wizard wizardIsSelected = new Wizard(name, "none", 3, 8);
+            String nameSelected = wizardIsSelected.name();
+            int life = wizardIsSelected.life();
+            int attack = wizardIsSelected.attack();
+            System.out.println("Le nom de votre personnage est " + nameSelected + ", il a " + life + " points de vie et " + attack + " d'attaque" );
         }
     }
 
-    // Set the value of character (Warrior or magician)
+    // Set the value of character (Warrior or Wizard)
     public void setCharacter(String whichCharacter) {
         this.character = whichCharacter;
     }
@@ -62,7 +61,7 @@ public class Navigation
             userAnswer = scanner.nextInt();
         }
         // method to end the game
-        leaveGame();
+        leaveMenu();
     }
     // This method will get the character & name chosen by the user. The return is an String array
     public String[] userChoices () {
@@ -71,7 +70,7 @@ public class Navigation
         Scanner scanner = new Scanner(System.in);
         System.out.println("Magicien ou Guerrier ? ");
         allChoices[0] = scanner.nextLine();
-        // If the input is not Warrior or Magician the scanner ask again for an other input
+        // If the input is not Warrior or Wizard the scanner ask again for an other input
         while (!allChoices[0].equalsIgnoreCase("Guerrier") && !allChoices[0].equalsIgnoreCase("Magicien")) {
             System.out.println("Magicien ou Guerrier ? ");
             // Store the name of the character chosen at the index 1 of the allChoices array
@@ -104,7 +103,7 @@ public class Navigation
     }
 
     // This method permit to the use to end the game
-    public void leaveGame() {
+    public void leaveMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Etes vous sûr de vouloir quitter ? (Oui ou Non)");
         String userAnswer = scanner.nextLine();
@@ -120,5 +119,11 @@ public class Navigation
             System.out.println("Super ! poursuivons notre aventure !");
             startMenu();
         }
+    }
+
+    // This method will start the game
+    public void startGame() {
+        System.out.println("Le jeu va débuter, vous êts prêts ?");
+
     }
 }

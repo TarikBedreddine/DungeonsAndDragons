@@ -1,27 +1,24 @@
 package character;
 
-import java.lang.reflect.Array;
-import java.util.List;
+public class Wizard extends Character {
 
-public class Warrior extends Character {
+    // Attributes of a Wizard
+    private String spell;
+    private String philtre;
 
-    // Attributes of a Warrior
-    private String weapon;
-    private String shield;
-
-    // Warrior constructor
-    public Warrior() {
+    // Wizard constructor
+    public Wizard() {
 
     }
 
     // Access to the First constructor of the parent
-    public Warrior(String selectedName) {
+    public Wizard(String selectedName) {
         super(selectedName);
     }
 
     // Access to the Second constructor of the parent
-    public Warrior(String selectedName, String url, int warriorLife, int warriorAttack) {
-        super(selectedName, url, warriorLife, warriorAttack);
+    public Wizard(String selectedName, String url, int WizardLife, int WizardAttack) {
+        super(selectedName, url, WizardLife, WizardAttack);
     }
 
     // Method to get the parent name attribute
@@ -44,4 +41,3 @@ public class Warrior extends Character {
         return getAttack();
     }
 }
-
