@@ -1,4 +1,5 @@
 package menu;
+import character.Character;
 import character.Wizard;
 import character.Warrior;
 
@@ -11,7 +12,7 @@ public class Navigation
     Scanner scanner = new Scanner(System.in);
 
     // Method to instance a Character and display information of the character
-    public void createAndDisplayCharacter(String character, String name) {
+    public Object createAndDisplayCharacter(String character, String name) {
         if (character.equalsIgnoreCase("Guerrier")) {
             // Instance of the Warrior class
             Warrior warriorIsSelected = new Warrior(name, "none", 5, 5);
@@ -23,13 +24,16 @@ public class Navigation
             int attack = warriorIsSelected.attack();
             // Display a message of the attributes
             System.out.println("Le nom de votre personnage est " + nameSelected + ", il a " + life + " points de vie et " + attack + " d'attaque" );
+            return warriorIsSelected;
         } else if (character.equalsIgnoreCase("Magicien")) {
             Wizard wizardIsSelected = new Wizard(name, "none", 3, 8);
             String nameSelected = wizardIsSelected.name();
             int life = wizardIsSelected.life();
             int attack = wizardIsSelected.attack();
             System.out.println("Le nom de votre personnage est " + nameSelected + ", il a " + life + " points de vie et " + attack + " d'attaque" );
+            return wizardIsSelected;
         }
+        return null;
     }
 
     // Set the value of character (Warrior or Wizard)
@@ -124,6 +128,8 @@ public class Navigation
     // This method will start the game
     public void startGame() {
         System.out.println("Le jeu va débuter, vous êts prêts ?");
+        Character test = new Character();
+
 
     }
 }
