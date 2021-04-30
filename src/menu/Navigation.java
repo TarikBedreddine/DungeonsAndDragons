@@ -34,6 +34,9 @@ public class Navigation
             character.createAndDisplayCharacter(allUserChoices[0], allUserChoices[1]);
             // Offer the possibility for the user to change the name of the character
             modifyNameChoice();
+            // Ask the user to start or end the game
+            System.out.println("1 - Commencer le jeu || 2 - Quitter le jeu (Veuillez saisir 1 ou 2)" );
+            userAnswer = scanner.nextInt();
         }
         // method to end the game
         leaveGame();
