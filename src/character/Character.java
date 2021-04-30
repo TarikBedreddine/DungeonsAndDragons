@@ -51,4 +51,12 @@ public class Character {
         return this.attack;
     }
 
+    @Override
+    public String toString() {
+        return "Character{" +
+                "name='" + name + '\'' +
+                ", life=" + life +
+                ", attack=" + attack +
+                '}';
+    }
 }

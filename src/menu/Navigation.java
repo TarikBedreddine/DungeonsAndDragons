@@ -2,6 +2,7 @@ package menu;
 import character.Character;
 import character.Wizard;
 import character.Warrior;
+import game.Game;
 
 import java.util.Scanner;
 
@@ -10,6 +11,52 @@ public class Navigation
     // All attributes
     private String character;
     Scanner scanner = new Scanner(System.in);
+
+    // This method permit to execute all the methods of the navigation class
+    public void startMenu() {
+        // Ask the user to start or end the game
+        System.out.println("1 - Commencer le jeu || 2 - Quitter le jeu (Veuillez saisir 1 ou 2)" );
+        int userAnswer = scanner.nextInt();
+        // While the user doesn't leave the game, he can create an other character
+        if (userAnswer == 1) {
+            System.out.println("--------------------------------------------------------------" );
+            System.out.println("Nous allons commencer la création d'un nouveau personnage !" );
+            // Store in an array the return of userChoices method
+            String[] allUserChoices = userChoices();
+            // Method of the CreateCharacter class that permit to retrieve all attributes of the character
+            Object characterCreation = createAndDisplayCharacter(allUserChoices[0], allUserChoices[1]);
+            // Offer the possibility for the user to change the name of the character
+            modifyNameChoice();
+            /* Ask the user to start or end the game
+            System.out.println("1 - Commencer le jeu || 2 - Quitter le jeu (Veuillez saisir 1 ou 2)" );
+            userAnswer = scanner.nextInt();*/
+            Game character = new Game(characterCreation);
+            character.startGame();
+        } else if (userAnswer == 2) {
+            // method to end the game
+            leaveMenu();
+        }
+    }
+
+    // This method will get the character & name chosen by the user. The return is an String array
+    public String[] userChoices () {
+        String[] allChoices = new String[2];
+        // Scan the input of the user
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Magicien ou Guerrier ? ");
+        allChoices[0] = scanner.nextLine();
+        // If the input is not Warrior or Wizard the scanner ask again for an other input
+        while (!allChoices[0].equalsIgnoreCase("Guerrier") && !allChoices[0].equalsIgnoreCase("Magicien")) {
+            System.out.println("Magicien ou Guerrier ? ");
+            // Store the name of the character chosen at the index 1 of the allChoices array
+            allChoices[0] = scanner.nextLine();
+
+        }
+        System.out.println("Quel nom voulez-vous lui donner ?");
+        allChoices[1] = scanner.nextLine();
+        setCharacter(allChoices[0]);
+        return allChoices;
+    }
 
     // Method to instance a Character and display information of the character
     public Object createAndDisplayCharacter(String character, String name) {
@@ -43,48 +90,6 @@ public class Navigation
     // Get the value of the attribute character
     public String getCharacter() {
         return character;
-    }
-
-    // This method permit to execute all the methods of the navigation class
-    public void startMenu() {
-        // Ask the user to start or end the game
-        System.out.println("1 - Commencer le jeu || 2 - Quitter le jeu (Veuillez saisir 1 ou 2)" );
-        int userAnswer = scanner.nextInt();
-        // While the user doesn't leave the game, he can create an other character
-        while (userAnswer == (1)) {
-            System.out.println("--------------------------------------------------------------" );
-            System.out.println("Nous allons commencer la création d'un nouveau personnage !" );
-            // Store in an array the return of userChoices method
-            String[] allUserChoices = userChoices();
-            // Method of the CreateCharacter class that permit to retrieve all attributes of the character
-            createAndDisplayCharacter(allUserChoices[0], allUserChoices[1]);
-            // Offer the possibility for the user to change the name of the character
-            modifyNameChoice();
-            // Ask the user to start or end the game
-            System.out.println("1 - Commencer le jeu || 2 - Quitter le jeu (Veuillez saisir 1 ou 2)" );
-            userAnswer = scanner.nextInt();
-        }
-        // method to end the game
-        leaveMenu();
-    }
-    // This method will get the character & name chosen by the user. The return is an String array
-    public String[] userChoices () {
-        String[] allChoices = new String[2];
-        // Scan the input of the user
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Magicien ou Guerrier ? ");
-        allChoices[0] = scanner.nextLine();
-        // If the input is not Warrior or Wizard the scanner ask again for an other input
-        while (!allChoices[0].equalsIgnoreCase("Guerrier") && !allChoices[0].equalsIgnoreCase("Magicien")) {
-            System.out.println("Magicien ou Guerrier ? ");
-            // Store the name of the character chosen at the index 1 of the allChoices array
-            allChoices[0] = scanner.nextLine();
-
-        }
-        System.out.println("Quel nom voulez-vous lui donner ?");
-        allChoices[1] = scanner.nextLine();
-        setCharacter(allChoices[0]);
-        return allChoices;
     }
 
     // This method permit to modify the name of the character
@@ -125,11 +130,4 @@ public class Navigation
         }
     }
 
-    // This method will start the game
-    public void startGame() {
-        System.out.println("Le jeu va débuter, vous êts prêts ?");
-        Character test = new Character();
-
-
-    }
 }
