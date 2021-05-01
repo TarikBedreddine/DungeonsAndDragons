@@ -1,4 +1,5 @@
 package menu;
+
 import character.Character;
 import character.Wizard;
 import character.Warrior;
@@ -9,125 +10,110 @@ import java.util.Scanner;
 public class Navigation
 {
     // All attributes
-    private String character;
     Scanner scanner = new Scanner(System.in);
 
-    // This method permit to execute all the methods of the navigation class
-    public void startMenu() {
-        // Ask the user to start or end the game
-        System.out.println("1 - Commencer le jeu || 2 - Quitter le jeu (Veuillez saisir 1 ou 2)" );
-        int userAnswer = scanner.nextInt();
-        // While the user doesn't leave the game, he can create an other character
-        if (userAnswer == 1) {
-            System.out.println("--------------------------------------------------------------" );
-            System.out.println("Nous allons commencer la création d'un nouveau personnage !" );
-            // Store in an array the return of userChoices method
-            String[] allUserChoices = userChoices();
-            // Method of the CreateCharacter class that permit to retrieve all attributes of the character
-            Object characterCreation = createAndDisplayCharacter(allUserChoices[0], allUserChoices[1]);
-            // Offer the possibility for the user to change the name of the character
-            modifyNameChoice();
-            /* Ask the user to start or end the game
-            System.out.println("1 - Commencer le jeu || 2 - Quitter le jeu (Veuillez saisir 1 ou 2)" );
-            userAnswer = scanner.nextInt();*/
-            Game character = new Game(characterCreation);
-            character.startGame();
-        } else if (userAnswer == 2) {
-            // method to end the game
-            leaveMenu();
+    // Method to start the menu & create a character
+    public Character startMenu(Character character) {
+        // Set user choice to 0
+        int userAnswer = 0;
+        // While the user don't leave the game, display the main menu
+        while (userAnswer != 3) {
+            System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            System.out.println(">>>>>>>>>>>>>>>>> 1 - CREER UN PERSONNAGE <<<<<<<<<<<<<<<<<<<<<<<");
+            System.out.println(">>>>>>>>>>>>>>>>>>> 2 - LANCER LE JEU <<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            System.out.println(">>>>>>>>>>>>>>>>>>> 3 - QUITTER LE JEU <<<<<<<<<<<<<<<<<<<<<<<<<<");
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            userAnswer = scanner.nextInt();
+            scanner.nextLine();
+            switch (userAnswer) {
+                case 1: {
+                    // CREATION OF THE CHARACTER
+                    System.out.println(">>> Nous allons commencer la création d'un nouveau personnage <<<");
+                    character = this.createCharacter(character);
+                    this.subMenu(character);
+                    break;
+                }
+                case 2: {
+                    // RUN THE GAME
+                    Game g = new Game();
+                    g.runGame();
+                }
+                case 3: {
+                    // EXIT THE MENU
+                    System.out.println("Merci de votre passage, au revoir !");
+                    System.exit(0);
+                }
+            }
         }
-    }
-
-    // This method will get the character & name chosen by the user. The return is an String array
-    public String[] userChoices () {
-        String[] allChoices = new String[2];
-        // Scan the input of the user
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Magicien ou Guerrier ? ");
-        allChoices[0] = scanner.nextLine();
-        // If the input is not Warrior or Wizard the scanner ask again for an other input
-        while (!allChoices[0].equalsIgnoreCase("Guerrier") && !allChoices[0].equalsIgnoreCase("Magicien")) {
-            System.out.println("Magicien ou Guerrier ? ");
-            // Store the name of the character chosen at the index 1 of the allChoices array
-            allChoices[0] = scanner.nextLine();
-
-        }
-        System.out.println("Quel nom voulez-vous lui donner ?");
-        allChoices[1] = scanner.nextLine();
-        setCharacter(allChoices[0]);
-        return allChoices;
-    }
-
-    // Method to instance a Character and display information of the character
-    public Object createAndDisplayCharacter(String character, String name) {
-        if (character.equalsIgnoreCase("Guerrier")) {
-            // Instance of the Warrior class
-            Warrior warriorIsSelected = new Warrior(name, "none", 5, 5);
-            // Store the name attribute
-            String nameSelected = warriorIsSelected.name();
-            // Store the life attribute
-            int life = warriorIsSelected.life();
-            // Store the attack attribute
-            int attack = warriorIsSelected.attack();
-            // Display a message of the attributes
-            System.out.println("Le nom de votre personnage est " + nameSelected + ", il a " + life + " points de vie et " + attack + " d'attaque" );
-            return warriorIsSelected;
-        } else if (character.equalsIgnoreCase("Magicien")) {
-            Wizard wizardIsSelected = new Wizard(name, "none", 3, 8);
-            String nameSelected = wizardIsSelected.name();
-            int life = wizardIsSelected.life();
-            int attack = wizardIsSelected.attack();
-            System.out.println("Le nom de votre personnage est " + nameSelected + ", il a " + life + " points de vie et " + attack + " d'attaque" );
-            return wizardIsSelected;
-        }
-        return null;
-    }
-
-    // Set the value of character (Warrior or Wizard)
-    public void setCharacter(String whichCharacter) {
-        this.character = whichCharacter;
-    }
-    // Get the value of the attribute character
-    public String getCharacter() {
         return character;
     }
 
-    // This method permit to modify the name of the character
-    public void modifyNameChoice () {
-        String character = getCharacter();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Voulez-vous changer le nom de votre personnage ? (Oui ou Non)");
-        String userAnswer = scanner.nextLine();
-        while (!userAnswer.equalsIgnoreCase("Oui") && !userAnswer.equalsIgnoreCase("Non")) {
-            System.out.println("Veuillez répondre par OUI ou par NON s'il vous plaît ?");
-            userAnswer = scanner.nextLine();
+    ////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    // Method to create the character and return it to the startMenu
+    public Character createCharacter (Character character) {
+        int choice = 0;
+        System.out.println("1- Guerrier");
+        System.out.println("2- Magicien");
+        choice = scanner.nextInt();
+        scanner.nextLine();
+        // If the input is not Guerrier or Magicien the scanner ask again for input
+        while (choice != 1 && choice != 2) {
+            System.out.println("Je n'ai pas compris votre choix");
+            choice = scanner.nextInt();
+            scanner.nextLine();
         }
-        if(userAnswer.equalsIgnoreCase("Oui")) {
-            System.out.println("Veuillez saisir le nouveau nom !");
-            String newName = scanner.nextLine();
-            createAndDisplayCharacter(character, newName);
+        // Set name of the character
+        System.out.println("Quel nom voulez-vous lui donner ?");
+        String name = scanner.nextLine();
+
+        if(choice == 1) {
+            character = new Warrior(name, "none", 5, 5);
         } else {
-            System.out.println("C'est noté ! le nom de votre personnage reste inchangé");
+            character = new Wizard(name, "none", 3, 8);
         }
+
+        character.setName(name);
+        return character;
     }
 
-    // This method permit to the use to end the game
-    public void leaveMenu() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Etes vous sûr de vouloir quitter ? (Oui ou Non)");
-        String userAnswer = scanner.nextLine();
-        while (!userAnswer.equalsIgnoreCase("Oui") && !userAnswer.equalsIgnoreCase("Non")) {
-            System.out.println("Répondez par OUI ou NON s'il vous plaît ?");
-            userAnswer = scanner.nextLine();
-        }
-        if(userAnswer.equalsIgnoreCase("Oui")) {
-            System.out.println("Merci de votre passage, au revoir !");
-            System.exit(0);
-
-        } else {
-            System.out.println("Super ! poursuivons notre aventure !");
-            startMenu();
+    // Sub menu (Display character information, allow to change character name & leave the game)
+    public void subMenu(Character character) {
+        int subMenuAnswer = 0;
+        while (subMenuAnswer != 3) {
+            switch (subMenuAnswer) {
+                case 1: {
+                    System.out.println(">>>>>>>> CARACTERISTIQUES DU PERSONNAGE <<<<<<<<<<");
+                    System.out.println(">>>>>>>>>>>> Nom : " + character.getName());
+                    System.out.println(">>>>>>>>>>>> Vie : " + character.getLife());
+                    System.out.println(">>>>>>>>>> Attaque : " + character.getAttack());
+                    break;
+                }
+                case 2: {
+                    System.out.println("Ecrivez le nouveau nom de votre personnage");
+                    String newName = scanner.nextLine();
+                    String oldName = character.getName();
+                    character.setName(newName);
+                    System.out.println("Le personnage " + oldName + " devient .... " + newName);
+                    break;
+                }
+                case 3: {
+                    break;
+                }
+                case 4: {
+                    System.out.println("Merci de votre passage, au revoir !");
+                    System.exit(0);
+                    break;
+                }
+            }
+            System.out.println("------------------------------------------------------");
+            System.out.println("1 - Afficher les caractéristiques de mon personnage");
+            System.out.println("2 - Modifier le nom de mon personnage");
+            System.out.println("3 - Menu principal");
+            System.out.println("4 - Quitter le jeu");
+            subMenuAnswer = scanner.nextInt();
+            scanner.nextLine();
         }
     }
-
 }

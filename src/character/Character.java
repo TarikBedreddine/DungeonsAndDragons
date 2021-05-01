@@ -7,9 +7,10 @@ public class Character {
     private String image;
     private int life;
     private int attack;
+    private int characterPosition;
 
     //-------------- Constructors ----------------------
-    // Fist constructor, initialize all attributes
+    // First constructor, initialize all attributes
     public Character() {
         this.name = "";
         this.image = "";
@@ -51,7 +52,20 @@ public class Character {
         return this.attack;
     }
 
-    @Override
+    public int getCharacterPosition() {
+        return characterPosition;
+    }
+
+    public void setCharacterPosition(int characterPosition) {
+        this.characterPosition = characterPosition;
+    }
+
+    // Setters
+    public void setName(String newName) {
+        this.name = newName;
+    }
+
+    // toString method
     public String toString() {
         return "Character{" +
                 "name='" + name + '\'' +
