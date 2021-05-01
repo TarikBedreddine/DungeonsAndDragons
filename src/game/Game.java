@@ -22,8 +22,9 @@ public class Game {
     public void runGame() {
         character = navigation.startMenu(character);
         this.boardGame = new BoardGame(this.character);
-        System.out.println("Le jeu va débuter, êtes-vous prêts ?");
+        System.out.println("--------------- Le jeu va débuter, êtes-vous prêts ? -----------------");
         // Initialize box to 1 of the boardGame
         boardGame.initializeFirstBox();
+        boardGame.currentBox();
     }
 }

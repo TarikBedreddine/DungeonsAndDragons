@@ -14,10 +14,15 @@ public class BoardGame {
         this.character = character;
     }
 
+    // Methods
     // Initialise the Count box to 1
     public void initializeFirstBox() {
         this.character.setCharacterPosition(1);
-        System.out.println(character.getCharacterPosition());
+    }
+
+    public void currentBox() {
+        this.character.getCharacterPosition();
+        System.out.println("Votre personnage est sur la case : " + character.getCharacterPosition());
     }
 
     // Getters & Setters
