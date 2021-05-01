@@ -17,12 +17,12 @@ public class Navigation
         // Set user choice to 0
         int userAnswer = 0;
         // While the user don't leave the game, display the main menu
-        while (userAnswer != 3) {
-            System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        while (userAnswer != 2) {
+            System.out.println("");
             System.out.println(">>>>>>>>>>>>>>>>> 1 - CREER UN PERSONNAGE <<<<<<<<<<<<<<<<<<<<<<<");
             System.out.println(">>>>>>>>>>>>>>>>>>> 2 - LANCER LE JEU <<<<<<<<<<<<<<<<<<<<<<<<<<<");
             System.out.println(">>>>>>>>>>>>>>>>>>> 3 - QUITTER LE JEU <<<<<<<<<<<<<<<<<<<<<<<<<<");
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            System.out.println("");
             userAnswer = scanner.nextInt();
             scanner.nextLine();
             switch (userAnswer) {
@@ -35,13 +35,22 @@ public class Navigation
                 }
                 case 2: {
                     // RUN THE GAME
-                    Game g = new Game();
-                    g.runGame();
+                    if (character == null) {
+                        System.out.println("-------------------------------------------------------------");
+                        System.out.println("------ Impossible ! Vous n'avez pas créer de personnage -----");
+                        System.out.println("-------------------------------------------------------------");
+                        System.out.println("------------------ Retour au menu principal -----------------");
+                        System.out.println("-------------------------------------------------------------");
+                        this.startMenu(character);
+                    } else {
+                        break;
+                    }
                 }
                 case 3: {
                     // EXIT THE MENU
                     System.out.println("Merci de votre passage, au revoir !");
                     System.exit(0);
+                    break;
                 }
             }
         }

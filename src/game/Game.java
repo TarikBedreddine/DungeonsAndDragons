@@ -15,13 +15,13 @@ public class Game {
     public Game() {
         this.character = null;
         this.navigation = new Navigation();
-        this.boardGame = new BoardGame();
         this.dice = new Dice();
     }
 
     // This method will start the game
     public void runGame() {
         character = navigation.startMenu(character);
+        this.boardGame = new BoardGame(this.character);
         System.out.println("Le jeu va débuter, êtes-vous prêts ?");
         // Initialize box to 1 of the boardGame
         boardGame.initializeFirstBox();
