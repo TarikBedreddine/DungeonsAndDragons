@@ -3,7 +3,6 @@ package menu;
 import character.Character;
 import character.Wizard;
 import character.Warrior;
-import game.Game;
 
 import java.util.Scanner;
 
@@ -29,6 +28,8 @@ public class Navigation
                 case 1: {
                     // CREATION OF THE CHARACTER
                     System.out.println(">>> Nous allons commencer la création d'un nouveau personnage <<<");
+                    System.out.println("- Important : Pour le moment vous ne pouvez créer qu'un seul personnage -");
+                    System.out.println("");
                     character = this.createCharacter(character);
                     this.subMenu(character);
                     break;
@@ -39,9 +40,11 @@ public class Navigation
                         System.out.println("-------------------------------------------------------------");
                         System.out.println("------ Impossible ! Vous n'avez pas créer de personnage -----");
                         System.out.println("-------------------------------------------------------------");
-                        System.out.println("------------------ Retour au menu principal -----------------");
+                        System.out.println("------------- Retour au menu princiapl imminent -------------");
                         System.out.println("-------------------------------------------------------------");
-                        this.startMenu(character);
+
+                        break;
+
                     } else {
                         break;
                     }
