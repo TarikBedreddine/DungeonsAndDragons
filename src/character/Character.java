@@ -57,7 +57,8 @@ public class Character {
     }
 
     public void setCharacterPosition(int characterPosition) {
-        this.characterPosition = characterPosition;
+
+        this.characterPosition += characterPosition;
     }
 
     // Setters
