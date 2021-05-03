@@ -1,6 +1,7 @@
 package game;
 
 import character.Character;
+import game.box.Box;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,14 +10,14 @@ public class BoardGame {
 
     // All attributes
     private int numberOfBoxes;
-    private List<Object> boardGame;
+    private List<Box> boardGame;
     private Character character;
 
     // Constructors
     public BoardGame(Character character) {
         this.numberOfBoxes = 64;
         this.character = character;
-        this.boardGame = new ArrayList<Object>();
+        this.boardGame = new ArrayList<Box>();
     }
 
     // Methods
