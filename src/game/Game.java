@@ -34,7 +34,7 @@ public class Game {
 
         // Initialize box to 1 of the boardGame
         boardGame.initializeFirstBox();
-        while (character.getCharacterPosition() < 64) {
+        while (character.getCharacterPosition() < boardGame.getNumberOfBoxes()) {
             System.out.println("");
             System.out.println("Appuyer sur la touche \"Entrée\" pour lancer le dé");
             System.out.println("--------------------------------------------------");
@@ -49,5 +49,6 @@ public class Game {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("--------------- Félicitations vous avez fini le Jeu ------------------");
         System.out.println("----------------------------------------------------------------------");
+        navigation.leaveOrRestartGame(character);
     }
 }

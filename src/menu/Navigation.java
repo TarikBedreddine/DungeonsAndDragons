@@ -3,6 +3,7 @@ package menu;
 import character.Character;
 import character.Wizard;
 import character.Warrior;
+import game.Game;
 
 import java.util.Scanner;
 
@@ -42,7 +43,7 @@ public class Navigation
                         System.out.println("-------------------------------------------------------------");
                         System.out.println("------------- Retour au menu princiapl imminent -------------");
                         System.out.println("-------------------------------------------------------------");
-
+                        userAnswer = 0;
                         break;
 
                     } else {
@@ -126,6 +127,22 @@ public class Navigation
             System.out.println("4 - Quitter le jeu");
             subMenuAnswer = scanner.nextInt();
             scanner.nextLine();
+        }
+    }
+
+    // Permit to the user to leave or restart the game
+
+    public void leaveOrRestartGame(Character character) {
+        System.out.println("--------------- 1 - Recommencer ------------------");
+        System.out.println("----------------2 - Quitter --------------------");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        if (choice == 1) {
+            character = null;
+            Game g = new Game();
+            g.runGame();
+        } else {
+            System.exit(0);
         }
     }
 }

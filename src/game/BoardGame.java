@@ -33,7 +33,6 @@ public class BoardGame {
     public int getNumberOfBoxes() {
         return numberOfBoxes;
     }
-
     public Character getCharacter() {
         return character;
     }
