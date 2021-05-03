@@ -26,7 +26,7 @@ public class BoardGame {
     public void currentBox(int diceResult) {
         character.setCharacterPosition(diceResult);
         System.out.println("Vous venez de lancer le dé, le résultat est : " + diceResult);
-        System.out.println("Votre personnage est maintenant sur la case : " + character.getCharacterPosition());
+        System.out.println("Votre personnage est maintenant sur la case : " + character.getCharacterPosition() + "/" + getNumberOfBoxes());
     }
 
     // Getters & Setters
