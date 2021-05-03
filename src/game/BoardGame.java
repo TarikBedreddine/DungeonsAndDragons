@@ -2,18 +2,21 @@ package game;
 
 import character.Character;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BoardGame {
 
     // All attributes
     private int numberOfBoxes;
-    private int[] boardGame;
+    private List<Object> boardGame;
     private Character character;
 
     // Constructors
     public BoardGame(Character character) {
         this.numberOfBoxes = 64;
         this.character = character;
-        this.boardGame = new int [numberOfBoxes];
+        this.boardGame = new ArrayList<Object>();
     }
 
     // Methods

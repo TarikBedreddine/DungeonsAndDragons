@@ -13,8 +13,7 @@ public class Weapon {
 
     // Methods
 
-    // Getters & Setters 
-
+    // Getters & Setters
     public int getStrenght() {
         return strenght;
     }
