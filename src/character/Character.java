@@ -1,6 +1,6 @@
 package character;
 
-public class Character {
+public abstract class Character {
 
     // All attributes of Character
     private String name;
