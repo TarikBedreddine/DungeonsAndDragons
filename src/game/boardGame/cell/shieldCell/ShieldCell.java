@@ -24,7 +24,7 @@ public abstract class ShieldCell extends Cell {
 
 
     // Getters & Setters
-    public int getStrenght() {
+    public int getStrength() {
         return life;
     }
 
@@ -32,7 +32,7 @@ public abstract class ShieldCell extends Cell {
         return name;
     }
 
-    public void setStrenght(int life) {
+    public void setStrength(int life) {
         this.life = life;
     }
 

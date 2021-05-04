@@ -6,15 +6,15 @@ public abstract class Weapon extends Cell {
 
     // Attributes
     private String name;
-    private int strenght;
+    private int strength;
 
     // Constructors
     public Weapon() {}
 
-    public Weapon(String weaponName, int weaponStrenght) {
+    public Weapon(String weaponName, int weaponStrength) {
         cellFocused();
         this.name = weaponName;
-        this.strenght = weaponStrenght;
+        this.strength = weaponStrength;                             
         System.out.println(toString());
     }
 
@@ -25,16 +25,16 @@ public abstract class Weapon extends Cell {
     }
 
     // Getters & Setters
-    public int getStrenght() {
-        return strenght;
+    public int getStrength() {
+        return strength;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setStrenght(int strenght) {
-        this.strenght = strenght;
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 
     public void setName(String name) {
@@ -45,7 +45,7 @@ public abstract class Weapon extends Cell {
     public String toString() {
         return "Weapon{" +
                 "name='" + name + '\'' +
-                ", strenght=" + strenght +
+                ", strength=" + strength +
                 '}';
     }
 }
