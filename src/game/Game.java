@@ -1,6 +1,7 @@
 package game;
 
 import character.Character;
+import game.boardGame.BoardGame;
 import game.exceptions.CharacterOutsideBoardGame;
 import menu.Navigation;
 
