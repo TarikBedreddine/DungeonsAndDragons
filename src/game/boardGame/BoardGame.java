@@ -6,6 +6,7 @@ import game.boardGame.cell.emptyCell.EmptyCell;
 import game.boardGame.cell.enemyCell.Dragon;
 import game.boardGame.cell.enemyCell.Gobelin;
 import game.boardGame.cell.shieldCell.StandardPotion;
+import game.boardGame.cell.surpriseCell.SurpriseCell;
 
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class BoardGame {
                 break;
             }
             case 2: {
-                boardGame.add(new Gobelin());
+                boardGame.add(new SurpriseCell());
                 boardGame.get(1).interaction(character);
                 break;
             }
@@ -58,7 +59,8 @@ public class BoardGame {
                 break;
             }
             case 4: {
-                boardGame.add(new StandardPotion());
+                boardGame.add(new SurpriseCell());
+                boardGame.get(3).interaction(character);
                 break;
             }
         }
