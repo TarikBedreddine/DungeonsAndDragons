@@ -3,8 +3,6 @@ package character;
 public class Wizard extends Character {
 
     // Attributes of a Wizard
-    private String spell;
-    private String philtre;
 
     // Wizard constructor
     public Wizard() {
@@ -21,23 +19,4 @@ public class Wizard extends Character {
         super(selectedName, url, WizardLife, WizardAttack, maxLife, maxAttack);
     }
 
-    // Method to get the parent name attribute
-    public String name() {
-        return getName();
-    }
-
-    // Method to get the parent image attribute
-    public String image() {
-        return getImage();
-    }
-
-    // Method to get the parent life attribute
-    public int life() {
-        return getLife();
-    }
-
-    // Method to get the parent attack attribute
-    public int attack() {
-        return getAttack();
-    }
 }
