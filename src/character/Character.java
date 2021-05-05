@@ -78,6 +78,14 @@ public abstract class Character {
         this.attack = attack;
     }
 
+    public int getMaxLife() {
+        return maxLife;
+    }
+
+    public int getMaxAttack() {
+        return maxAttack;
+    }
+
     // toString method
     public String toString() {
         return "Character{" +

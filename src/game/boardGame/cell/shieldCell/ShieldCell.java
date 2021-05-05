@@ -19,6 +19,12 @@ public abstract class ShieldCell extends Cell {
     // Methods
     @Override
     public void interaction(Character character) {
+        if (character.getLife() < character.getMaxLife()) {
+            character.setLife(this.life);
+            System.out.println("");
+            System.out.println("Bonne nouvelle !! vous êtes tombés sur une potion, vos point de vies sont maintenant de : " + character.getLife());
+
+        }
     }
 
 
