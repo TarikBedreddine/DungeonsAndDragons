@@ -20,8 +20,8 @@ public class Warrior extends Character {
     }
 
     // Access to the Second constructor of the parent
-    public Warrior(String selectedName, String url, int warriorLife, int warriorAttack) {
-        super(selectedName, url, warriorLife, warriorAttack);
+    public Warrior(String selectedName, String url, int warriorLife, int warriorAttack, int maxLife, int maxAttack) {
+        super(selectedName, url, warriorLife, warriorAttack, maxLife, maxAttack);
     }
 
     // Method to get the parent name attribute

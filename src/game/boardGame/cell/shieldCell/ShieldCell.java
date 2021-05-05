@@ -19,7 +19,6 @@ public abstract class ShieldCell extends Cell {
     // Methods
     @Override
     public void interaction(Character character) {
-
     }
 
 

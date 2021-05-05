@@ -8,6 +8,8 @@ public abstract class Character {
     private int life;
     private int attack;
     private int characterPosition;
+    private int maxLife;
+    private int maxAttack;
 
     //-------------- Constructors ----------------------
     // First constructor, initialize all attributes
@@ -25,12 +27,14 @@ public abstract class Character {
     }
 
     // Third constructor, all attributes must be given by the user
-    public Character(String selectedName, String url, int Life, int Attack) {
+    public Character(String selectedName, String url, int Life, int Attack, int maxLife, int maxAttack) {
         this();
         this.name = selectedName;
         this.image = url;
         this.life = Life;
         this.attack = Attack;
+        this.maxLife = maxLife;
+        this.maxAttack = maxAttack;
     }
 
     // Method to get the name attribute
