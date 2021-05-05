@@ -1,6 +1,7 @@
 package game.boardGame.cell.enemyCell;
 import character.Character;
 
+import game.Game;
 import game.boardGame.cell.Cell;
 
 public abstract class EnemyCell extends Cell {
@@ -36,6 +37,10 @@ public abstract class EnemyCell extends Cell {
         } else {
             System.out.println("");
             System.out.println("Vous êtes MORT !");
+            System.out.println("");
+            System.out.println("Retour au menu principal");
+            Game newGame = new Game();
+            newGame.runGame();
         }
 
     }

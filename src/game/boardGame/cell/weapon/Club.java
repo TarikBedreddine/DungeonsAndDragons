@@ -1,6 +1,6 @@
 package game.boardGame.cell.weapon;
 
-public class Club extends Weapon{
+public class Club extends WeaponCell {
 
     // Attributes
 

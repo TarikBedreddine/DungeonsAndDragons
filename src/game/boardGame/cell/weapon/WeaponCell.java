@@ -2,14 +2,14 @@ package game.boardGame.cell.weapon;
 import character.Character;
 import game.boardGame.cell.Cell;
 
-public abstract class Weapon extends Cell {
+public abstract class WeaponCell extends Cell {
 
     // Attributes
     private String name;
     private int strength;
 
     // Constructors
-    public Weapon(String weaponName, int weaponStrength) {
+    public WeaponCell(String weaponName, int weaponStrength) {
         this.name = weaponName;
         this.strength = weaponStrength;
         System.out.println(toString());

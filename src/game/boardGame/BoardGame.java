@@ -1,16 +1,12 @@
 package game.boardGame;
 
 import character.Character;
-import character.Warrior;
 import game.boardGame.cell.*;
 import game.boardGame.cell.emptyCell.EmptyCell;
 import game.boardGame.cell.enemyCell.Dragon;
-import game.boardGame.cell.enemyCell.EnemyCell;
 import game.boardGame.cell.enemyCell.Gobelin;
-import game.boardGame.cell.shieldCell.ShieldCell;
 import game.boardGame.cell.shieldCell.StandardPotion;
-import game.boardGame.cell.weapon.Sword;
-import game.boardGame.cell.weapon.Weapon;
+
 
 import java.util.ArrayList;
 import java.util.List;
