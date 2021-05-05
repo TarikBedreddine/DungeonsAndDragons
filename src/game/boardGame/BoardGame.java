@@ -2,11 +2,14 @@ package game.boardGame;
 
 import character.Character;
 import game.boardGame.cell.*;
-import game.boardGame.cell.emptyCell.EmptyCell;
 import game.boardGame.cell.enemyCell.Dragon;
 import game.boardGame.cell.enemyCell.Gobelin;
+import game.boardGame.cell.enemyCell.Sorcerer;
 import game.boardGame.cell.shieldCell.StandardPotion;
 import game.boardGame.cell.surpriseCell.SurpriseCell;
+import game.boardGame.cell.weapon.Club;
+import game.boardGame.cell.weapon.Fireball;
+import game.boardGame.cell.weapon.Thunderbolt;
 
 
 import java.util.ArrayList;
@@ -43,23 +46,23 @@ public class BoardGame {
     public void cellContent(int characterPosition) {
         switch (characterPosition) {
             case 1: {
-                boardGame.add(new EmptyCell());
-                Cell ec = new EmptyCell();
-                ec.interaction(character);
+                boardGame.add(new StandardPotion());
+                boardGame.get(0).interaction(character);
+                System.out.println(character.toString());
                 break;
             }
             case 2: {
-                boardGame.add(new SurpriseCell());
+                boardGame.add(new Gobelin());
                 boardGame.get(1).interaction(character);
                 break;
             }
             case 3: {
-                boardGame.add(new Dragon());
+                boardGame.add(new Fireball());
                 boardGame.get(2).interaction(character);
                 break;
             }
             case 4: {
-                boardGame.add(new SurpriseCell());
+                boardGame.add(new Sorcerer());
                 boardGame.get(3).interaction(character);
                 break;
             }

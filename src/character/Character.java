@@ -7,6 +7,8 @@ public abstract class Character {
     private String image;
     private int life;
     private int attack;
+    private String weaponName;
+    private int weaponDamage;
     private int characterPosition;
     private int maxLife;
     private int maxAttack;
@@ -18,6 +20,8 @@ public abstract class Character {
         this.image = "";
         this.life = 0;
         this.attack = 0;
+        this.weaponName = null;
+        this.weaponDamage = 0;
     }
 
     // Second constructor, initialize all attributes except name which is given by user
@@ -60,9 +64,16 @@ public abstract class Character {
         return characterPosition;
     }
 
-    public void setCharacterPosition(int characterPosition) {
+    public int getMaxLife() {
+        return maxLife;
+    }
 
-        this.characterPosition += characterPosition;
+    public int getMaxAttack() {
+        return maxAttack;
+    }
+
+    public int getWeaponDamage() {
+        return weaponDamage;
     }
 
     // Setters
@@ -78,12 +89,17 @@ public abstract class Character {
         this.attack = attack;
     }
 
-    public int getMaxLife() {
-        return maxLife;
+    public void setCharacterPosition(int characterPosition) {
+
+        this.characterPosition += characterPosition;
     }
 
-    public int getMaxAttack() {
-        return maxAttack;
+    public void setWeaponName(String weaponName) {
+        this.weaponName = weaponName;
+    }
+
+    public void setWeaponDamage(int weaponDamage) {
+        this.weaponDamage = weaponDamage;
     }
 
     // toString method

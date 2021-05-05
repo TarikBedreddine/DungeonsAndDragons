@@ -23,7 +23,6 @@ public abstract class ShieldCell extends Cell {
             character.setLife(character.getLife() + this.life);
             System.out.println("");
             System.out.println("Bonne nouvelle !! vous êtes tombés sur une potion, vos point de vies sont maintenant de : " + character.getLife());
-
         }
     }
 
