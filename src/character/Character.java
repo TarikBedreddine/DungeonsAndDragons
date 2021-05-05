@@ -66,6 +66,14 @@ public abstract class Character {
         this.name = newName;
     }
 
+    public void setLife(int life) {
+        this.life = life;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
     // toString method
     public String toString() {
         return "Character{" +

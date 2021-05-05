@@ -1,4 +1,5 @@
 package game.boardGame.cell.shieldCell;
+import character.Character;
 
 import game.boardGame.cell.Cell;
 
@@ -10,7 +11,6 @@ public abstract class ShieldCell extends Cell {
 
     // Constructors
     public ShieldCell(String shieldName, int lifeRescue) {
-        cellFocused();
         this.name = shieldName;
         this.life = lifeRescue;
         System.out.println(toString());
@@ -18,13 +18,13 @@ public abstract class ShieldCell extends Cell {
 
     // Methods
     @Override
-    public void cellFocused() {
+    public void interaction(Character character) {
 
     }
 
 
     // Getters & Setters
-    public int getStrength() {
+    public int getLife() {
         return life;
     }
 
@@ -32,7 +32,7 @@ public abstract class ShieldCell extends Cell {
         return name;
     }
 
-    public void setStrength(int life) {
+    public void setLife(int life) {
         this.life = life;
     }
 

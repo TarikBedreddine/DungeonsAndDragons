@@ -1,12 +1,12 @@
 package game.boardGame.cell.enemyCell;
 
-public class Dragon extends EnemyCell{
+public class Sorcerer extends EnemyCell{
 
     // Attributes
 
     // Constructors
-    public Dragon() {
-        super(15, 4);
+    public Sorcerer() {
+        super(9, 2);
     }
 
     // Methods

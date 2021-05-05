@@ -1,5 +1,5 @@
 package game.boardGame.cell.weapon;
-
+import character.Character;
 import game.boardGame.cell.Cell;
 
 public abstract class Weapon extends Cell {
@@ -9,18 +9,15 @@ public abstract class Weapon extends Cell {
     private int strength;
 
     // Constructors
-    public Weapon() {}
-
     public Weapon(String weaponName, int weaponStrength) {
-        cellFocused();
         this.name = weaponName;
-        this.strength = weaponStrength;                             
+        this.strength = weaponStrength;
         System.out.println(toString());
     }
 
     // Methods
     @Override
-    public void cellFocused() {
+    public void interaction(Character character) {
 
     }
 

@@ -12,4 +12,5 @@ public class Sword extends Weapon{
     // Methods
 
     // Getters & Setters
+
 }

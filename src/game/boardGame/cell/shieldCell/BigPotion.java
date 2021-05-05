@@ -5,8 +5,8 @@ public class BigPotion extends ShieldCell{
     // Attributes
 
     // Constructors
-    public BigPotion(String shieldName, int lifeRescue) {
-        super(shieldName, lifeRescue);
+    public BigPotion() {
+        super("Grande potion de vie", 5 );
     }
 
     // Methods

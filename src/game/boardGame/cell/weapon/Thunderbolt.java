@@ -4,8 +4,8 @@ public class Thunderbolt extends Weapon{
     // Attributes
 
     // Constructors
-    public Thunderbolt(String weaponName, int weaponStrenght) {
-        super(weaponName, weaponStrenght);
+    public Thunderbolt() {
+        super("Eclair", 2);
     }
 
     // Methods

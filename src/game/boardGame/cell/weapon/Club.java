@@ -5,8 +5,8 @@ public class Club extends Weapon{
     // Attributes
 
     // Constructors
-    public Club(String weaponName, int weaponStrenght) {
-        super(weaponName, weaponStrenght);
+    public Club() {
+        super("Massue", 3);
     }
 
     // Methods

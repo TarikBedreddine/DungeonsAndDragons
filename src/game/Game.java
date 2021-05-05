@@ -27,9 +27,9 @@ public class Game {
     // This method will start the game
     public void runGame() {
         while (character == null) {
-            character = navigation.startMenu(character);
+            this.character = navigation.startMenu(character);
         }
-        this.boardGame = new BoardGame(this.character);
+        boardGame = new BoardGame(this.character);
         System.out.println("----------------------------------------------------------------------");
         System.out.println("--------------- Le jeu va débuter, êtes-vous prêts ? -----------------");
         System.out.println("----------------------------------------------------------------------");

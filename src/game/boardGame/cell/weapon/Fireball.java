@@ -4,8 +4,8 @@ public class Fireball extends Weapon{
     // Attributes
 
     // Constructors
-    public Fireball(String weaponName, int weaponStrenght) {
-        super(weaponName, weaponStrenght);
+    public Fireball() {
+        super("Boule de feu", 7);
     }
 
     // Methods
