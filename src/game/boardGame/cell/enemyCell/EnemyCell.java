@@ -1,6 +1,7 @@
 package game.boardGame.cell.enemyCell;
 import character.Character;
 
+import character.Weapon;
 import game.Game;
 import game.boardGame.cell.Cell;
 
@@ -23,9 +24,13 @@ public abstract class EnemyCell extends Cell {
         while (this.getLife() > 0 && character.getLife() > 0) {
             System.out.println("");
             System.out.println("Votre personnage attaque ... ");
-            setLife(getLife() - character.getAttack());
+            if (!character.getName().equals(null)) {
+                setLife(getLife() - character.getAttack() - character.getWeaponDamage());
+            } else {
+                setLife(getLife() - character.getAttack());
+            }
             System.out.println("");
-            System.out.println("Vous avez infligé " + character.getAttack() + " de dégâts. L'ennemi a désormais : " + this.getLife() + " de vie");
+            System.out.println("Vous avez infligé " + (character.getAttack() + character.getWeaponDamage()) + " de dégâts. L'ennemi a désormais : " + this.getLife() + " de vie");
             if (this.getLife() > 0) {
                 character.setLife(character.getLife() - this.attack);
                 System.out.println("L'ennemi vient de vous infliger " + this.attack + ". Votre vie passe donc maintenant à " + character.getLife());
