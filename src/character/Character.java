@@ -107,11 +107,19 @@ public abstract class Character {
     }
 
     // toString method
+
+    @Override
     public String toString() {
         return "Character{" +
                 "name='" + name + '\'' +
+                ", image='" + image + '\'' +
                 ", life=" + life +
                 ", attack=" + attack +
+                ", weaponName='" + weaponName + '\'' +
+                ", weaponDamage=" + weaponDamage +
+                ", characterPosition=" + characterPosition +
+                ", maxLife=" + maxLife +
+                ", maxAttack=" + maxAttack +
                 '}';
     }
 }
