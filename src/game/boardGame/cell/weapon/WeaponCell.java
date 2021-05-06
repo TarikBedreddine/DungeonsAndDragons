@@ -29,9 +29,13 @@ public abstract class WeaponCell extends Cell {
                 if ((character.getWeaponDamage() + character.getAttack()) > character.getMaxAttack()) {
                     character.setWeaponDamage((character.getMaxAttack() - character.getAttack()));
                 }
-                System.out.println("Vous êtes maintenant équipé de l'arme suivante : " + this.weaponName + ", elle fait " + character.getWeaponDamage() + " de dégâts");
+                System.out.println("");
+                System.out.println("Vous êtes maintenant équipé de l'arme suivante : " + this.weaponName + ", elle fait " + character.getWeaponDamage() + " de dégâts.");
+                System.out.println("");
             } else {
+                System.out.println("");
                 System.out.println("Vous avez looté " + this.weaponName + " mais elle fait moins de dégâts (" + this.weaponDamage + ") que votre arme actuelle. Vous gardez donc votre arme !");
+                System.out.println("");
             }
         } else {
             System.out.println("");

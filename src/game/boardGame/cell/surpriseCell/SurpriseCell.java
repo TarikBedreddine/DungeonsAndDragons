@@ -25,6 +25,7 @@ public class SurpriseCell extends Cell {
         switch (randomResult) {
             case 1: {
                 StandardPotion standardPotion = new StandardPotion();
+                System.out.println("");
                 System.out.println("Vous obtenez une potion standard !!!");
                 System.out.println("");
                 standardPotion.interaction(character);
@@ -32,6 +33,7 @@ public class SurpriseCell extends Cell {
             }
             case 2: {
                 BigPotion bigPotion = new BigPotion();
+                System.out.println("");
                 System.out.println("Vous obtenez la grande Potion, quel chanceux !!!");
                 System.out.println("");
                 bigPotion.interaction(character);
@@ -39,6 +41,7 @@ public class SurpriseCell extends Cell {
             }
             case 3: {
                 Club club = new Club();
+                System.out.println("");
                 System.out.println("Vous obtenez une massue, avec ça vous n'avez plus d'excuses !!!");
                 System.out.println("");
                 club.interaction(character);
@@ -46,6 +49,7 @@ public class SurpriseCell extends Cell {
             }
             case 4: {
                 Fireball fireball = new Fireball();
+                System.out.println("");
                 System.out.println("Vous obtenez une boule de feu, à ce stade, vous êtes quasiement invisible ...");
                 System.out.println("");
                 fireball.interaction(character);
@@ -53,6 +57,7 @@ public class SurpriseCell extends Cell {
             }
             case 5: {
                 Sword sword = new Sword();
+                System.out.println("");
                 System.out.println("Vous obtenez une épée, faites en bon usage !!!");
                 System.out.println("");
                 sword.interaction(character);
@@ -60,6 +65,7 @@ public class SurpriseCell extends Cell {
             }
             case 6: {
                 Thunderbolt thunderbolt = new Thunderbolt();
+                System.out.println("");
                 System.out.println("Vous obtenez l'éclair, la partie n'est elle pas gagné ?");
                 System.out.println("");
                 thunderbolt.interaction(character);
@@ -71,6 +77,7 @@ public class SurpriseCell extends Cell {
     // Methods
     @Override
     public void interaction(Character character) {
+        System.out.println("");
         System.out.println("Oh yes ! une caisse surprise ...");
         randomSurprise(character);
     }

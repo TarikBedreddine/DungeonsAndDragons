@@ -25,6 +25,7 @@ public abstract class ShieldCell extends Cell {
             }
             System.out.println("");
             System.out.println("Bonne nouvelle !! vous êtes tombés sur une " + this.name + ", vos point de vies sont maintenant de : " + character.getLife());
+            System.out.println("");
         }
     }
 

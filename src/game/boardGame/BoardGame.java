@@ -134,6 +134,7 @@ public class BoardGame {
         // Check if there is an object in the List
         if (boardGame.get(character.getCharacterPosition()) != null)
             boardGame.get(character.getCharacterPosition()).interaction(character);
+            System.out.println("");
             System.out.println(character.toString());
     }
 

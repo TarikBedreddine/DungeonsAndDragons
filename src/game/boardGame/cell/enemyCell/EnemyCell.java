@@ -22,6 +22,7 @@ public abstract class EnemyCell extends Cell {
     // Methods
     @Override
     public void interaction(Character character) {
+        System.out.println("");
         System.out.println("Oh non ! un " + enemyName);
         while (this.getEnemyLife() > 0 && character.getLife() > 0) {
             System.out.println("");
@@ -31,10 +32,10 @@ public abstract class EnemyCell extends Cell {
             } else {
                 setEnemyLife(getEnemyLife() - character.getAttack());
             }
-            System.out.println("");
             System.out.println("Vous avez infligé " + (character.getAttack() + character.getWeaponDamage()) + " de dégâts. L'ennemi a désormais : " + this.getEnemyLife() + " de vie");
             if (this.getEnemyLife() > 0) {
                 character.setLife(character.getLife() - this.enemyAttack);
+                System.out.println("...");
                 System.out.println("L'ennemi vient de vous infliger " + this.enemyAttack + ". Votre vie passe donc maintenant à " + character.getLife());
             }
         }
