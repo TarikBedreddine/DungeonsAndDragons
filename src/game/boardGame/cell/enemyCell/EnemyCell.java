@@ -8,11 +8,13 @@ import game.boardGame.cell.Cell;
 public abstract class EnemyCell extends Cell {
 
     // Attributes
+    private String enemyName;
     private int enemyLife;
     private int enemyAttack;
 
     // Constructors
-    public EnemyCell(int enemyLife, int enemyAttack) {
+    public EnemyCell(String enemyName, int enemyLife, int enemyAttack) {
+        this.enemyName = enemyName;
         this.enemyLife = enemyLife;
         this.enemyAttack = enemyAttack;
     }
@@ -22,6 +24,7 @@ public abstract class EnemyCell extends Cell {
     public void interaction(Character character) {
         while (this.getEnemyLife() > 0 && character.getLife() > 0) {
             System.out.println("");
+            System.out.println("Oh non ! un " + enemyName);
             System.out.println("Votre personnage attaque ... ");
             if (!character.getWeaponName().equals(null)) {
                 setEnemyLife(getEnemyLife() - character.getAttack() - character.getWeaponDamage());

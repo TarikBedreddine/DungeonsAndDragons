@@ -6,7 +6,7 @@ public class Dragon extends EnemyCell{
 
     // Constructors
     public Dragon() {
-        super(15, 4);
+        super("Dragon", 15, 4);
     }
 
     // Methods

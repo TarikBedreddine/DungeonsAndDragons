@@ -6,7 +6,7 @@ public class Gobelin extends EnemyCell{
 
     // Constructors
     public Gobelin() {
-        super(6, 1 );
+        super("Gobelin", 6, 1 );
     }
 
     // Methods

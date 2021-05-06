@@ -6,7 +6,7 @@ public class Sorcerer extends EnemyCell{
 
     // Constructors
     public Sorcerer() {
-        super(9, 2);
+        super("Sorcier", 9, 2);
     }
 
     // Methods
