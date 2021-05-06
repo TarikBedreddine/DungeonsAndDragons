@@ -13,7 +13,6 @@ public abstract class ShieldCell extends Cell {
     public ShieldCell(String shieldName, int lifeRescue) {
         this.name = shieldName;
         this.life = lifeRescue;
-        System.out.println(toString());
     }
 
     // Methods

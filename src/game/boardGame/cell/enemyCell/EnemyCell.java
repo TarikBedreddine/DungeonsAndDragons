@@ -8,32 +8,31 @@ import game.boardGame.cell.Cell;
 public abstract class EnemyCell extends Cell {
 
     // Attributes
-    private int life;
-    private int attack;
+    private int enemyLife;
+    private int enemyAttack;
 
     // Constructors
     public EnemyCell(int enemyLife, int enemyAttack) {
-        this.life = enemyLife;
-        this.attack = enemyAttack;
-        System.out.println(toString());
+        this.enemyLife = enemyLife;
+        this.enemyAttack = enemyAttack;
     }
 
     // Methods
     @Override
     public void interaction(Character character) {
-        while (this.getLife() > 0 && character.getLife() > 0) {
+        while (this.getEnemyLife() > 0 && character.getLife() > 0) {
             System.out.println("");
             System.out.println("Votre personnage attaque ... ");
-            if (!character.getName().equals(null)) {
-                setLife(getLife() - character.getAttack() - character.getWeaponDamage());
+            if (!character.getWeaponName().equals(null)) {
+                setEnemyLife(getEnemyLife() - character.getAttack() - character.getWeaponDamage());
             } else {
-                setLife(getLife() - character.getAttack());
+                setEnemyLife(getEnemyLife() - character.getAttack());
             }
             System.out.println("");
-            System.out.println("Vous avez infligé " + (character.getAttack() + character.getWeaponDamage()) + " de dégâts. L'ennemi a désormais : " + this.getLife() + " de vie");
-            if (this.getLife() > 0) {
-                character.setLife(character.getLife() - this.attack);
-                System.out.println("L'ennemi vient de vous infliger " + this.attack + ". Votre vie passe donc maintenant à " + character.getLife());
+            System.out.println("Vous avez infligé " + (character.getAttack() + character.getWeaponDamage()) + " de dégâts. L'ennemi a désormais : " + this.getEnemyLife() + " de vie");
+            if (this.getEnemyLife() > 0) {
+                character.setLife(character.getLife() - this.enemyAttack);
+                System.out.println("L'ennemi vient de vous infliger " + this.enemyAttack + ". Votre vie passe donc maintenant à " + character.getLife());
             }
         }
         if (character.getLife() > 0 ) {
@@ -51,26 +50,28 @@ public abstract class EnemyCell extends Cell {
     }
 
     // Getters & Setters
-    public int getAttack() {
-        return attack;
+
+    public int getEnemyLife() {
+        return enemyLife;
     }
 
-    public int getLife() {
-        return life;
+    public void setEnemyLife(int enemyLife) {
+        this.enemyLife = enemyLife;
     }
 
-    public void setAttack(int attack) {
-        this.attack = attack;
+    public int getEnemyAttack() {
+        return enemyAttack;
     }
 
-    public void setLife(int life) {
-        this.life = life;
+    public void setEnemyAttack(int enemyAttack) {
+        this.enemyAttack = enemyAttack;
     }
 
+    @Override
     public String toString() {
         return "EnemyCell{" +
-                "life=" + this.life +
-                ", attack=" + this.attack +
+                "enemyLife=" + enemyLife +
+                ", enemyAttack=" + enemyAttack +
                 '}';
     }
 }

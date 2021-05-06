@@ -22,7 +22,6 @@ public class SurpriseCell extends Cell {
     public void randomSurprise(Character character) {
         int range = (6 - 1) + 1;
         int randomResult = (int)(Math.random() * range) + 1;
-        System.out.println(randomResult);
         switch (randomResult) {
             case 1: {
                 StandardPotion standardPotion = new StandardPotion();

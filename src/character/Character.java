@@ -76,6 +76,10 @@ public abstract class Character {
         return weaponDamage;
     }
 
+    public String getWeaponName() {
+        return weaponName;
+    }
+
     // Setters
     public void setName(String newName) {
         this.name = newName;

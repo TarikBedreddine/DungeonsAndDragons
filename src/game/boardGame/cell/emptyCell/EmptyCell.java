@@ -18,6 +18,8 @@ public class EmptyCell extends Cell {
     @Override
     public void interaction(Character character) {
         System.out.println("Cette case vide n'a aucun effet sur vous :)");
+        System.out.println("Vous concervez vos propriétés : ");
+        System.out.println(character.toString());
     }
 
     // Getters & Setters
