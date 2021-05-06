@@ -20,18 +20,25 @@ public abstract class WeaponCell extends Cell {
     // Methods
     @Override
     public void interaction(Character character) {
-        if (character.getWeaponDamage() < this.weaponDamage) {
-            character.setWeaponName(this.weaponName);
-            character.setWeaponDamage(this.weaponDamage);
-            if ((character.getWeaponDamage() + character.getAttack()) > character.getMaxAttack()) {
-                character.setWeaponDamage((character.getMaxAttack() - character.getAttack()));
+        if (character.getWeaponName() == null || (character.getWeaponName() != null && !character.getWeaponName().equals(this.weaponName))) {
+            if (character.getWeaponDamage() < this.weaponDamage) {
+                // Set the weapon name & weapon damage to the character
+                character.setWeaponName(this.weaponName);
+                character.setWeaponDamage(this.weaponDamage);
+                // If the total attack is > max attack then total attack = max attack
+                if ((character.getWeaponDamage() + character.getAttack()) > character.getMaxAttack()) {
+                    character.setWeaponDamage((character.getMaxAttack() - character.getAttack()));
+                }
+                System.out.println("Vous êtes maintenant équipé de l'arme suivante : " + this.weaponName + ", elle fait " + character.getWeaponDamage() + " de dégâts");
+            } else {
+                System.out.println("Vous avez looté " + this.weaponName + " mais elle fait moins de dégâts (" + this.weaponDamage + ") que votre arme actuelle. Vous gardez donc votre arme !");
             }
-            System.out.println("Vous êtes maintenant équipé de l'arme suivante : " + this.weaponName + ", elle fait " + character.getWeaponDamage() + " de dégâts");
         } else {
-            System.out.println("Vous avez looté " + this.weaponName + " mais elle fait moins de dégâts (" + this.weaponDamage +") que votre arme actuelle. Vous gardez donc votre arme !");
+            System.out.println("");
+            System.out.println("Vous avez déjà looté " + this.weaponName + " mais vous l'avez déjà, dommage !");
+            System.out.println("");
         }
     }
-
     // Getters & Setters
 
     public String getWeaponName() {
