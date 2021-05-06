@@ -33,36 +33,18 @@ public class BoardGame {
     }
 
     // Methods
-    // Initialise the Count box to 1
-    public void initializeFirstCell() {
-        character.setCharacterPosition(1);
-        System.out.println("Vous commencez sur la case : " + character.getCharacterPosition());
-        // Set all indexes of the boardgame to null
-        initializeBoardGame();
-        cellContent();
-    }
-    // Current character position
-    public void currentCell(int diceResult) {
-        character.setCharacterPosition(diceResult);
-        System.out.println("Vous venez de lancer le dé, le résultat est : " + diceResult);
-        System.out.println("Votre personnage est maintenant sur la case : " + character.getCharacterPosition() + "/" + getNumberOfBoxes());
-        if (boardGame.get(character.getCharacterPosition()) != null)
-        boardGame.get(character.getCharacterPosition()).interaction(character);
-        System.out.println(character.toString());
-        }
-
-
-    // initialize all the cells of the list to null
-    public void initializeBoardGame() {
-        for (int i = 0; i <= 64; i++) {
-            boardGame.add(i, null);
-        }
-    }
 
     // Update the values of boardgame List with objects
     public void addItemInBoardGame(int [] array, List boardGame, Object item) {
         for (int value: array) {
             boardGame.set(value, item);
+        }
+    }
+
+    // initialize all the cells of the list to null
+    public void initializeBoardGame() {
+        for (int i = 0; i <= 64; i++) {
+            boardGame.add(i, null);
         }
     }
 
@@ -87,6 +69,31 @@ public class BoardGame {
         addItemInBoardGame(fireballs, this.boardGame, new Fireball());
         addItemInBoardGame(standardPotion, this.boardGame, new StandardPotion());
         addItemInBoardGame(bigPotion, this.boardGame, new BigPotion());
+    }
+
+    // Initialise the Count box to 1
+    public void initializeFirstCellAndBoardGame() {
+        character.setCharacterPosition(1);
+        System.out.println("Vous commencez sur la case : " + character.getCharacterPosition());
+        // Set all indexes of the boardgame to null
+        initializeBoardGame();
+        cellContent();
+    }
+
+    // Current character position
+    public void currentCell(int diceResult) {
+        // if the last throw outbound the boardGame, then i fix the characterPosition to 64
+        if ((character.getCharacterPosition() + diceResult) > numberOfBoxes) {
+            // This line determine the exact number to add in the Character Setter to get 64
+            character.setCharacterPosition(numberOfBoxes - character.getCharacterPosition());
+        } else {
+            character.setCharacterPosition(diceResult);
+        }
+        System.out.println("Vous venez de lancer le dé, le résultat est : " + diceResult);
+        System.out.println("Votre personnage est maintenant sur la case : " + character.getCharacterPosition() + "/" + getNumberOfBoxes());
+        if (boardGame.get(character.getCharacterPosition()) != null)
+            boardGame.get(character.getCharacterPosition()).interaction(character);
+        System.out.println(character.toString());
     }
 
     // Getters & Setters
