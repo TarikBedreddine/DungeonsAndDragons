@@ -24,21 +24,61 @@ public class BoardGame {
     private int numberOfBoxes;
     private List<Cell> boardGame;
     private Character character;
+    private int whichArray;
 
     // Constructors
     public BoardGame(Character character) {
         this.numberOfBoxes = 64;
         this.character = character;
         this.boardGame = new ArrayList<Cell>();
+        this.whichArray = 1;
     }
 
     // Methods
 
     // Update the values of boardgame List with objects
-    public void addItemInBoardGame(int [] array, List boardGame, Object item) {
+    public void addItemInBoardGame(int [] array, List boardGame) {
         for (int value: array) {
-            boardGame.set(value, item);
+            switch (whichArray) {
+                case 1: {
+                    boardGame.set(value, new Dragon());
+                    break;
+                }
+                case 2: {
+                    boardGame.set(value, new Sorcerer());
+                    break;
+                }
+                case 3: {
+                    boardGame.set(value, new Gobelin());
+                    break;
+                }
+                case 4: {
+                    boardGame.set(value, new Club());
+                    break;
+                }
+                case 5: {
+                    boardGame.set(value, new Sword());
+                    break;
+                }
+                case 6: {
+                    boardGame.set(value, new Thunderbolt());
+                    break;
+                }
+                case 7: {
+                    boardGame.set(value, new Fireball());
+                    break;
+                }
+                case 8: {
+                    boardGame.set(value, new StandardPotion());
+                    break;
+                }
+                case 9: {
+                    boardGame.set(value, new BigPotion());
+                    break;
+                }
+            }
         }
+        whichArray++;
     }
 
     // initialize all the cells of the list to null
@@ -60,15 +100,15 @@ public class BoardGame {
         int[] standardPotion = {7, 13, 31, 33, 39, 43};
         int[] bigPotion = {28, 41};
         // addItemInBoardGame permit to set the value of the cell with the correct object
-        addItemInBoardGame(dragons, this.boardGame, new Dragon());
-        addItemInBoardGame(sorcerer, this.boardGame, new Sorcerer());
-        addItemInBoardGame(gobelins, this.boardGame, new Gobelin());
-        addItemInBoardGame(clubs, this.boardGame, new Club());
-        addItemInBoardGame(swords, this.boardGame, new Sword());
-        addItemInBoardGame(thunderbolt, this.boardGame, new Thunderbolt());
-        addItemInBoardGame(fireballs, this.boardGame, new Fireball());
-        addItemInBoardGame(standardPotion, this.boardGame, new StandardPotion());
-        addItemInBoardGame(bigPotion, this.boardGame, new BigPotion());
+        addItemInBoardGame(dragons, this.boardGame);
+        addItemInBoardGame(sorcerer, this.boardGame);
+        addItemInBoardGame(gobelins, this.boardGame);
+        addItemInBoardGame(clubs, this.boardGame);
+        addItemInBoardGame(swords, this.boardGame);
+        addItemInBoardGame(thunderbolt, this.boardGame);
+        addItemInBoardGame(fireballs, this.boardGame);
+        addItemInBoardGame(standardPotion, this.boardGame);
+        addItemInBoardGame(bigPotion, this.boardGame);
     }
 
     // Initialise the Count box to 1
@@ -91,9 +131,10 @@ public class BoardGame {
         }
         System.out.println("Vous venez de lancer le dé, le résultat est : " + diceResult);
         System.out.println("Votre personnage est maintenant sur la case : " + character.getCharacterPosition() + "/" + getNumberOfBoxes());
+        // Check if there is an object in the List
         if (boardGame.get(character.getCharacterPosition()) != null)
             boardGame.get(character.getCharacterPosition()).interaction(character);
-        System.out.println(character.toString());
+            System.out.println(character.toString());
     }
 
     // Getters & Setters
