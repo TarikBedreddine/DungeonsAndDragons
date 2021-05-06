@@ -14,6 +14,7 @@ import game.boardGame.cell.weapon.Thunderbolt;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BoardGame {
@@ -114,7 +115,6 @@ public class BoardGame {
     }
 
 
-
     // Initialise the Count box to 1
     public void initializeFirstCellAndBoardGame() {
         character.setCharacterPosition(1);
@@ -122,6 +122,7 @@ public class BoardGame {
         // Set all indexes of the boardgame to null
         initializeCellsBoardGame();
         cellContent();
+        Collections.shuffle(boardGame);
     }
 
     // Current character position
