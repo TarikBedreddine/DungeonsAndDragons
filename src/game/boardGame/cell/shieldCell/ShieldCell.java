@@ -20,8 +20,11 @@ public abstract class ShieldCell extends Cell {
     public void interaction(Character character) {
         if (character.getLife() < character.getMaxLife()) {
             character.setLife(character.getLife() + this.life);
+            if (character.getLife() > character.getMaxLife()) {
+                character.setLife(character.getMaxLife());
+            }
             System.out.println("");
-            System.out.println("Bonne nouvelle !! vous êtes tombés sur une potion, vos point de vies sont maintenant de : " + character.getLife());
+            System.out.println("Bonne nouvelle !! vous êtes tombés sur une " + this.name + ", vos point de vies sont maintenant de : " + character.getLife());
         }
     }
 

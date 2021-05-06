@@ -22,11 +22,11 @@ public abstract class EnemyCell extends Cell {
     // Methods
     @Override
     public void interaction(Character character) {
+        System.out.println("Oh non ! un " + enemyName);
         while (this.getEnemyLife() > 0 && character.getLife() > 0) {
             System.out.println("");
-            System.out.println("Oh non ! un " + enemyName);
             System.out.println("Votre personnage attaque ... ");
-            if (!character.getWeaponName().equals(null)) {
+            if (character.getWeaponName() != null) {
                 setEnemyLife(getEnemyLife() - character.getAttack() - character.getWeaponDamage());
             } else {
                 setEnemyLife(getEnemyLife() - character.getAttack());
