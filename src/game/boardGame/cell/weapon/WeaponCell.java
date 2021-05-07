@@ -1,9 +1,8 @@
 package game.boardGame.cell.weapon;
+
 import character.Character;
-import character.Warrior;
-import character.Wizard;
+import game.Game;
 import game.boardGame.cell.Cell;
-import sun.text.normalizer.UCharacter;
 
 public abstract class WeaponCell extends Cell {
 
@@ -20,7 +19,7 @@ public abstract class WeaponCell extends Cell {
     // Methods
     @Override
     public void interaction(Character character) {
-        if (character.getWeaponName() == null || (character.getWeaponName() != null && !character.getWeaponName().equals(this.weaponName))) {
+        if (character.getWeaponName() == null || (character.getWeaponName() != null && !character.getWeaponName().equals(this.weaponName)) || character.getWeaponDamage() != this.weaponDamage) {
             if (character.getWeaponDamage() < this.weaponDamage) {
                 // Set the weapon name & weapon damage to the character
                 character.setWeaponName(this.weaponName);
@@ -35,9 +34,18 @@ public abstract class WeaponCell extends Cell {
                 System.out.println("");
                 System.out.println("Vous avez looté " + this.weaponName + " mais elle fait moins de dégâts (" + this.weaponDamage + ") que votre arme actuelle. Vous gardez donc votre arme !");
             }
+        } else if (character.getWeaponDamage() == this.weaponDamage && !character.getWeaponName().equals(this.weaponName)) {
+            System.out.println("Vous avez looté une arme qui fait les mêmes points de dégâts, Veuillez choisir une des deux armes");
+            System.out.println("1 - " + character.getWeaponName() + " (Votre ancienne arme)");
+            System.out.println("2 - " + this.weaponName + " (Nouvelle arme)");
+            Game g = new Game();
+            if (g.changeYourWeapon()) {
+                character.setWeaponName(this.weaponName);
+                character.setWeaponDamage(this.weaponDamage);
+            }
         } else {
             System.out.println("");
-            System.out.println("Vous avez looté " + this.weaponName + " mais vous l'avez déjà, dommage !");
+            System.out.println("Vous avez déjà looté " + this.weaponName);
         }
     }
     // Getters & Setters

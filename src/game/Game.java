@@ -104,4 +104,13 @@ public class Game {
         System.out.println("");
         System.out.println(character.toString());
     }
+
+    // Helpers
+    // When player loot 2 weapon with the same force, he can choice one of the two
+    public Boolean changeYourWeapon() {
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        return choice == 2;
+    }
+
 }
