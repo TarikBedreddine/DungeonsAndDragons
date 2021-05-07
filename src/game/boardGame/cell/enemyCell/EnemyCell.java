@@ -31,11 +31,11 @@ public abstract class EnemyCell extends Cell {
             } else {
                 setEnemyLife(getEnemyLife() - character.getAttack());
             }
-            System.out.println("Vous avez infligé " + (character.getAttack() + character.getWeaponDamage()) + " de dégâts. L'ennemi a désormais : " + this.getEnemyLife() + " de vie");
+            System.out.println("Vous avez infligé " + (character.getAttack() + character.getWeaponDamage()) + " de dégâts. L'ennemi a désormais : " + this.getEnemyLife() + " points de vie");
             if (this.getEnemyLife() > 0) {
                 character.setLife(character.getLife() - this.enemyAttack);
                 System.out.println("...");
-                System.out.println("L'ennemi vient de vous infliger " + this.enemyAttack + " points de vie. Votre vie passe donc maintenant à " + character.getLife());
+                System.out.println("L'ennemi vient de vous infliger " + this.enemyAttack + " points de vie. Votre vie passe donc maintenant à " + character.getLife() + " de vie.");
             }
         }
         if (character.getLife() > 0 ) {

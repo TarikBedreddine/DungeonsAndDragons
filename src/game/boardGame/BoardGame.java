@@ -4,8 +4,8 @@ import game.boardGame.cell.*;
 import game.boardGame.cell.enemyCell.Dragon;
 import game.boardGame.cell.enemyCell.Goblin;
 import game.boardGame.cell.enemyCell.Sorcerer;
-import game.boardGame.cell.shieldCell.BigPotion;
-import game.boardGame.cell.shieldCell.StandardPotion;
+import game.boardGame.cell.healthCell.BigPotion;
+import game.boardGame.cell.healthCell.StandardPotion;
 import game.boardGame.cell.weapon.Club;
 import game.boardGame.cell.weapon.Fireball;
 import game.boardGame.cell.weapon.Sword;
@@ -19,7 +19,7 @@ public class BoardGame {
 
     // All attributes
     private int numberOfCells;
-    private List<Cell> boardGame;
+    private ArrayList<Cell> boardGame;
 
     // Constructors
     public BoardGame() {

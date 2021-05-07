@@ -6,7 +6,7 @@ public class Sword extends WeaponCell {
     // Constructors
 
     public Sword() {
-        super("Sword", 8);
+        super("Epée", 5);
     }
 
     // Methods

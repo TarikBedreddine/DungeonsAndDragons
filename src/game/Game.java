@@ -99,8 +99,10 @@ public class Game {
         System.out.println("Votre personnage est maintenant sur la case : " + character.getCharacterPosition() + "/" + boardGame.getNumberOfCells());
         List<Cell> cellList = boardGame.getBoardGame();
         // Check if there is an object in the List
-        if (cellList.get(character.getCharacterPosition()) != null)
+        Cell cellContent = cellList.get(character.getCharacterPosition());
+        if (cellContent != null) {
             cellList.get(character.getCharacterPosition()).interaction(character);
+        }
         System.out.println("");
         System.out.println(character.toString());
     }

@@ -1,8 +1,8 @@
 package game.boardGame.cell.surpriseCell;
 
 import game.boardGame.cell.Cell;
-import game.boardGame.cell.shieldCell.BigPotion;
-import game.boardGame.cell.shieldCell.StandardPotion;
+import game.boardGame.cell.healthCell.BigPotion;
+import game.boardGame.cell.healthCell.StandardPotion;
 import character.Character;
 import game.boardGame.cell.weapon.Club;
 import game.boardGame.cell.weapon.Fireball;

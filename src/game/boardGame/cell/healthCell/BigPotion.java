@@ -1,6 +1,6 @@
-package game.boardGame.cell.shieldCell;
+package game.boardGame.cell.healthCell;
 
-public class BigPotion extends ShieldCell{
+public class BigPotion extends healthCell {
 
     // Attributes
 

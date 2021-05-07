@@ -1,5 +1,6 @@
 package character;
 
+
 public class Warrior extends Character {
 
     // Attributes of a Warrior
