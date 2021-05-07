@@ -1,6 +1,5 @@
 package game.boardGame.cell.emptyCell;
 
-import character.Warrior;
 import character.Character;
 import game.boardGame.cell.Cell;
 

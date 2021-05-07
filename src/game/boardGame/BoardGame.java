@@ -1,6 +1,5 @@
 package game.boardGame;
 
-import character.Character;
 import game.boardGame.cell.*;
 import game.boardGame.cell.enemyCell.Dragon;
 import game.boardGame.cell.enemyCell.Goblin;

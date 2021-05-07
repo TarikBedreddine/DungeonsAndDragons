@@ -1,8 +1,5 @@
 package character;
 
-import java.lang.reflect.Array;
-import java.util.List;
-
 public class Warrior extends Character {
 
     // Attributes of a Warrior

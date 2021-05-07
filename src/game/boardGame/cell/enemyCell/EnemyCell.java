@@ -1,7 +1,6 @@
 package game.boardGame.cell.enemyCell;
 import character.Character;
 
-import character.Weapon;
 import game.Game;
 import game.boardGame.cell.Cell;
 
