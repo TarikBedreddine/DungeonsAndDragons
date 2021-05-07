@@ -1,16 +1,33 @@
 package character;
 
-public class Weapon extends Character {
+public class Weapon {
 
     // Attributes
+    private String weaponName;
+    private int weaponDamage;
 
-    // Constructor
+    // Constructors
     public Weapon() {
-
+        this.weaponName = "";
+        this.weaponDamage = 0;
     }
-
-    // Methods
 
     // Getters & Setters
 
+
+    public String getWeaponName() {
+        return weaponName;
+    }
+
+    public void setWeaponName(String weaponName) {
+        this.weaponName = weaponName;
+    }
+
+    public int getWeaponDamage() {
+        return weaponDamage;
+    }
+
+    public void setWeaponDamage(int weaponDamage) {
+        this.weaponDamage = weaponDamage;
+    }
 }

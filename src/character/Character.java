@@ -7,9 +7,9 @@ public abstract class Character {
     private String image;
     private int life;
     private int attack;
-    private String weaponName;
-    private int weaponDamage;
     private int characterPosition;
+    private Weapon weapon;
+    //private Defense defense;
     private int maxLife;
     private int maxAttack;
 
@@ -20,8 +20,6 @@ public abstract class Character {
         this.image = "";
         this.life = 0;
         this.attack = 0;
-        this.weaponName = null;
-        this.weaponDamage = 0;
     }
 
     // Second constructor, initialize all attributes except name which is given by user
@@ -41,21 +39,19 @@ public abstract class Character {
         this.maxAttack = maxAttack;
     }
 
-    // Method to get the name attribute
+    // Getters
     public String getName() {
         return this.name;
     }
-    // Method to ge the image attribute
+
     public String getImage() {
         return this.image;
     }
 
-    // Method to get the life attribute
     public int getLife() {
         return this.life;
     }
 
-    // Method to get the attack attribute
     public int getAttack() {
         return this.attack;
     }
@@ -70,14 +66,6 @@ public abstract class Character {
 
     public int getMaxAttack() {
         return maxAttack;
-    }
-
-    public int getWeaponDamage() {
-        return weaponDamage;
-    }
-
-    public String getWeaponName() {
-        return weaponName;
     }
 
     // Setters
@@ -98,14 +86,6 @@ public abstract class Character {
         this.characterPosition += characterPosition;
     }
 
-    public void setWeaponName(String weaponName) {
-        this.weaponName = weaponName;
-    }
-
-    public void setWeaponDamage(int weaponDamage) {
-        this.weaponDamage = weaponDamage;
-    }
-
     // toString method
 
     @Override
@@ -115,8 +95,6 @@ public abstract class Character {
                 ", image='" + image + '\'' +
                 ", life=" + life +
                 ", attack=" + attack +
-                ", weaponName='" + weaponName + '\'' +
-                ", weaponDamage=" + weaponDamage +
                 ", characterPosition=" + characterPosition +
                 ", maxLife=" + maxLife +
                 ", maxAttack=" + maxAttack +
