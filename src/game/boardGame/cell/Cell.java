@@ -1,6 +1,5 @@
 package game.boardGame.cell;
 import character.Character;
-import character.Weapon;
 
 public abstract class Cell {
     // Attributes

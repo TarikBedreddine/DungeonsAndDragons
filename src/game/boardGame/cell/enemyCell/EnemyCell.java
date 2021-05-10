@@ -1,7 +1,7 @@
 package game.boardGame.cell.enemyCell;
 import character.Character;
 
-import character.Weapon;
+import equipment.attackEquipment;
 import game.Game;
 import game.boardGame.cell.Cell;
 
@@ -11,14 +11,14 @@ public abstract class EnemyCell extends Cell {
     private String enemyName;
     private int enemyLife;
     private int enemyAttack;
-    private Weapon weapon;
+    private attackEquipment attackEquipment;
 
     // Constructors
     public EnemyCell(String enemyName, int enemyLife, int enemyAttack) {
         this.enemyName = enemyName;
         this.enemyLife = enemyLife;
         this.enemyAttack = enemyAttack;
-        this.weapon = new Weapon();
+        this.attackEquipment = new attackEquipment();
     }
 
     // Methods
@@ -31,9 +31,9 @@ public abstract class EnemyCell extends Cell {
             System.out.println("Votre personnage attaque ... ");
 
             // Reduce enemy life
-            setEnemyLife(getEnemyLife() - character.getAttack() - weapon.getWeaponDamage());
+            setEnemyLife(getEnemyLife() - character.getAttack() - attackEquipment.getEquipmentDamage());
 
-            System.out.println("Vous avez infligé " + (character.getAttack() + weapon.getWeaponDamage()) + " de dégâts. L'ennemi a désormais : " + this.getEnemyLife() + " points de vie");
+            System.out.println("Vous avez infligé " + (character.getAttack() + attackEquipment.getEquipmentDamage()) + " de dégâts. L'ennemi a désormais : " + this.getEnemyLife() + " points de vie");
             if (this.getEnemyLife() > 0) {
                 character.setLife(character.getLife() - this.enemyAttack);
                 System.out.println("...");

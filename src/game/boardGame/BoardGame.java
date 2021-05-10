@@ -88,9 +88,9 @@ public class BoardGame {
         // I store all enemies position in a standard array
         int[] dragons = {45, 52, 56, 62};
         int[] sorcerer = {10, 20, 25, 32, 35, 36, 37, 40, 44, 47};
-        int[] goblins = {3, 6, 9, 12, 15, 18, 21, 24, 27, 30};
+        int[] goblins = {19, 6, 9, 12, 15, 18, 21, 24, 27, 30};
         int[] clubs = {2, 11, 5, 22, 38};
-        int[] swords = {19, 26, 42, 53};
+        int[] swords = {3, 26, 42, 53};
         int[] thunderbolt = {1, 4, 8, 17, 23};
         int[] fireballs = {48, 49};
         int[] standardPotion = {7, 13, 31, 33, 39, 43};

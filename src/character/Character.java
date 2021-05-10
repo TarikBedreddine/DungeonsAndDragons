@@ -1,5 +1,7 @@
 package character;
 
+import equipment.attackEquipment;
+
 public abstract class Character {
 
     // All attributes of Character
@@ -8,7 +10,7 @@ public abstract class Character {
     private int life;
     private int attack;
     private int characterPosition;
-    private Weapon weapon;
+    private attackEquipment attackEquipment;
     //private Defense defense;
     private int maxLife;
     private int maxAttack;
@@ -20,6 +22,7 @@ public abstract class Character {
         this.image = "";
         this.life = 0;
         this.attack = 0;
+        this.attackEquipment = new attackEquipment();
     }
 
     // Second constructor, initialize all attributes except name which is given by user
@@ -68,6 +71,10 @@ public abstract class Character {
         return maxAttack;
     }
 
+    public equipment.attackEquipment getAttackEquipment() {
+        return attackEquipment;
+    }
+
     // Setters
     public void setName(String newName) {
         this.name = newName;
@@ -86,7 +93,12 @@ public abstract class Character {
         this.characterPosition += characterPosition;
     }
 
+    public void setAttackEquipment(equipment.attackEquipment attackEquipment) {
+        this.attackEquipment = attackEquipment;
+    }
+
     // toString method
+
 
     @Override
     public String toString() {
@@ -96,6 +108,7 @@ public abstract class Character {
                 ", life=" + life +
                 ", attack=" + attack +
                 ", characterPosition=" + characterPosition +
+                ", attackEquipment=" + attackEquipment +
                 ", maxLife=" + maxLife +
                 ", maxAttack=" + maxAttack +
                 '}';
