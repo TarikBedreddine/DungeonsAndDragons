@@ -15,8 +15,8 @@ public class Wizard extends Character {
     }
 
     // Access to the Second constructor of the parent
-    public Wizard(String selectedName, String url, int WizardLife, int WizardAttack, int maxLife, int maxAttack) {
-        super(selectedName, url, WizardLife, WizardAttack, maxLife, maxAttack);
+    public Wizard(String selectedName, String url, int WizardLife, int wizardAttack, int minLife, int maxLife, int maxAttack) {
+        super(selectedName, url, WizardLife, wizardAttack, minLife, maxLife, maxAttack);
     }
 
     // Getters & Setters

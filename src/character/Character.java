@@ -12,6 +12,7 @@ public abstract class Character {
     private int characterPosition;
     private attackEquipment attackEquipment;
     //private Defense defense;
+    private int minLife;
     private int maxLife;
     private int maxAttack;
 
@@ -32,12 +33,13 @@ public abstract class Character {
     }
 
     // Third constructor, all attributes must be given by the user
-    public Character(String selectedName, String url, int Life, int Attack, int maxLife, int maxAttack) {
+    public Character(String selectedName, String url, int Life, int Attack, int minLife, int maxLife, int maxAttack) {
         this();
         this.name = selectedName;
         this.image = url;
         this.life = Life;
         this.attack = Attack;
+        this.minLife = minLife;
         this.maxLife = maxLife;
         this.maxAttack = maxAttack;
     }
@@ -61,6 +63,10 @@ public abstract class Character {
 
     public int getCharacterPosition() {
         return characterPosition;
+    }
+
+    public int getMinLife() {
+        return minLife;
     }
 
     public int getMaxLife() {
@@ -108,7 +114,6 @@ public abstract class Character {
                 ", life=" + life +
                 ", attack=" + attack +
                 ", characterPosition=" + characterPosition +
-                ", attackEquipment=" + attackEquipment +
                 ", maxLife=" + maxLife +
                 ", maxAttack=" + maxAttack +
                 '}';

@@ -18,13 +18,18 @@ public abstract class healthCell extends Cell {
     // Methods
     @Override
     public void interaction(Character character) {
-        if (character.getLife() < character.getMaxLife()) {
+        // Control if the character has his full life or not
+        if (character.getLife() < character.getMinLife()) {
             character.setLife(character.getLife() + this.life);
-            if (character.getLife() > character.getMaxLife()) {
-                character.setLife(character.getMaxLife());
+            // if the potion give more life than the max life, it automatically set the max life
+            if (character.getLife() > character.getMinLife()) {
+                character.setLife(character.getMinLife());
             }
             System.out.println("");
             System.out.println("Bonne nouvelle !! vous êtes tombé sur une " + this.name + ", vos points de vies sont maintenant de : " + character.getLife());
+        } else {
+            System.out.println("");
+            System.out.println("Vous avez déjà tous vos points de vie, vous n'avez pas besoin de cette " + this.name);
         }
     }
 

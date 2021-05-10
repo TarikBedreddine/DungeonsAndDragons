@@ -82,9 +82,9 @@ public class Navigation
         String name = scanner.nextLine();
 
         if(choice == 1) {
-            character = new Warrior(name, "none", 5, 5, 10, 10);
+            character = new Warrior(name, "none", 5, 5, 5, 10, 10);
         } else {
-            character = new Wizard(name, "none", 3, 8, 6, 15);
+            character = new Wizard(name, "none", 3, 8, 3, 6, 15);
         }
 
         character.setName(name);
