@@ -101,7 +101,7 @@ public class Game {
         // Check if there is an object in the List
         Cell cellContent = cellList.get(character.getCharacterPosition());
         if (cellContent != null) {
-            cellList.get(character.getCharacterPosition()).interaction(character);
+            cellContent.interaction(character);
         }
         System.out.println("");
         System.out.println(character.toString());

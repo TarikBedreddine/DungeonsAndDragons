@@ -20,6 +20,7 @@ public class BoardGame {
     // All attributes
     private int numberOfCells;
     private ArrayList<Cell> boardGame;
+    private String level;
 
     // Constructors
     public BoardGame() {
@@ -84,8 +85,9 @@ public class BoardGame {
         Dragon, Sorcerer, Goblin, Club, Sword, Thunderbolt, Fireball, StandardPotion, BigPotion
     }
     // indicate for each type of cell where they will pop
-    public void cellContent() {
+    public void cellContent(String level) {
         // I store all enemies position in a standard array
+        switch (level)
         int[] dragons = {45, 52, 56, 62};
         int[] sorcerer = {10, 20, 25, 32, 35, 36, 37, 40, 44, 47};
         int[] goblins = {3, 6, 9, 12, 15, 18, 21, 24, 27, 30};
@@ -106,6 +108,20 @@ public class BoardGame {
         addItemInBoardGame(fireballs, this.boardGame, possibleCell.Fireball);
         addItemInBoardGame(standardPotion, this.boardGame, possibleCell.StandardPotion);
         addItemInBoardGame(bigPotion, this.boardGame, possibleCell.BigPotion);
+    }
+
+    public void generateRandomCells(String level) {
+        switch (level) {
+            case "Easy": {
+
+            }
+            case "Medium": {
+
+            }
+            case "Hard": {
+
+            }
+        }
     }
 
     // Getters & Setters

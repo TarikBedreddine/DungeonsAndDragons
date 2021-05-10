@@ -11,7 +11,6 @@ public abstract class Character {
     private int attack;
     private int characterPosition;
     private attackEquipment attackEquipment;
-    //private Defense defense;
     private int minLife;
     private int maxLife;
     private int maxAttack;
@@ -105,7 +104,6 @@ public abstract class Character {
 
     // toString method
 
-
     @Override
     public String toString() {
         return "Character{" +
@@ -114,8 +112,10 @@ public abstract class Character {
                 ", life=" + life +
                 ", attack=" + attack +
                 ", characterPosition=" + characterPosition +
+                ", minLife=" + minLife +
                 ", maxLife=" + maxLife +
                 ", maxAttack=" + maxAttack +
+                ", attackEquipment=" + " Type:" +attackEquipment.getType()+ " Nom:" +attackEquipment.getEquipmentName()+ " Dégâts:" +attackEquipment.getEquipmentDamage()+
                 '}';
     }
 }
