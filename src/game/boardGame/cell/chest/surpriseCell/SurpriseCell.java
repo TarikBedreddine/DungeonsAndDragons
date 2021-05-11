@@ -1,13 +1,13 @@
-package game.boardGame.cell.surpriseCell;
+package game.boardGame.cell.chest.surpriseCell;
 
 import game.boardGame.cell.Cell;
-import game.boardGame.cell.healthCell.BigPotion;
-import game.boardGame.cell.healthCell.StandardPotion;
+import game.boardGame.cell.chest.healthCell.BigPotion;
+import game.boardGame.cell.chest.healthCell.StandardPotion;
 import character.Character;
-import game.boardGame.cell.weapon.Club;
-import game.boardGame.cell.weapon.Fireball;
-import game.boardGame.cell.weapon.Sword;
-import game.boardGame.cell.weapon.Thunderbolt;
+import game.boardGame.cell.attackEquipment.Club;
+import game.boardGame.cell.attackEquipment.Fireball;
+import game.boardGame.cell.attackEquipment.Sword;
+import game.boardGame.cell.attackEquipment.Thunderbolt;
 
 public class SurpriseCell extends Cell {
 

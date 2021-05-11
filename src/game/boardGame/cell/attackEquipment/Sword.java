@@ -1,6 +1,6 @@
-package game.boardGame.cell.weapon;
+package game.boardGame.cell.attackEquipment;
 
-public class Sword extends WeaponCell {
+public class Sword extends Weapon {
     // Attributes
 
     // Constructors

@@ -1,4 +1,4 @@
-package game.boardGame.cell.weapon;
+package game.boardGame.cell.attackEquipment;
 
 import character.Character;
 import character.Warrior;
@@ -7,7 +7,7 @@ import character.Wizard;
 import game.Game;
 import game.boardGame.cell.Cell;
 
-public abstract class WeaponCell extends Cell {
+public abstract class Weapon extends Cell {
 
     // Attributes
     private String weaponName;
@@ -16,43 +16,18 @@ public abstract class WeaponCell extends Cell {
     private attackEquipment attackEquipment;
 
     // Constructors
-    public WeaponCell(String weaponName, int weaponStrength) {
+    public Weapon(String weaponName, int weaponStrength) {
         this.weaponName = weaponName;
         this.weaponDamage = weaponStrength;
-        this.attackEquipment = new attackEquipment();
     }
 
-    // Methods
-    public String weaponRestriction(Character character) {
-        if ((this.weaponName.equals("Epée") || this.weaponName.equals("Massue")) && (character instanceof Warrior)) {
-            return "Warrior";
-        } else if ((this.weaponName.equals("Boule de feu") || this.weaponName.equals("Eclair")) && (character instanceof Wizard)) {
-            return "Wizard";
-        } else if (character instanceof Warrior) {
-            System.out.println(" ");
-            System.out.println("Vous avez trouvé un équipement : "+ this.weaponName);
-            System.out.println("Mais vous ne pouvez pas équiper cet équipement pour un Guerrier");
-            return "WarriorFail";
-        }
-        System.out.println(" ");
-        System.out.println("Vous avez trouvé un équipement : "+ this.weaponName);
-        System.out.println("Mais vous ne pouvez pas équiper cet équipement pour un Magicien");
-        return "WizardFail";
-    }
 
     @Override
     public void interaction(Character character) {
-        String weaponRestriction = weaponRestriction(character);
-        if (weaponRestriction.equals("Warrior") || weaponRestriction.equals("Wizard")) {
+        if (character instanceof Warrior) {
             if (attackEquipment.getEquipmentName() == null || (attackEquipment.getEquipmentName() != null && !attackEquipment.getEquipmentName().equals(this.weaponName)) || attackEquipment.getEquipmentDamage() != this.weaponDamage) {
                 // Equip the weapon only if it has more damage
                 if (attackEquipment.getEquipmentDamage() < this.weaponDamage) {
-                    // Set the weapon name & weapon damage to the AttackEquipment Class
-                    if (weaponRestriction.equals("Warrior")) {
-                        attackEquipment.setType("Weapon");
-                    } else {
-                        attackEquipment.setType("Spell");
-                    }
                     attackEquipment.setEquipmentName(this.weaponName);
                     attackEquipment.setEquipmentDamage(this.weaponDamage);
                     // Update the object attackEquipment in Character Class
@@ -80,14 +55,17 @@ public abstract class WeaponCell extends Cell {
                 System.out.println("");
                 System.out.println("Vous avez déjà looté " + this.weaponName);
             }
+        } else {
+            System.out.println("Vous êtes un magicien, vous ne pouvez pas équiper cette arme");
         }
     }
+
 
 
     // Getters & Setters
     @Override
     public String toString() {
-        return "WeaponCell{" +
+        return "Weapon{" +
                 "weaponName='" + weaponName + '\'' +
                 ", weaponDamage=" + weaponDamage +
                 '}';

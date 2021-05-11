@@ -1,4 +1,4 @@
-package game.boardGame.cell.healthCell;
+package game.boardGame.cell.chest.healthCell;
 
 public class StandardPotion extends healthCell {
 

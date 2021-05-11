@@ -1,4 +1,4 @@
-package game.boardGame.cell.healthCell;
+package game.boardGame.cell.chest.healthCell;
 import character.Character;
 
 import game.boardGame.cell.Cell;

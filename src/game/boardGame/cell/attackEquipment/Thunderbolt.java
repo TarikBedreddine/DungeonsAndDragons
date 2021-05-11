@@ -1,6 +1,6 @@
-package game.boardGame.cell.weapon;
+package game.boardGame.cell.attackEquipment;
 
-public class Thunderbolt extends WeaponCell {
+public class Thunderbolt extends Weapon {
     // Attributes
 
     // Constructors

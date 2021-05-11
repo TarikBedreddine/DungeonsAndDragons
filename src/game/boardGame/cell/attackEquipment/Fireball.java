@@ -1,6 +1,6 @@
-package game.boardGame.cell.weapon;
+package game.boardGame.cell.attackEquipment;
 
-public class Fireball extends WeaponCell {
+public class Fireball extends Weapon {
     // Attributes
 
     // Constructors
