@@ -82,8 +82,8 @@ public class Game {
         System.out.println("Vous commencez sur la case : " + character.getCharacterPosition());
         // Set all indexes of the boardgame to null
         boardGame.initializeCellsBoardGame();
-        boardGame.cellContent();
-        Collections.shuffle(cellList);
+        boardGame.cellContent("Easy");
+        //Collections.shuffle(cellList);
     }
 
     // Current character position

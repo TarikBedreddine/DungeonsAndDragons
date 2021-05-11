@@ -1,25 +1,16 @@
 package game.boardGame;
 
 import game.boardGame.cell.*;
-import game.boardGame.cell.enemyCell.Dragon;
-import game.boardGame.cell.enemyCell.Goblin;
-import game.boardGame.cell.enemyCell.Sorcerer;
-import game.boardGame.cell.healthCell.BigPotion;
-import game.boardGame.cell.healthCell.StandardPotion;
-import game.boardGame.cell.weapon.Club;
-import game.boardGame.cell.weapon.Fireball;
-import game.boardGame.cell.weapon.Sword;
-import game.boardGame.cell.weapon.Thunderbolt;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BoardGame {
 
     // All attributes
     private int numberOfCells;
     private ArrayList<Cell> boardGame;
+    private ArrayList<Integer> listNumbers;
     private String level;
 
     // Constructors
@@ -30,53 +21,39 @@ public class BoardGame {
 
     // Methods
     // Update the values of boardgame List with objects
-    public void addItemInBoardGame(int [] array, List<Cell> boardGame, possibleCell typeOfCell) {
-        for (int value: array) {
-            switch (typeOfCell) {
-                case Dragon: {
-                    boardGame.set(value, new Dragon());
-                    break;
-                }
-                case Sorcerer: {
-                    boardGame.set(value, new Sorcerer());
-                    break;
-                }
-                case Goblin: {
-                    boardGame.set(value, new Goblin());
-                    break;
-                }
-                case Club: {
-                    boardGame.set(value, new Club());
-                    break;
-                }
-                case Sword: {
-                    boardGame.set(value, new Sword());
-                    break;
-                }
-                case Thunderbolt: {
-                    boardGame.set(value, new Thunderbolt());
-                    break;
-                }
-                case Fireball: {
-                    boardGame.set(value, new Fireball());
-                    break;
-                }
-                case StandardPotion: {
-                    boardGame.set(value, new StandardPotion());
-                    break;
-                }
-                case BigPotion: {
-                    boardGame.set(value, new BigPotion());
-                    break;
-                }
+    public void addItemInBoardGame(int numberOfCellsToCreate, List<Cell> boardGame, String typeOfCell) {
+
+        Random rand = new Random();
+        for (int i = 1; i <= numberOfCellsToCreate; i++) {
+            int index = rand.nextInt(listNumbers.size());
+            while (listNumbers.get(index) == null) {
+                index = rand.nextInt(listNumbers.size());
             }
+            ////////////////////////////////////////////////
+            try {
+                Class<?> item = Class.forName("game.boardGame.cell." + typeOfCell);
+                Object itemInstance = item.newInstance();
+                Cell castItemInstance = ((Cell) itemInstance);
+                boardGame.set(index, castItemInstance);
+
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            /////////////////////////////////////////////////
+
+            listNumbers.set(index, null);
         }
     }
 
     // initialize all the cells of the list to null
     public void initializeCellsBoardGame() {
         for (int i = 0; i <= 64; i++) {
+            if (i == 0 || i == 64) {
+                boardGame.add(i, null);
+                continue;
+            }
             boardGame.add(i, null);
+            listNumbers.add(i);
         }
     }
 
@@ -84,44 +61,63 @@ public class BoardGame {
     public enum possibleCell {
         Dragon, Sorcerer, Goblin, Club, Sword, Thunderbolt, Fireball, StandardPotion, BigPotion
     }
+
     // indicate for each type of cell where they will pop
     public void cellContent(String level) {
-        // I store all enemies position in a standard array
-        switch (level)
-        int[] dragons = {45, 52, 56, 62};
-        int[] sorcerer = {10, 20, 25, 32, 35, 36, 37, 40, 44, 47};
-        int[] goblins = {3, 6, 9, 12, 15, 18, 21, 24, 27, 30};
-        int[] clubs = {2, 11, 5, 22, 38};
-        int[] swords = {19, 26, 42, 53};
-        int[] thunderbolt = {1, 4, 8, 17, 23};
-        int[] fireballs = {48, 49};
-        int[] standardPotion = {7, 13, 31, 33, 39, 43};
-        int[] bigPotion = {28, 41};
 
         // addItemInBoardGame permit to set the value of the cell
-        addItemInBoardGame(dragons, this.boardGame, possibleCell.Dragon);
-        addItemInBoardGame(sorcerer, this.boardGame, possibleCell.Sorcerer);
-        addItemInBoardGame(goblins, this.boardGame, possibleCell.Goblin);
-        addItemInBoardGame(clubs, this.boardGame, possibleCell.Club);
-        addItemInBoardGame(swords, this.boardGame, possibleCell.Sword);
-        addItemInBoardGame(thunderbolt, this.boardGame, possibleCell.Thunderbolt);
-        addItemInBoardGame(fireballs, this.boardGame, possibleCell.Fireball);
-        addItemInBoardGame(standardPotion, this.boardGame, possibleCell.StandardPotion);
-        addItemInBoardGame(bigPotion, this.boardGame, possibleCell.BigPotion);
+        addItemInBoardGame(generateRandomCells("Easy").get("dragons"), this.boardGame, "enemyCell." + possibleCell.Dragon.name());
+        addItemInBoardGame(generateRandomCells("Easy").get("sorcerers"), this.boardGame, "enemyCell." + possibleCell.Sorcerer.name());
+        addItemInBoardGame(generateRandomCells("Easy").get("goblins"), this.boardGame, "enemyCell." + possibleCell.Goblin.name());
+        addItemInBoardGame(generateRandomCells("Easy").get("clubs"), this.boardGame, "weapon." + possibleCell.Club.name());
+        addItemInBoardGame(generateRandomCells("Easy").get("swords"), this.boardGame, "weapon." + possibleCell.Sword.name());
+        addItemInBoardGame(generateRandomCells("Easy").get("thunderbolts"), this.boardGame, "weapon." + possibleCell.Thunderbolt.name());
+        addItemInBoardGame(generateRandomCells("Easy").get("fireballs"), this.boardGame, "weapon." + possibleCell.Fireball.name());
+        addItemInBoardGame(generateRandomCells("Easy").get("standardPotions"), this.boardGame, "healthCell." + possibleCell.StandardPotion.name());
+        addItemInBoardGame(generateRandomCells("Easy").get("bigPotions"), this.boardGame, "healthCell." + possibleCell.BigPotion.name());
     }
 
-    public void generateRandomCells(String level) {
+    public Map<String, Integer> generateRandomCells(String level) {
+        HashMap<String, Integer> cells = new HashMap<String, Integer>();
         switch (level) {
             case "Easy": {
-
+                cells.put("dragons", 2);
+                cells.put("sorcerers", 4);
+                cells.put("goblins", 9);
+                cells.put("clubs", 6);
+                cells.put("swords", 10);
+                cells.put("thunderbolts", 6);
+                cells.put("fireballs", 10);
+                cells.put("standardPotions", 9);
+                cells.put("bigPotions", 6);
+                break;
             }
             case "Medium": {
-
+                cells.put("dragons", 4);
+                cells.put("sorcerers", 7);
+                cells.put("goblins", 12);
+                cells.put("clubs", 9);
+                cells.put("swords", 5);
+                cells.put("thunderbolts", 9);
+                cells.put("fireballs", 5);
+                cells.put("standardPotions", 10);
+                cells.put("bigPotions", 3);
+                break;
             }
             case "Hard": {
-
+                cells.put("dragons", 8);
+                cells.put("sorcerers", 10);
+                cells.put("goblins", 8);
+                cells.put("clubs", 9);
+                cells.put("swords", 6);
+                cells.put("thunderbolts", 9);
+                cells.put("fireballs", 5);
+                cells.put("standardPotions", 6);
+                cells.put("bigPotions", 3);
+                break;
             }
         }
+        return cells;
     }
 
     // Getters & Setters
