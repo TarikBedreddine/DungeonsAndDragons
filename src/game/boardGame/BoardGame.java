@@ -10,8 +10,6 @@ public class BoardGame {
     // All attributes
     private int numberOfCells;
     private ArrayList<Cell> boardGame;
-    private ArrayList<Integer> listNumbers;
-    private String level;
 
     // Constructors
     public BoardGame() {
@@ -23,58 +21,39 @@ public class BoardGame {
     // Update the values of boardgame List with objects
     public void addItemInBoardGame(int numberOfCellsToCreate, List<Cell> boardGame, String typeOfCell) {
 
-        Random rand = new Random();
-        for (int i = 1; i <= numberOfCellsToCreate; i++) {
-            int index = rand.nextInt(listNumbers.size());
-            while (listNumbers.get(index) == null) {
-                index = rand.nextInt(listNumbers.size());
-            }
-            ////////////////////////////////////////////////
-            try {
-                Class<?> item = Class.forName("game.boardGame.cell." + typeOfCell);
-                Object itemInstance = item.newInstance();
-                Cell castItemInstance = ((Cell) itemInstance);
-                boardGame.set(index, castItemInstance);
+            for (int j = 1; j <= numberOfCellsToCreate; j++) {
+                // Reflection to get the instance of each item thanks to the name of the Class
+                try {
+                    Class<?> item = Class.forName("game.boardGame.cell." + typeOfCell);
+                    Object itemInstance = item.newInstance();
+                    Cell castItemInstance = ((Cell) itemInstance);
+                    boardGame.add(j, castItemInstance);
 
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+                    e.printStackTrace();
+                }
             }
-            /////////////////////////////////////////////////
-
-            listNumbers.set(index, null);
         }
-    }
 
-    // initialize all the cells of the list to null
-    public void initializeCellsBoardGame() {
-        for (int i = 0; i <= 64; i++) {
-            if (i == 0 || i == 64) {
-                boardGame.add(i, null);
-                continue;
-            }
-            boardGame.add(i, null);
-            listNumbers.add(i);
-        }
-    }
-
-    // Enumerate possible pop in the different cells
+    // Enumerate the possible pops in the different cells
     public enum possibleCell {
         Dragon, Sorcerer, Goblin, Club, Sword, Thunderbolt, Fireball, StandardPotion, BigPotion
     }
 
     // indicate for each type of cell where they will pop
     public void cellContent(String level) {
-
+        // Initialize the index 0 to null because character start game in cell 1
+        boardGame.add(0, null);
         // addItemInBoardGame permit to set the value of the cell
-        addItemInBoardGame(generateRandomCells("Easy").get("dragons"), this.boardGame, "enemyCell." + possibleCell.Dragon.name());
-        addItemInBoardGame(generateRandomCells("Easy").get("sorcerers"), this.boardGame, "enemyCell." + possibleCell.Sorcerer.name());
-        addItemInBoardGame(generateRandomCells("Easy").get("goblins"), this.boardGame, "enemyCell." + possibleCell.Goblin.name());
-        addItemInBoardGame(generateRandomCells("Easy").get("clubs"), this.boardGame, "weapon." + possibleCell.Club.name());
-        addItemInBoardGame(generateRandomCells("Easy").get("swords"), this.boardGame, "weapon." + possibleCell.Sword.name());
-        addItemInBoardGame(generateRandomCells("Easy").get("thunderbolts"), this.boardGame, "weapon." + possibleCell.Thunderbolt.name());
-        addItemInBoardGame(generateRandomCells("Easy").get("fireballs"), this.boardGame, "weapon." + possibleCell.Fireball.name());
-        addItemInBoardGame(generateRandomCells("Easy").get("standardPotions"), this.boardGame, "healthCell." + possibleCell.StandardPotion.name());
-        addItemInBoardGame(generateRandomCells("Easy").get("bigPotions"), this.boardGame, "healthCell." + possibleCell.BigPotion.name());
+        addItemInBoardGame(generateRandomCells(level).get("dragons"), this.boardGame, "enemyCell." + possibleCell.Dragon.name());
+        addItemInBoardGame(generateRandomCells(level).get("sorcerers"), this.boardGame, "enemyCell." + possibleCell.Sorcerer.name());
+        addItemInBoardGame(generateRandomCells(level).get("goblins"), this.boardGame, "enemyCell." + possibleCell.Goblin.name());
+        addItemInBoardGame(generateRandomCells(level).get("clubs"), this.boardGame, "weapon." + possibleCell.Club.name());
+        addItemInBoardGame(generateRandomCells(level).get("swords"), this.boardGame, "weapon." + possibleCell.Sword.name());
+        addItemInBoardGame(generateRandomCells(level).get("thunderbolts"), this.boardGame, "weapon." + possibleCell.Thunderbolt.name());
+        addItemInBoardGame(generateRandomCells(level).get("fireballs"), this.boardGame, "weapon." + possibleCell.Fireball.name());
+        addItemInBoardGame(generateRandomCells(level).get("standardPotions"), this.boardGame, "healthCell." + possibleCell.StandardPotion.name());
+        addItemInBoardGame(generateRandomCells(level).get("bigPotions"), this.boardGame, "healthCell." + possibleCell.BigPotion.name());
     }
 
     public Map<String, Integer> generateRandomCells(String level) {
@@ -108,7 +87,7 @@ public class BoardGame {
                 cells.put("dragons", 8);
                 cells.put("sorcerers", 10);
                 cells.put("goblins", 8);
-                cells.put("clubs", 9);
+                cells.put("clubs", 7);
                 cells.put("swords", 6);
                 cells.put("thunderbolts", 9);
                 cells.put("fireballs", 5);
