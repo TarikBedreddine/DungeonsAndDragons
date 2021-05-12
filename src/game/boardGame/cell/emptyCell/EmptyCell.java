@@ -3,17 +3,32 @@ package game.boardGame.cell.emptyCell;
 import character.Character;
 import game.boardGame.cell.Cell;
 
+/**
+ * It handle interaction when the character found an empty cell
+ *
+ * @see Cell
+ */
 public class EmptyCell extends Cell {
 
     // Attributes
     private boolean emptyCell;
 
-    // Constructors
+    /**
+     * Constructor
+     * Initialize the attribute emptyCell to true
+     *
+     */
     public EmptyCell() {
         this.emptyCell = true;
     }
 
-    // Methods
+    /**
+     * This method will only display messages to the user, to indicate an empty cell
+     *
+     * @param character Character
+     *      Character to deal with the interaction
+     *
+     */
     @Override
     public void interaction(Character character) {
         System.out.println("");

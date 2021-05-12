@@ -1,27 +1,57 @@
 package game.boardGame.cell.enemyCell;
 import character.Character;
 
-import equipment.attackEquipment;
+import game.boardGame.cell.attackEquipment.AttackEquipment;
 import game.Game;
 import game.boardGame.cell.Cell;
 
+/**
+ * The Class handle Dragon, Goblin and Sorcerer interaction with the character
+ *
+ * @author Tarik
+ *
+ * @see Cell
+ * @see Dragon
+ * @see Goblin
+ * @see Sorcerer
+ */
 public abstract class EnemyCell extends Cell {
 
     // Attributes
     private String enemyName;
     private int enemyLife;
     private int enemyAttack;
-    private attackEquipment attackEquipment;
+    private AttackEquipment attackEquipment;
 
-    // Constructors
+    /**
+     * Initialize enemyName, enemyLife, enemyAttack & attackEquipment
+     *
+     * @param enemyName String
+     * @param enemyLife int
+     * @param enemyAttack int
+     *
+     * {@link Dragon#Dragon()}
+     * {@link Goblin#Goblin()}
+     * {@link Sorcerer#Sorcerer()}
+     *
+     */
     public EnemyCell(String enemyName, int enemyLife, int enemyAttack) {
         this.enemyName = enemyName;
         this.enemyLife = enemyLife;
         this.enemyAttack = enemyAttack;
-        this.attackEquipment = new attackEquipment();
+        this.attackEquipment = new AttackEquipment();
     }
 
-    // Methods
+    /**
+     * Interaction between Enemy and Character
+     * Features :
+     *      - Attack enemy without weapon
+     *      - Attack enemy with a weapon or spell
+     *
+     * @param character Character
+     *
+     * @see AttackEquipment
+     */
     @Override
     public void interaction(Character character) {
         System.out.println("");
@@ -55,7 +85,6 @@ public abstract class EnemyCell extends Cell {
     }
 
     // Getters & Setters
-
     public int getEnemyLife() {
         return enemyLife;
     }

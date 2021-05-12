@@ -1,0 +1,14 @@
+character
+game
+game.boardGame
+game.boardGame.cell
+game.boardGame.cell.attackEquipment
+game.boardGame.cell.attackEquipment.spell
+game.boardGame.cell.attackEquipment.weapon
+game.boardGame.cell.chest.healthCell
+game.boardGame.cell.chest.surpriseCell
+game.boardGame.cell.emptyCell
+game.boardGame.cell.enemyCell
+game.exceptions
+menu
+tools

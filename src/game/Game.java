@@ -10,6 +10,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Major Class - interact with the different parts of the programm
+ * @author Tarik
+ *
+ * @see Character
+ * @see Dice
+ * @see BoardGame
+ * @see Navigation
+ * @see Scanner
+ *
+ */
 public class Game {
 
     // All attributes
@@ -19,7 +30,11 @@ public class Game {
     private Navigation navigation;
     private Scanner scanner;
 
-    // Constructor of Game Class. Instance all Classes needed
+    /**
+     * Constructor
+     * Initialize character, navigation, dice & scanner
+     *
+     */
     public Game() {
         this.character = null;
         this.navigation = new Navigation();
@@ -27,7 +42,28 @@ public class Game {
         this.scanner = new Scanner(System.in);
     }
 
-    // This method will start the game
+    /**
+     * runGame permit :
+     *      To call the Navigation to Create a character
+     * {@link menu.Navigation#startMenu(Character)}
+     *
+     *      To interact with the boardGame (initialize total number of Cells and an ArrayList for the cells)
+     * @see BoardGame
+     *
+     *      Set the characterPosition and Level
+     * {@link #initializeFirstCellAndBoardGame()}
+     *
+     *      Get value of dice, set newCharacterPosition, start interaction
+     * {@link #currentCell(int)}
+     *
+     *      If characterPosition outbound the boardGame, an exception is throwed
+     * @see game.exceptions.CharacterOutsideBoardGame
+     *
+     *      At thed end of the game user can restart or leave the game
+     *{@link menu.Navigation#leaveOrRestartGame(Character)}
+     *
+     *
+     */
     public void runGame() {
         while (character == null) {
             this.character = navigation.startMenu(character);
@@ -75,7 +111,21 @@ public class Game {
         navigation.leaveOrRestartGame(character);
     }
 
-    // Initialise the Count box to 1
+    /**
+     * This method :
+     *      Set the character position the first cell
+     * {@link character.Character#setCharacterPosition(int)}
+     *
+     *
+     *      Retrieve the object BoardGame
+     * {@link BoardGame#getBoardGame()}
+     *
+     *
+     *      Call the cellContent method with the level desired (Easy, Medium, Hard) to populate the Cell ArrayList with Enemies and Stuffs
+     * {@link BoardGame#cellContent(String)}
+     *
+     *      Finally, the boardGame is shuffled to get random loots on the map
+     */
     public void initializeFirstCellAndBoardGame() {
         List<Cell> cellList = boardGame.getBoardGame();
         character.setCharacterPosition(1);
@@ -87,7 +137,19 @@ public class Game {
         Collections.shuffle(cellList.subList(1, cellList.size()));
     }
 
-    // Current character position
+    /**
+     * @param diceResult int
+     *      diceResult is a random number between 1 - 6
+     *
+     * currentCell :
+     *      Add result of the dice to the current characterPosition after eachThrow
+     * {@link Character#getCharacterPosition()}
+     * {@link character.Character#setCharacterPosition(int)}
+     *
+     *      Interact with the content of the cell only if there is a loot or an enemy
+     * @see game.boardGame.cell
+     *
+     */
     public void currentCell(int diceResult) {
         // if the last throw outbound the boardGame, then i fix the characterPosition to 64
         if ((character.getCharacterPosition() + diceResult) > boardGame.getNumberOfCells()) {
@@ -108,8 +170,11 @@ public class Game {
         System.out.println(character.toString());
     }
 
-    // Helpers
-    // When player loot 2 weapon with the same force, he can choice one of the two
+    /**
+     * When player loot 2 weapon with the same force, he can choice one of the two
+     * @return Boolean
+     *      Return the choice of the user
+     */
     public Boolean changeYourWeapon() {
         int choice = scanner.nextInt();
         scanner.nextLine();

@@ -7,12 +7,32 @@ import game.Game;
 
 import java.util.Scanner;
 
+/**
+ * This Class handle all interactions with the user in the Menu
+ *
+ * @author Tarik
+ *
+ */
 public class Navigation
 {
     // All attributes
     Scanner scanner = new Scanner(System.in);
 
     // Method to start the menu & create a character
+
+    /**
+     * createCharacter permit to create a Warrior or a Wizard
+     * {@link #createCharacter(Character)}
+     *
+     * Method System.exit kill the game
+     *
+     * @param character Character Object
+     * @return Character
+     *      Return the Character created
+     *
+     * @see Character
+     *
+     */
     public Character startMenu(Character character) {
         // Set user choice to 0
         int userAnswer = 0;
@@ -65,6 +85,19 @@ public class Navigation
     ////////////////////////////////////////////////////////////////////////////////////////
 
     // Method to create the character and return it to the startMenu
+
+    /**
+     * Depending the answer of the user a Warrior or Wizard is created
+     *
+     * @param character Character
+     *      A null character is given
+     * @return Character
+     *      It return an Object Character
+     *
+     * @see Character
+     * @see Wizard
+     * @see Warrior
+     */
     public Character createCharacter (Character character) {
         int choice = 0;
         System.out.println("1- Guerrier");
@@ -91,7 +124,17 @@ public class Navigation
         return character;
     }
 
-    // Sub menu (Display character information, allow to change character name & leave the game)
+    /**
+     * Sub menu :
+     *      Display character information,
+     *      Allow to change character name,
+     *      Allow to leave the game
+     *
+     * @param character Character
+     *      Represent the character which was created
+     *
+     * {@link Character}
+     */
     public void subMenu(Character character) {
         int subMenuAnswer = 0;
         while (subMenuAnswer != 3) {
@@ -130,7 +173,13 @@ public class Navigation
         }
     }
 
-    // Permit to the user to leave or restart the game
+    /**
+     * The user can start a new Game or leave the game
+     * {@link Game#runGame()}
+     *
+     * @param character
+     *      Represent the character which was created
+     */
 
     public void leaveOrRestartGame(Character character) {
         System.out.println("--------------- 1 - Recommencer ------------------");

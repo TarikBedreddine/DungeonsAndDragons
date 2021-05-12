@@ -4,10 +4,10 @@ import game.boardGame.cell.Cell;
 import game.boardGame.cell.chest.healthCell.BigPotion;
 import game.boardGame.cell.chest.healthCell.StandardPotion;
 import character.Character;
-import game.boardGame.cell.attackEquipment.Club;
-import game.boardGame.cell.attackEquipment.Fireball;
-import game.boardGame.cell.attackEquipment.Sword;
-import game.boardGame.cell.attackEquipment.Thunderbolt;
+import game.boardGame.cell.attackEquipment.weapon.Club;
+import game.boardGame.cell.attackEquipment.spell.Fireball;
+import game.boardGame.cell.attackEquipment.weapon.Sword;
+import game.boardGame.cell.attackEquipment.spell.Thunderbolt;
 
 public class SurpriseCell extends Cell {
 
