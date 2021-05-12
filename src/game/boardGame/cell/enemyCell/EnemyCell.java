@@ -21,7 +21,6 @@ public abstract class EnemyCell extends Cell {
     private String enemyName;
     private int enemyLife;
     private int enemyAttack;
-    private AttackEquipment attackEquipment;
 
     /**
      * Initialize enemyName, enemyLife, enemyAttack & attackEquipment
@@ -39,7 +38,6 @@ public abstract class EnemyCell extends Cell {
         this.enemyName = enemyName;
         this.enemyLife = enemyLife;
         this.enemyAttack = enemyAttack;
-        this.attackEquipment = new AttackEquipment();
     }
 
     /**
@@ -61,9 +59,9 @@ public abstract class EnemyCell extends Cell {
             System.out.println("Votre personnage attaque ... ");
 
             // Reduce enemy life
-            setEnemyLife(getEnemyLife() - character.getAttack() - attackEquipment.getEquipmentDamage());
+            setEnemyLife(getEnemyLife() - character.getAttack() - character.getAttackEquipment().getEquipmentDamage());
 
-            System.out.println("Vous avez infligé " + (character.getAttack() + attackEquipment.getEquipmentDamage()) + " de dégâts. L'ennemi a désormais : " + this.getEnemyLife() + " points de vie");
+            System.out.println("Vous avez infligé " + (character.getAttack() + character.getAttackEquipment().getEquipmentDamage()) + " de dégâts. L'ennemi a désormais : " + this.getEnemyLife() + " points de vie");
             if (this.getEnemyLife() > 0) {
                 character.setLife(character.getLife() - this.enemyAttack);
                 System.out.println("...");

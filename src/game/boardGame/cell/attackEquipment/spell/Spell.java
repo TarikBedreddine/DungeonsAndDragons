@@ -2,6 +2,7 @@ package game.boardGame.cell.attackEquipment.spell;
 
 import character.Character;
 import character.Warrior;
+import character.Wizard;
 import game.Game;
 import game.boardGame.cell.Cell;
 import game.boardGame.cell.attackEquipment.AttackEquipment;
@@ -22,7 +23,6 @@ public class Spell extends AttackEquipment {
     private String spellName;
     private int spellDamage;
     private Character character;
-    private AttackEquipment attackEquipment;
 
     /**
      *
@@ -59,39 +59,40 @@ public class Spell extends AttackEquipment {
      */
     @Override
     public void interaction(Character character) {
-        if (character instanceof Warrior) {
-            if (attackEquipment.getEquipmentName() == null || (attackEquipment.getEquipmentName() != null && !attackEquipment.getEquipmentName().equals(this.spellName)) || attackEquipment.getEquipmentDamage() != this.spellDamage) {
+        if (character instanceof Wizard) {
+            AttackEquipment currentWeapon = character.getAttackEquipment();
+            if (currentWeapon.getEquipmentName() == null || (currentWeapon.getEquipmentName() != null && !currentWeapon.getEquipmentName().equals(this.spellName)) || currentWeapon.getEquipmentDamage() != this.spellDamage) {
                 // Equip the weapon only if it has more damage
-                if (attackEquipment.getEquipmentDamage() < this.spellDamage) {
-                    attackEquipment.setEquipmentName(this.spellName);
-                    attackEquipment.setEquipmentDamage(this.spellDamage);
-                    // Update the object attackEquipment in Character Class
-                    character.setAttackEquipment(attackEquipment);
+                if (currentWeapon.getEquipmentDamage() < this.spellDamage) {
+                    currentWeapon.setEquipmentName(this.spellName);
+                    currentWeapon.setEquipmentDamage(this.spellDamage);
+
                     // If the total attack is > max attack then total attack = max attack
-                    if ((attackEquipment.getEquipmentDamage() + character.getAttack()) > character.getMaxAttack()) {
-                        attackEquipment.setEquipmentDamage((character.getMaxAttack() - character.getAttack()));
+                    if ((currentWeapon.getEquipmentDamage() + character.getAttack()) > character.getMaxAttack()) {
+                        currentWeapon.setEquipmentDamage((character.getMaxAttack() - character.getAttack()));
                     }
                     System.out.println("");
-                    System.out.println("Vous êtes maintenant équipé de l'arme suivante : " + this.spellName + ", elle fait " + attackEquipment.getEquipmentDamage() + " de dégâts.");
+                    System.out.println("Vous êtes maintenant équipé de l'arme suivante : " + this.spellName + ", elle fait " + currentWeapon.getEquipmentDamage() + " de dégâts.");
                 } else {
                     System.out.println("");
-                    System.out.println("Vous avez looté " + this.spellName + " mais il fait moins de dégâts (" + this.spellDamage + ") que votre sort actuelle. Vous gardez donc votre sort !");
+                    System.out.println("Vous avez looté " + this.spellName + " mais il fait moins de dégâts (" + this.spellDamage + ") que votre sort actuel. Vous gardez donc votre sort !");
                 }
-            } else if (attackEquipment.getEquipmentDamage() == this.spellDamage && !attackEquipment.getEquipmentName().equals(this.spellName)) {
+            } else if (currentWeapon.getEquipmentDamage() == this.spellDamage && !currentWeapon.getEquipmentName().equals(this.spellName)) {
                 System.out.println("Vous avez looté un sort qui fait les mêmes points de dégâts, Veuillez choisir un des deux sort");
-                System.out.println("1 - " + attackEquipment.getEquipmentName() + " (Votre ancien sort)");
+                System.out.println("1 - " + currentWeapon.getEquipmentName() + " (Votre ancien sort)");
                 System.out.println("2 - " + this.spellName + " (Nouveau sort)");
                 Game g = new Game();
                 if (g.changeYourWeapon()) {
-                    attackEquipment.setEquipmentName(this.spellName);
-                    attackEquipment.setEquipmentDamage(this.spellDamage);
+                    currentWeapon.setEquipmentName(this.spellName);
+                    currentWeapon.setEquipmentDamage(this.spellDamage);
                 }
             } else {
                 System.out.println("");
                 System.out.println("Vous avez déjà looté " + this.spellName);
             }
         } else {
-            System.out.println("Vous êtes un Guerrier, vous ne pouvez pas équiper ce sort");
+            System.out.println("");
+            System.out.println("Vous êtes un Guerrier, vous ne pouvez pas équiper ce sort (" +this.spellName+")");
         }
     }
 
@@ -107,7 +108,6 @@ public class Spell extends AttackEquipment {
                 "spellName='" + spellName + '\'' +
                 ", spellDamage=" + spellDamage +
                 ", character=" + character +
-                ", attackEquipment=" + attackEquipment +
                 '}';
     }
 }

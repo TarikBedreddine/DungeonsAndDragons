@@ -169,7 +169,7 @@ public abstract class Character {
                 ", minLife=" + minLife +
                 ", maxLife=" + maxLife +
                 ", maxAttack=" + maxAttack +
-                ", attackEquipment=" + " Type:" +attackEquipment.getType()+ " Nom:" +attackEquipment.getEquipmentName()+ " Dégâts:" +attackEquipment.getEquipmentDamage()+
+                ", attackEquipment=" + " Nom:" +attackEquipment.getEquipmentName()+ " Dégâts:" +attackEquipment.getEquipmentDamage()+
                 '}';
     }
 }

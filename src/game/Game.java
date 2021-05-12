@@ -134,7 +134,7 @@ public class Game {
         //boardGame.initializeCellsBoardGame();
         boardGame.cellContent("Hard");
         // subList permit in the case to begin the shuffle at index 1
-        Collections.shuffle(cellList.subList(1, cellList.size()));
+        Collections.shuffle(cellList.subList(1, (cellList.size() - 1)));
     }
 
     /**

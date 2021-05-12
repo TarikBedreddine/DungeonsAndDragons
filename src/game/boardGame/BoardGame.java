@@ -96,6 +96,9 @@ public class BoardGame {
         addItemInBoardGame(generateRandomCells(level).get("fireballs"), this.boardGame, "attackEquipment.spell." + possibleCell.Fireball.name());
         addItemInBoardGame(generateRandomCells(level).get("standardPotions"), this.boardGame, "chest.healthCell." + possibleCell.StandardPotion.name());
         addItemInBoardGame(generateRandomCells(level).get("bigPotions"), this.boardGame, "chest.healthCell." + possibleCell.BigPotion.name());
+
+        // Index 64 = null because i want anything on the last cell
+        boardGame.add(64, null);
     }
 
     /**
@@ -136,14 +139,14 @@ public class BoardGame {
                 break;
             }
             case "Hard": {
-                cells.put("dragons", 8);
+                cells.put("dragons", 10);
                 cells.put("sorcerers", 10);
                 cells.put("goblins", 8);
                 cells.put("clubs", 7);
                 cells.put("swords", 6);
                 cells.put("thunderbolts", 9);
                 cells.put("fireballs", 5);
-                cells.put("standardPotions", 6);
+                cells.put("standardPotions", 5);
                 cells.put("bigPotions", 3);
                 break;
             }
