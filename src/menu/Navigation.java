@@ -115,9 +115,9 @@ public class Navigation
         String name = scanner.nextLine();
 
         if(choice == 1) {
-            character = new Warrior(name, "none", 5, 5, 5, 10, 10);
+            character = new Warrior(name, "none", 5, 5, 10, 10);
         } else {
-            character = new Wizard(name, "none", 3, 8, 3, 6, 15);
+            character = new Wizard(name, "none", 8, 3, 6, 15);
         }
 
         character.setName(name);
@@ -172,6 +172,28 @@ public class Navigation
             scanner.nextLine();
         }
     }
+
+    public String difficultLevel() {
+        System.out.println("");
+        System.out.println("Choissisez un niveau de difficulté : ");
+        System.out.println("1 - FACILE");
+        System.out.println("2 - NORMAL");
+        System.out.println("3 - DIFFICILE");
+
+        int userAnswer = scanner.nextInt();
+        scanner.nextLine();
+        while (userAnswer != 1 && userAnswer != 2 && userAnswer!=3) {
+            userAnswer = scanner.nextInt();
+            scanner.nextLine();
+        }
+        if (userAnswer == 1) {
+            return "Easy";
+        } else if (userAnswer == 2 ) {
+            return "Medium";
+        }
+        return "Hard";
+    }
+
 
     /**
      * The user can start a new Game or leave the game

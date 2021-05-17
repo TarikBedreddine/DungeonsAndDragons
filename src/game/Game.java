@@ -29,6 +29,7 @@ public class Game {
     private BoardGame boardGame;
     private Navigation navigation;
     private Scanner scanner;
+    private String difficultLevel;
 
     /**
      * Constructor
@@ -40,6 +41,7 @@ public class Game {
         this.navigation = new Navigation();
         this.dice = new Dice();
         this.scanner = new Scanner(System.in);
+        this.difficultLevel = "";
     }
 
     /**
@@ -68,6 +70,7 @@ public class Game {
         while (character == null) {
             this.character = navigation.startMenu(character);
         }
+        this.difficultLevel = navigation.difficultLevel();
         boardGame = new BoardGame();
         System.out.println("----------------------------------------------------------------------");
         System.out.println("--------------- Le jeu va débuter, êtes-vous prêts ? -----------------");
@@ -132,7 +135,7 @@ public class Game {
         System.out.println("Vous commencez sur la case : " + character.getCharacterPosition());
         // Set all indexes of the boardgame to null
         //boardGame.initializeCellsBoardGame();
-        boardGame.cellContent("Hard");
+        boardGame.cellContent(this.difficultLevel);
         // subList permit in the case to begin the shuffle at index 1
         Collections.shuffle(cellList.subList(1, (cellList.size() - 1)));
     }
