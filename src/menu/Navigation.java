@@ -173,6 +173,13 @@ public class Navigation
         }
     }
 
+    /**
+     * Ask to the user for a difficult level
+     * @return String 
+     *      String returned to the Game Class 
+     * 
+     * {@link game.boardGame.BoardGame#cellContent(String)}
+     */
     public String difficultLevel() {
         System.out.println("");
         System.out.println("Choissisez un niveau de difficulté : ");
