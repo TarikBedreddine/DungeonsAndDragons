@@ -209,7 +209,6 @@ public class Navigation
      * @param character
      *      Represent the character which was created
      */
-
     public void leaveOrRestartGame(Character character) {
         System.out.println("--------------- 1 - Recommencer ------------------");
         System.out.println("----------------2 - Quitter --------------------");
