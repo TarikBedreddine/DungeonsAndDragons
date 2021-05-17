@@ -72,8 +72,6 @@ public abstract class Character {
      *        Name of the character (Alphanumeric allowed)
      * @param url String
      *        Set an image for the character
-     * @param Life int
-     *        Current life of the character
      * @param Attack int
      *        Current character attack
      * @param minLife int
@@ -82,11 +80,11 @@ public abstract class Character {
      * @param maxAttack int
      *        define the maxAttack for the Character
      */
-    public Character(String selectedName, String url, int Life, int Attack, int minLife, int maxLife, int maxAttack) {
+    public Character(String selectedName, String url, int Attack, int minLife, int maxLife, int maxAttack) {
         this();
         this.name = selectedName;
         this.image = url;
-        this.life = Life;
+        this.life = minLife;
         this.attack = Attack;
         this.minLife = minLife;
         this.maxLife = maxLife;

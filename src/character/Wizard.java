@@ -42,18 +42,17 @@ public class Wizard extends Character {
 
     /**
      * Access the third Constructor Parent thanks to the method "Super"
-     * {@link character.Character#Character(String, String, int, int, int, int, int)}
+     * {@link character.Character#Character(String, String, int, int, int, int)}
      *
      * @param selectedName String
      * @param url String
-     * @param wizardLife int
      * @param wizardAttack int
      * @param minLife int
      * @param maxLife int
      * @param maxAttack int
      */
-    public Wizard(String selectedName, String url, int wizardLife, int wizardAttack, int minLife, int maxLife, int maxAttack) {
-        super(selectedName, url, wizardLife, wizardAttack, minLife, maxLife, maxAttack);
+    public Wizard(String selectedName, String url, int wizardAttack, int minLife, int maxLife, int maxAttack) {
+        super(selectedName, url, wizardAttack, minLife, maxLife, maxAttack);
     }
 
 }

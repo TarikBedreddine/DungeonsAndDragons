@@ -41,18 +41,17 @@ public class Warrior extends Character {
 
     /**
      * Access the third Constructor Parent thanks to the method "Super"
-     * {@link character.Character#Character(String, String, int, int, int, int, int)}
+     * {@link character.Character#Character(String, String, int, int, int, int)}
      *
      * @param selectedName String
      * @param url String
-     * @param warriorLife int
      * @param warriorAttack int
      * @param minLife int
      * @param maxLife int
      * @param maxAttack int
      */
-    public Warrior(String selectedName, String url, int warriorLife, int warriorAttack, int minLife, int maxLife, int maxAttack) {
-        super(selectedName, url, warriorLife, warriorAttack, minLife, maxLife, maxAttack);
+    public Warrior(String selectedName, String url, int warriorAttack, int minLife, int maxLife, int maxAttack) {
+        super(selectedName, url, warriorAttack, minLife, maxLife, maxAttack);
     }
 }
 
