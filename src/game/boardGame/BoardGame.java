@@ -114,11 +114,12 @@ public class BoardGame {
     public Map<String, Integer> generateRandomCells(String level) {
         HashMap<String, Integer> cells = new HashMap<String, Integer>();
         switch (level) {
+            // Populate 63 cells
             case "Easy": {
                 cells.put("dragons", 2);
                 cells.put("sorcerers", 4);
                 cells.put("goblins", 9);
-                cells.put("clubs", 6);
+                cells.put("clubs", 7);
                 cells.put("swords", 10);
                 cells.put("thunderbolts", 6);
                 cells.put("fireballs", 10);
@@ -132,7 +133,7 @@ public class BoardGame {
                 cells.put("goblins", 12);
                 cells.put("clubs", 9);
                 cells.put("swords", 5);
-                cells.put("thunderbolts", 9);
+                cells.put("thunderbolts", 8);
                 cells.put("fireballs", 5);
                 cells.put("standardPotions", 10);
                 cells.put("bigPotions", 3);
