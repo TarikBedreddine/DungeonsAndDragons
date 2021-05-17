@@ -11,4 +11,4 @@ game.boardGame.cell.emptyCell
 game.boardGame.cell.enemyCell
 game.exceptions
 menu
-tools
+helpers
