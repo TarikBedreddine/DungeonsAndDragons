@@ -19,7 +19,6 @@ public class Weapon extends AttackEquipment {
     // Attributes
     private String weaponName;
     private int weaponDamage;
-    private Character character;
 
     /**
      * Constructor

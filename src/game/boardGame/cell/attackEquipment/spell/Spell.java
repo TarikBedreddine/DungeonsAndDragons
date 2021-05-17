@@ -22,7 +22,6 @@ public class Spell extends AttackEquipment {
     // Attributes
     private String spellName;
     private int spellDamage;
-    private Character character;
 
     /**
      *
@@ -107,7 +106,6 @@ public class Spell extends AttackEquipment {
         return "Spell{" +
                 "spellName='" + spellName + '\'' +
                 ", spellDamage=" + spellDamage +
-                ", character=" + character +
                 '}';
     }
 }
