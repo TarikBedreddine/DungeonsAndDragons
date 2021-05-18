@@ -3,8 +3,10 @@ package menu;
 import character.Character;
 import character.Wizard;
 import character.Warrior;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import game.Game;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -40,8 +42,9 @@ public class Navigation
         while (userAnswer != 2) {
             System.out.println("");
             System.out.println(">>>>>>>>>>>>>>>>> 1 - CREER UN PERSONNAGE <<<<<<<<<<<<<<<<<<<<<<<");
-            System.out.println(">>>>>>>>>>>>>>>>>>> 2 - LANCER LE JEU <<<<<<<<<<<<<<<<<<<<<<<<<<<");
-            System.out.println(">>>>>>>>>>>>>>>>>>> 3 - QUITTER LE JEU <<<<<<<<<<<<<<<<<<<<<<<<<<");
+            System.out.println(">>>>>>>>>>>>>>>>> 2 - CHARGER UN PERSONNAGE <<<<<<<<<<<<<<<<<<<<<<");
+            System.out.println(">>>>>>>>>>>>>>>>> 3 - LANCER LE JEU <<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            System.out.println(">>>>>>>>>>>>>>>>> 4 - QUITTER LE JEU <<<<<<<<<<<<<<<<<<<<<<<<<<");
             System.out.println("");
             userAnswer = scanner.nextInt();
             scanner.nextLine();
@@ -55,7 +58,10 @@ public class Navigation
                     this.subMenu(character);
                     break;
                 }
-                case 2: {
+                case 2 : {
+                    break;
+                }
+                case 3: {
                     // RUN THE GAME
                     if (character == null) {
                         System.out.println("-------------------------------------------------------------");
@@ -70,7 +76,7 @@ public class Navigation
                         break;
                     }
                 }
-                case 3: {
+                case 4: {
                     // EXIT THE MENU
                     System.out.println("Merci de votre passage, au revoir !");
                     System.exit(0);
@@ -199,6 +205,16 @@ public class Navigation
             return "Medium";
         }
         return "Hard";
+    }
+
+    public int askQuestion (ArrayList<String> allQuestions) {
+        System.out.println("");
+        for (int i = 0; i < allQuestions.size(); i++) {
+            System.out.println(allQuestions.get(i));
+        }
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        return choice;
     }
 
 
