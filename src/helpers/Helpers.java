@@ -9,6 +9,7 @@ import menu.Navigation;
 import java.io.FileInputStream;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 public class Helpers {
@@ -22,11 +23,17 @@ public class Helpers {
     }
 
     // Methods
-    public void saveCharacter(String type, String name, int life, int attack, String attackEquipment, int attackEquipmentDamage, int characterPosition) throws Exception {
+    public void loadDataBaseConfiguration() throws Exception{
         try (FileInputStream file = new FileInputStream("src/helpers/conf.properties"))
         {
             props.load(file);
         }
+    }
+
+
+    public void saveCharacter(String type, String name, int life, int attack, String attackEquipment, int attackEquipmentDamage, int characterPosition) throws Exception {
+        loadDataBaseConfiguration();
+
         Class.forName(props.getProperty("jdbc.driver.class"));
         String login = props.getProperty("jdbc.login");
         String password = props.getProperty("jdbc.password");
@@ -47,11 +54,10 @@ public class Helpers {
         }
     }
 
-    public Character restoreCharacter (Character player) throws Exception {
-        try (FileInputStream file = new FileInputStream("src/helpers/conf.properties"))
-        {
-            props.load(file);
-        }
+    public HashMap<String, Character> restoreCharacter (Character player, Navigation navInstance) throws Exception {
+        HashMap<String, Character> isPlayerLoaded = new HashMap<String, Character>();
+        loadDataBaseConfiguration();
+
 
         Class.forName(props.getProperty("jdbc.driver.class"));
         String login = props.getProperty("jdbc.login");
@@ -69,17 +75,15 @@ public class Helpers {
 
                 // add in the this list all the questions that i need to ask
                 ArrayList<String> questions = new ArrayList<String>();
-                questions.add("Veuillez sélectionné un personnage :)");
+                questions.add("Veuillez sélectionner un personnage :)");
                 while (!rs.isAfterLast()) {
-                    questions.add(i + " - Nom: " +rs.getString("name")+ " || Vie: " +rs.getInt("life")+ " || Attaque: "+rs.getInt("attack")+" || Arme équipé: "+rs.getString("attackEquipment")+ " || Points d'attaque de l'arme: " +rs.getInt("attackEquipmentDamage")+ "Position du joueur : " +rs.getInt("characterPosition") );
+                    questions.add(i + " - Nom: " +rs.getString("name")+ " || Vie: " +rs.getInt("life")+ " || Attaque: "+rs.getInt("attack")+" || Arme équipé: "+rs.getString("attackEquipment")+ " || Points d'attaques de l'arme: " +rs.getInt("attackEquipmentDamage")+ " Position du joueur : " +rs.getInt("characterPosition") );
                     rs.next();
 
                     i++;
                 }
 
-                Navigation nav = new Navigation();
-
-                if (rs.absolute(nav.askQuestion(questions))) {
+                if (rs.absolute(navInstance.askQuestion(questions))) {
                     if (rs.getString("type").equals("Warrior")) {
                         player = new Warrior();
                     } else if (rs.getString("type").equals("Wizard")) {
@@ -97,9 +101,25 @@ public class Helpers {
         } catch (Exception err) {
             System.out.println(err);
         }
-        return player;
+        isPlayerLoaded.put("player1", player);
+        return isPlayerLoaded;
     }
 
+    public void updatePlayerInDB (String name, int life, int attack, String attackEquipment, int attackEquipmentDamage, String shield, int characterPosition) throws Exception {
+        loadDataBaseConfiguration();
 
+        Class.forName(props.getProperty("jdbc.driver.class"));
+        String login = props.getProperty("jdbc.login");
+        String password = props.getProperty("jdbc.password");
+        String url = props.getProperty("jdbc.url");
+
+        try (Connection connection = DriverManager.getConnection(url, login, password)) {
+            String requestSql = "UPDATE Hero SET \"name\" = '"+name+"', \"life\" = '"+life+'", \"attack\" =  ";
+            try (Statement statement = connection.createStatement()) {
+                statement.executeUpdate(requestSql);
+            }
+        }
+
+    }
 
 }

@@ -29,9 +29,9 @@ public class Dice {
      *
      */
     public int throwDice (){
-        //int range = (6 - 1) + 1;
-        //this.diceValue = (int)(Math.random() * range) + 1;
-        diceValue = 1;
+        int range = (6 - 1) + 1;
+        this.diceValue = (int)(Math.random() * range) + 1;
+        //diceValue = 1;
         return diceValue;
     }
 

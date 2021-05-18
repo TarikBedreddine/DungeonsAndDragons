@@ -75,7 +75,8 @@ public class Game {
             this.character = navigation.startMenu(character);
             if (character == null) {
                 try {
-                    character = helpers.restoreCharacter(character);
+                    character = helpers.restoreCharacter(character, navigation).get("player1");
+
                 } catch (Exception err) {
                     System.out.println(err);
                 }
@@ -205,14 +206,13 @@ public class Game {
         allQuestions.add("1 - OUI");
         allQuestions.add("2 - NON");
         int interactionWithUser = navigation.askQuestion(allQuestions);
+
         if (interactionWithUser == 1) {
-            Helpers database = new Helpers();
             try {
-                database.saveCharacter(character.getClass().getSimpleName(), character.getName(), character.getLife(), character.getAttack(), character.getAttackEquipment().getEquipmentName(), character.getAttackEquipment().getEquipmentDamage(), character.getCharacterPosition());
+                helpers.saveCharacter(character.getClass().getSimpleName(), character.getName(), character.getLife(), character.getAttack(), character.getAttackEquipment().getEquipmentName(), character.getAttackEquipment().getEquipmentDamage(), character.getCharacterPosition());
             } catch (Exception e) {
                 System.out.println(e);
             }
         }
     }
-
 }
