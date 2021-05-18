@@ -10,7 +10,6 @@ import java.io.FileInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.concurrent.ExecutionException;
 
 public class Helpers {
 
@@ -65,20 +64,16 @@ public class Helpers {
             String requestSql = "SELECT type, name, life, attack, attackEquipment, attackEquipmentDamage FROM Hero";
             try (Statement statement = connection.createStatement()) {
                 ResultSet rs =  statement.executeQuery(requestSql);
+
+                // i permit the index of the row looped
                 int i = 1;
                 rs.next();
-                ArrayList<String> questions = new ArrayList<String>();
-                questions.add("Veuillez sélectionné un personnage svp");
-                while (!rs.isAfterLast()) {
-                    System.out.println("");
-                    System.out.println(i + " - Personnage sauvegardé");
-                    System.out.println("Nom du personnage : " + rs.getNString("name"));
-                    System.out.println("Vie : " + rs.getInt("life"));
-                    System.out.println("Attaque : " + rs.getInt("attack"));
-                    System.out.println("Arme équipé : " + rs.getString("attackEquipment"));
-                    System.out.println("Points d'attaque de l'arme : " + rs.getInt("attackEquipmentDamage"));
 
-                    questions.add(i + " - Pour choisir le premier joueur" + "("+rs.getString("name")+")");
+                // add in the this list all the questions that i need to ask
+                ArrayList<String> questions = new ArrayList<String>();
+                questions.add("Veuillez sélectionné un personnage :)");
+                while (!rs.isAfterLast()) {
+                    questions.add(i + " - Nom: " +rs.getString("name")+ " || Vie: " +rs.getInt("life")+ " || Attaque: "+rs.getInt("attack")+" || Arme équipé: "+rs.getString("attackEquipment")+ " || Points d'attaque de l'arme: " +rs.getInt("attackEquipmentDamage"));
                     rs.next();
 
                     i++;

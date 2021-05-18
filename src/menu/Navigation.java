@@ -210,6 +210,7 @@ public class Navigation
     public int askQuestion (ArrayList<String> allQuestions) {
         System.out.println("");
         for (int i = 0; i < allQuestions.size(); i++) {
+            System.out.println("");
             System.out.println(allQuestions.get(i));
         }
         int choice = scanner.nextInt();
