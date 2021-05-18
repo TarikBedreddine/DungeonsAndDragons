@@ -39,7 +39,7 @@ public class Navigation
         // Set user choice to 0
         int userAnswer = 0;
         // While the user don't leave the game, display the main menu
-        while (userAnswer != 2) {
+        while (userAnswer != 3 && userAnswer != 2 ) {
             System.out.println("");
             System.out.println(">>>>>>>>>>>>>>>>> 1 - CREER UN PERSONNAGE <<<<<<<<<<<<<<<<<<<<<<<");
             System.out.println(">>>>>>>>>>>>>>>>> 2 - CHARGER UN PERSONNAGE <<<<<<<<<<<<<<<<<<<<<<");

@@ -208,7 +208,7 @@ public class Game {
         if (interactionWithUser == 1) {
             Helpers database = new Helpers();
             try {
-                database.saveCharacter(character.getClass().getSimpleName(), character.getName(), character.getLife(), character.getAttack(), character.getAttackEquipment().getEquipmentName(), character.getAttackEquipment().getEquipmentDamage());
+                database.saveCharacter(character.getClass().getSimpleName(), character.getName(), character.getLife(), character.getAttack(), character.getAttackEquipment().getEquipmentName(), character.getAttackEquipment().getEquipmentDamage(), character.getCharacterPosition());
             } catch (Exception e) {
                 System.out.println(e);
             }
