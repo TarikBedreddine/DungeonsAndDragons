@@ -7,6 +7,7 @@ import game.exceptions.CharacterOutsideBoardGame;
 import helpers.Helpers;
 import menu.Navigation;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -31,6 +32,7 @@ public class Game {
     private Navigation navigation;
     private Scanner scanner;
     private String difficultLevel;
+    private Helpers helpers;
 
     /**
      * Constructor
@@ -43,6 +45,7 @@ public class Game {
         this.dice = new Dice();
         this.scanner = new Scanner(System.in);
         this.difficultLevel = "";
+        this.helpers = new Helpers();
     }
 
     /**
@@ -70,7 +73,15 @@ public class Game {
     public void runGame() {
         while (character == null) {
             this.character = navigation.startMenu(character);
+            if (character == null) {
+                try {
+                    character = helpers.restoreCharacter(character);
+                } catch (Exception err) {
+                    System.out.println(err);
+                }
+            }
         }
+
         this.difficultLevel = navigation.difficultLevel();
         boardGame = new BoardGame();
         System.out.println("----------------------------------------------------------------------");
@@ -189,16 +200,15 @@ public class Game {
     }
 
     public void askForSaveCharacter() {
-        System.out.println("");
-        System.out.println("Voulez-vous sauvegarder votre personnage ?");
-        System.out.println("1 - OUI");
-        System.out.println("2 - NON");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        if (choice == 1) {
+        ArrayList<String> allQuestions = new ArrayList<String>();
+        allQuestions.add("Voulez-vous sauvegarder votre personnage ?");
+        allQuestions.add("1 - OUI");
+        allQuestions.add("2 - NON");
+        int interactionWithUser = navigation.askQuestion(allQuestions);
+        if (interactionWithUser == 1) {
             Helpers database = new Helpers();
             try {
-                database.saveCharacter(character.getClass().getSimpleName(), character.getName(), character.getLife(), character.getAttack(), character.getAttackEquipment().getEquipmentName());
+                database.saveCharacter(character.getClass().getSimpleName(), character.getName(), character.getLife(), character.getAttack(), character.getAttackEquipment().getEquipmentName(), character.getAttackEquipment().getEquipmentDamage());
             } catch (Exception e) {
                 System.out.println(e);
             }

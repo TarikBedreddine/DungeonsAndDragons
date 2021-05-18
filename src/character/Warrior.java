@@ -18,7 +18,6 @@ public class Warrior extends Character {
     /**
      *
      * First Constructor
-     * @deprecated
      *
      */
     public Warrior() {

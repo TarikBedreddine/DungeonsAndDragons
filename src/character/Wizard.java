@@ -18,7 +18,6 @@ public class Wizard extends Character {
     /**
      *
      * First Constructor
-     * @deprecated
      *
      */
     public Wizard() {
