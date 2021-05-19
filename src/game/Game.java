@@ -1,10 +1,10 @@
 package game;
 
 import character.Character;
+import database.DataBase;
 import game.boardGame.BoardGame;
 import game.boardGame.cell.Cell;
 import game.exceptions.CharacterOutsideBoardGame;
-import helpers.Helpers;
 import menu.Navigation;
 
 import java.util.ArrayList;
@@ -32,7 +32,8 @@ public class Game {
     private Navigation navigation;
     private Scanner scanner;
     private String difficultLevel;
-    private Helpers helpers;
+    private DataBase dataBase;
+    private boolean restoredCharacter;
 
     /**
      * Constructor
@@ -45,7 +46,8 @@ public class Game {
         this.dice = new Dice();
         this.scanner = new Scanner(System.in);
         this.difficultLevel = "";
-        this.helpers = new Helpers();
+        this.dataBase = new DataBase();
+        this.restoredCharacter = false;
     }
 
     /**
@@ -75,8 +77,9 @@ public class Game {
             this.character = navigation.startMenu(character);
             if (character == null) {
                 try {
-                    character = helpers.restoreCharacter(character, navigation).get("player1");
-
+                    character = dataBase.restoreCharacter(character, navigation);
+                    character = navigation.startMenu(character);
+                    restoredCharacter = true;
                 } catch (Exception err) {
                     System.out.println(err);
                 }
@@ -207,12 +210,20 @@ public class Game {
         allQuestions.add("2 - NON");
         int interactionWithUser = navigation.askQuestion(allQuestions);
 
-        if (interactionWithUser == 1) {
+        if (interactionWithUser == 1 && !restoredCharacter) {
             try {
-                helpers.saveCharacter(character.getClass().getSimpleName(), character.getName(), character.getLife(), character.getAttack(), character.getAttackEquipment().getEquipmentName(), character.getAttackEquipment().getEquipmentDamage(), character.getCharacterPosition());
+                dataBase.saveCharacter(character.getClass().getSimpleName(), character.getName(), character.getLife(), character.getAttack(), character.getAttackEquipment().getEquipmentName(), character.getAttackEquipment().getEquipmentDamage(), character.getCharacterPosition());
             } catch (Exception e) {
                 System.out.println(e);
             }
+        } else if(interactionWithUser == 1 && restoredCharacter) {
+            try {
+                dataBase.updatePlayerInDB(character.getName(), character.getLife(), character.getAttack(), character.getAttackEquipment().getEquipmentName(), character.getAttackEquipment().getEquipmentDamage(), character.getCharacterPosition());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Vous avez chosis non");
         }
     }
 }

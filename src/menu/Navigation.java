@@ -3,7 +3,6 @@ package menu;
 import character.Character;
 import character.Wizard;
 import character.Warrior;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import game.Game;
 
 import java.util.ArrayList;

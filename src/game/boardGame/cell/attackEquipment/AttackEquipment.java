@@ -29,7 +29,7 @@ public class AttackEquipment extends Cell {
      * {@link game.boardGame.cell.attackEquipment.weapon.Weapon#Weapon(String, int)}
      */
     public AttackEquipment() {
-        this.equipmentName = "";
+        this.equipmentName = "Aucun";
         this.equipmentDamage = 0;
     }
 
