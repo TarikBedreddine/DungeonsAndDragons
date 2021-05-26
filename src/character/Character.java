@@ -50,7 +50,6 @@ public abstract class Character {
     }
 
     /**
-     *
      * Second Constructor
      *
      * @param selectedName String
@@ -167,7 +166,7 @@ public abstract class Character {
                 ", minLife=" + minLife +
                 ", maxLife=" + maxLife +
                 ", maxAttack=" + maxAttack +
-                ", attackEquipment=" + " Nom:" +attackEquipment.getEquipmentName()+ " Dégâts:" +attackEquipment.getEquipmentDamage()+
+                ", attackEquipment=" + attackEquipment +
                 '}';
     }
 }

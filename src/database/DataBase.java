@@ -89,14 +89,16 @@ public class DataBase {
     /**
      * Method to restore a Character with his information and his last Position in the game
      *
-     * @param player      Character
      * @param navInstance Navigation
      * @return Return an instance of the character selected (Wizard or warrior)
      * @throws Exception Failed Query to DB
      *                   <p>
      *                   {@link Navigation#askQuestion(ArrayList)}
      */
-    public Character restoreCharacter(Character player, Navigation navInstance) throws Exception {
+    public Character restoreCharacter(Navigation navInstance) throws Exception {
+
+        Character player = null;
+
         Connection connection = loadDBConfigurationAndSetConnection();
 
         // request to send to DB
@@ -126,6 +128,7 @@ public class DataBase {
             // navInstance.askQuestion method in package Menu permit to return the user choice (an int)
             // rs.absolute : moves the cursor to the related index
             if (rs.absolute(navInstance.askQuestion(questions))) {
+
                 if (rs.getString("type").equals("Warrior")) {
                     player = new Warrior();
                 } else if (rs.getString("type").equals("Wizard")) {

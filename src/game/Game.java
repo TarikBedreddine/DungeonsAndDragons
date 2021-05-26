@@ -53,7 +53,7 @@ public class Game {
     /**
      * runGame permit :
      *      To call the Navigation to Create a character
-     * {@link menu.Navigation#startMenu(Character, DataBase)} (Character)}
+     * {@link menu.Navigation#startMenu(DataBase)} (Character)}
      *
      *      To interact with the boardGame (initialize total number of Cells and an ArrayList for the cells)
      * @see BoardGame
@@ -73,12 +73,12 @@ public class Game {
      *
      */
     public void runGame() {
-        while (character == null) {
-            this.character = navigation.startMenu(character, dataBase);
-            if (character.getCharacterPosition() > 1) {
-                restoredCharacter = true;
-            }
+
+        character = navigation.startMenu(dataBase);
+        if (character.getCharacterPosition() > 1) {
+            restoredCharacter = true;
         }
+
 
         this.difficultLevel = navigation.difficultLevel();
         boardGame = new BoardGame();

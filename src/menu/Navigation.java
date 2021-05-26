@@ -24,18 +24,23 @@ public class Navigation
 
     /**
      * createCharacter permit to create a Warrior or a Wizard
-     * {@link #createCharacter(Character)}
+     * {@link #createCharacter()}
      *
      * Method System.exit kill the game
      *
-     * @param character Character Object
+     * @param database
+     * this param permit to restore a character
+     *
      * @return Character
      *      Return the Character created
      *
      * @see Character
      *
      */
-    public Character startMenu(Character character, DataBase database) {
+    public Character startMenu(DataBase database) {
+
+        Character character = null;
+
         // Set user choice to 0
         int userAnswer = 0;
         // While the user don't leave the game, display the main menu
@@ -56,7 +61,7 @@ public class Navigation
                         questions.add(">>> 1 - OUI <<<");
                         questions.add(">>> 2 - NON <<<");
                         if (askQuestion(questions) == 1) {
-                            character = this.createCharacter(character);
+                            character = this.createCharacter();
                             this.subMenu(character);
                         }
                     }
@@ -65,14 +70,14 @@ public class Navigation
                         System.out.println(">>> Nous allons commencer la création d'un nouveau personnage <<<");
                         System.out.println("- Important : Pour le moment vous ne pouvez créer qu'un seul personnage -");
                         System.out.println("");
-                        character = this.createCharacter(character);
+                        character = this.createCharacter();
                         this.subMenu(character);
                     }
                     break;
                 }
                 case 2 : {
                     try {
-                        character = database.restoreCharacter(character, this);
+                        character = database.restoreCharacter(this);
                         this.subMenu(character);
                     } catch (Exception err) {
                         System.out.println(err);
@@ -113,8 +118,6 @@ public class Navigation
     /**
      * Depending the answer of the user a Warrior or Wizard is created
      *
-     * @param character Character
-     *      A null character is given
      * @return Character
      *      It return an Object Character
      *
@@ -122,7 +125,7 @@ public class Navigation
      * @see Wizard
      * @see Warrior
      */
-    public Character createCharacter (Character character) {
+    public Character createCharacter () {
         int choice = 0;
         System.out.println("1- Guerrier");
         System.out.println("2- Magicien");
@@ -137,6 +140,8 @@ public class Navigation
         // Set name of the character
         System.out.println("Quel nom voulez-vous lui donner ?");
         String name = scanner.nextLine();
+
+        Character character = null;
 
         if(choice == 1) {
             character = new Warrior(name, "none", 5, 5, 10, 10);
