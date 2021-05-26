@@ -53,7 +53,7 @@ public class Game {
     /**
      * runGame permit :
      *      To call the Navigation to Create a character
-     * {@link menu.Navigation#startMenu(Character)}
+     * {@link menu.Navigation#startMenu(Character, DataBase)} (Character)}
      *
      *      To interact with the boardGame (initialize total number of Cells and an ArrayList for the cells)
      * @see BoardGame
@@ -74,16 +74,10 @@ public class Game {
      */
     public void runGame() {
         while (character == null) {
-            this.character = navigation.startMenu(character);
-            /*if (character == null) {
-                try {
-                    character = dataBase.restoreCharacter(character, navigation);
-                    restoredCharacter = true;
-                    navigation.subMenu(character, restoredCharacter);
-                } catch (Exception err) {
-                    System.out.println(err);
-                }
-            }*/
+            this.character = navigation.startMenu(character, dataBase);
+            if (character.getCharacterPosition() > 1) {
+                restoredCharacter = true;
+            }
         }
 
         this.difficultLevel = navigation.difficultLevel();
@@ -101,18 +95,21 @@ public class Game {
         // Try to catch an exception if character position > 64
         try {
             while (characterPosition < totalCells) {
-                System.out.println("");
-                System.out.println("Appuyer sur la touche \"Entrée\" pour lancer le dé");
+                ArrayList<String> questions = new ArrayList<>();
+                questions.add(" 1 - Lancer le dé");
+                questions.add(" 2 - Sauvegarder la partie");
                 System.out.println("--------------------------------------------------");
                 System.out.println("--------------------------------------------------");
-                String isEnterPressed = scanner.nextLine();
-                if (isEnterPressed.equals("")) {
+
+                int choice = navigation.askQuestion(questions);
+
+                if (choice == 1) {
                     // Throw the dice and set the new position
                     currentCell(dice.throwDice());
                     // set the characterPosition to the new position
                     characterPosition = character.getCharacterPosition();
-                } else {
-                    System.out.println("Attention : Seule la touche Entrée permet de lancer le dé ;)");
+                } else if (choice == 2) {
+                    askForSaveCharacter();
                 }
                 // Throw exception if character position outbound boardgame
                 if (characterPosition > totalCells) {

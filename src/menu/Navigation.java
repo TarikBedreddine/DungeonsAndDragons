@@ -7,7 +7,6 @@ import database.DataBase;
 import game.Game;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -36,7 +35,7 @@ public class Navigation
      * @see Character
      *
      */
-    public Character startMenu(Character character) {
+    public Character startMenu(Character character, DataBase database) {
         // Set user choice to 0
         int userAnswer = 0;
         // While the user don't leave the game, display the main menu
@@ -51,14 +50,6 @@ public class Navigation
             scanner.nextLine();
             switch (userAnswer) {
                 case 1: {
-                    // CREATION OF THE CHARACTER
-                    if (character == null) {
-                        System.out.println(">>> Nous allons commencer la création d'un nouveau personnage <<<");
-                        System.out.println("- Important : Pour le moment vous ne pouvez créer qu'un seul personnage -");
-                        System.out.println("");
-                        character = this.createCharacter(character);
-                        this.subMenu(character);
-                    }
                     if (character != null) {
                         ArrayList<String> questions = new ArrayList<>();
                         questions.add(">>> Vous allez écraser votre personnage actuel, voulez-vous continuez ? <<<");
@@ -69,12 +60,19 @@ public class Navigation
                             this.subMenu(character);
                         }
                     }
+                    // CREATION OF THE CHARACTER
+                    if (character == null) {
+                        System.out.println(">>> Nous allons commencer la création d'un nouveau personnage <<<");
+                        System.out.println("- Important : Pour le moment vous ne pouvez créer qu'un seul personnage -");
+                        System.out.println("");
+                        character = this.createCharacter(character);
+                        this.subMenu(character);
+                    }
                     break;
                 }
                 case 2 : {
-                    DataBase dataBase = new DataBase();
                     try {
-                        character = dataBase.restoreCharacter(character, this);
+                        character = database.restoreCharacter(character, this);
                         this.subMenu(character);
                     } catch (Exception err) {
                         System.out.println(err);
@@ -232,7 +230,6 @@ public class Navigation
     public int askQuestion (ArrayList<String> allQuestions) {
         System.out.println("");
         for (int i = 0; i < allQuestions.size(); i++) {
-            System.out.println("");
             System.out.println(allQuestions.get(i));
         }
         int choice = scanner.nextInt();
