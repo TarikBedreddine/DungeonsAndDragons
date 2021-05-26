@@ -9,7 +9,7 @@ import game.boardGame.cell.attackEquipment.spell.Fireball;
 import game.boardGame.cell.attackEquipment.weapon.Sword;
 import game.boardGame.cell.attackEquipment.spell.Thunderbolt;
 
-public class SurpriseCell extends Cell {
+public class SurpriseCell implements Cell {
 
     // Attributes
 

@@ -12,7 +12,7 @@ import game.boardGame.cell.Cell;
  * @see BigPotion
  * @see StandardPotion
  */
-public abstract class HealthCell extends Cell {
+public abstract class HealthCell implements Cell {
 
     // Attributes
     private String name;

@@ -8,7 +8,7 @@ import game.boardGame.cell.Cell;
  *
  * @see Cell
  */
-public class EmptyCell extends Cell {
+public class EmptyCell implements Cell {
 
     // Attributes
     private boolean emptyCell;

@@ -15,7 +15,7 @@ import game.boardGame.cell.Cell;
  * @see Goblin
  * @see Sorcerer
  */
-public abstract class EnemyCell extends Cell {
+public abstract class EnemyCell implements Cell {
 
     // Attributes
     private String enemyName;

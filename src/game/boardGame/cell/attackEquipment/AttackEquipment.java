@@ -15,7 +15,7 @@ import game.boardGame.cell.Cell;
  * @see game.boardGame.cell.attackEquipment.spell.Spell
  *
  */
-public class AttackEquipment extends Cell {
+public class AttackEquipment implements Cell {
 
     // Attributes
     private String equipmentName;

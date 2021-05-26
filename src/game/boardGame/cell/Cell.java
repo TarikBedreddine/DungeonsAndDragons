@@ -10,15 +10,7 @@ import character.Character;
  * @see game.boardGame.BoardGame
  *
  */
-public abstract class Cell {
-
-    /**
-     * Main Constructor
-     *
-     */
-    public Cell() {
-
-    }
+public interface Cell {
 
     /**
      * Abstract method to interact with the Cells
@@ -26,6 +18,6 @@ public abstract class Cell {
      * @param character Character
      *      Character who will interact with Cell
      */
-    public abstract void interaction(Character character);
+    void interaction(Character character);
 
 }
