@@ -75,15 +75,15 @@ public class Game {
     public void runGame() {
         while (character == null) {
             this.character = navigation.startMenu(character);
-            if (character == null) {
+            /*if (character == null) {
                 try {
                     character = dataBase.restoreCharacter(character, navigation);
-                    character = navigation.startMenu(character);
                     restoredCharacter = true;
+                    navigation.subMenu(character, restoredCharacter);
                 } catch (Exception err) {
                     System.out.println(err);
                 }
-            }
+            }*/
         }
 
         this.difficultLevel = navigation.difficultLevel();

@@ -44,7 +44,8 @@ public class DataBase {
 
         // Import the configuration file for DB
         Properties props = new Properties();
-        try (FileInputStream file = new FileInputStream("src/helpers/conf.properties")) {
+
+        try (FileInputStream file = new FileInputStream("src/database/conf.properties")) {
             props.load(file);
         }
 

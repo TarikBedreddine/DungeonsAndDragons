@@ -3,9 +3,11 @@ package menu;
 import character.Character;
 import character.Wizard;
 import character.Warrior;
+import database.DataBase;
 import game.Game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -38,7 +40,7 @@ public class Navigation
         // Set user choice to 0
         int userAnswer = 0;
         // While the user don't leave the game, display the main menu
-        while (userAnswer != 3 && userAnswer != 2 ) {
+        while (userAnswer != 3) {
             System.out.println("");
             System.out.println(">>>>>>>>>>>>>>>>> 1 - CREER UN PERSONNAGE <<<<<<<<<<<<<<<<<<<<<<<");
             System.out.println(">>>>>>>>>>>>>>>>> 2 - CHARGER UN PERSONNAGE <<<<<<<<<<<<<<<<<<<<<<");
@@ -50,14 +52,33 @@ public class Navigation
             switch (userAnswer) {
                 case 1: {
                     // CREATION OF THE CHARACTER
-                    System.out.println(">>> Nous allons commencer la création d'un nouveau personnage <<<");
-                    System.out.println("- Important : Pour le moment vous ne pouvez créer qu'un seul personnage -");
-                    System.out.println("");
-                    character = this.createCharacter(character);
-                    this.subMenu(character);
+                    if (character == null) {
+                        System.out.println(">>> Nous allons commencer la création d'un nouveau personnage <<<");
+                        System.out.println("- Important : Pour le moment vous ne pouvez créer qu'un seul personnage -");
+                        System.out.println("");
+                        character = this.createCharacter(character);
+                        this.subMenu(character);
+                    }
+                    if (character != null) {
+                        ArrayList<String> questions = new ArrayList<>();
+                        questions.add(">>> Vous allez écraser votre personnage actuel, voulez-vous continuez ? <<<");
+                        questions.add(">>> 1 - OUI <<<");
+                        questions.add(">>> 2 - NON <<<");
+                        if (askQuestion(questions) == 1) {
+                            character = this.createCharacter(character);
+                            this.subMenu(character);
+                        }
+                    }
                     break;
                 }
                 case 2 : {
+                    DataBase dataBase = new DataBase();
+                    try {
+                        character = dataBase.restoreCharacter(character, this);
+                        this.subMenu(character);
+                    } catch (Exception err) {
+                        System.out.println(err);
+                    }
                     break;
                 }
                 case 3: {
@@ -142,7 +163,16 @@ public class Navigation
      */
     public void subMenu(Character character) {
         int subMenuAnswer = 0;
-        while (subMenuAnswer != 3) {
+
+        while (true) {
+            System.out.println("------------------------------------------------------");
+            System.out.println("1 - Afficher les caractéristiques de mon personnage");
+            System.out.println("2 - Modifier le nom de mon personnage");
+            System.out.println("3 - Menu principal");
+            System.out.println("4 - Quitter le jeu");
+            subMenuAnswer = scanner.nextInt();
+            scanner.nextLine();
+
             switch (subMenuAnswer) {
                 case 1: {
                     System.out.println(">>>>>>>> CARACTERISTIQUES DU PERSONNAGE <<<<<<<<<<");
@@ -160,7 +190,7 @@ public class Navigation
                     break;
                 }
                 case 3: {
-                    break;
+                    return;
                 }
                 case 4: {
                     System.out.println("Merci de votre passage, au revoir !");
@@ -168,13 +198,6 @@ public class Navigation
                     break;
                 }
             }
-            System.out.println("------------------------------------------------------");
-            System.out.println("1 - Afficher les caractéristiques de mon personnage");
-            System.out.println("2 - Modifier le nom de mon personnage");
-            System.out.println("3 - Menu principal");
-            System.out.println("4 - Quitter le jeu");
-            subMenuAnswer = scanner.nextInt();
-            scanner.nextLine();
         }
     }
 
