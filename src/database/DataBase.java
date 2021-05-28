@@ -9,6 +9,8 @@ import menu.Navigation;
 import java.io.FileInputStream;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Properties;
 
 /**
@@ -75,12 +77,12 @@ public class DataBase {
      * @param characterPosition     int
      * @throws Exception Failed INSERT INTO in DB
      */
-    public void saveCharacter(String type, String name, int life, int attack, String attackEquipment, int attackEquipmentDamage, int characterPosition) throws Exception {
+    public void saveCharacter(String type, String name, int life, int attack, String attackEquipment, int attackEquipmentDamage, int characterPosition, String difficultLevel) throws Exception {
         Connection connection = loadDBConfigurationAndSetConnection();
 
         // Insert into DB all information of the player (method without a prepared statement)
-        String requestSql = "INSERT INTO Hero (type, name, life, attack, attackEquipment, attackEquipmentDamage, characterPosition) " +
-                "Values('" + type + "', '" + name + "', '" + life + "', '" + attack + "', '" + attackEquipment + "', '" + attackEquipmentDamage + "', '" + characterPosition + "')";
+        String requestSql = "INSERT INTO Hero (type, name, life, attack, attackEquipment, attackEquipmentDamage, characterPosition, difficultLevel) " +
+                "Values('" + type + "', '" + name + "', '" + life + "', '" + attack + "', '" + attackEquipment + "', '" + attackEquipmentDamage + "', '" + characterPosition + "','"+difficultLevel+"')";
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(requestSql);
         }
@@ -95,14 +97,15 @@ public class DataBase {
      *                   <p>
      *                   {@link Navigation#askQuestion(ArrayList)}
      */
-    public Character restoreCharacter(Navigation navInstance) throws Exception {
+    public ArrayList<Object> restoreCharacter(Navigation navInstance) throws Exception {
 
         Character player = null;
+        ArrayList<Object> test = new ArrayList<>();
 
         Connection connection = loadDBConfigurationAndSetConnection();
 
         // request to send to DB
-        String requestSql = "SELECT id, type, name, life, attack, attackEquipment, attackEquipmentDamage, characterPosition FROM Hero";
+        String requestSql = "SELECT id, type, name, life, attack, attackEquipment, attackEquipmentDamage, characterPosition, difficultLevel FROM Hero";
 
         // Try to execute the query
         try (Statement statement = connection.createStatement()) {
@@ -131,6 +134,7 @@ public class DataBase {
 
                 if (rs.getString("type").equals("Warrior")) {
                     player = new Warrior();
+                    test.add(player);
                 } else if (rs.getString("type").equals("Wizard")) {
                     player = new Wizard();
                 }
@@ -143,9 +147,13 @@ public class DataBase {
                 player.getAttackEquipment().setEquipmentDamage(rs.getInt("attackEquipmentDamage"));
                 player.setCharacterPosition(rs.getInt("characterPosition"));
                 this.characterId = rs.getInt("id");
+
+                test.add(player);
+                test.add(rs.getString("difficultLevel"));
+
             }
         }
-        return player;
+        return test;
     }
 
     /**

@@ -37,9 +37,13 @@ public class Navigation
      * @see Character
      *
      */
-    public Character startMenu(DataBase database) {
+    public ArrayList<Object> startMenu(DataBase database) {
 
         Character character = null;
+        ArrayList<Object> gameData = new ArrayList<>();
+        gameData.add(null);
+        gameData.add(null);
+
 
         // Set user choice to 0
         int userAnswer = 0;
@@ -77,7 +81,10 @@ public class Navigation
                 }
                 case 2 : {
                     try {
-                        character = database.restoreCharacter(this);
+                        gameData = database.restoreCharacter(this);
+                        character = ((Character) gameData.get(0));
+                        Object characterPosition = gameData.get(1);
+                        gameData.set(1, characterPosition);
                         this.subMenu(character);
                     } catch (Exception err) {
                         System.out.println(err);
@@ -107,7 +114,8 @@ public class Navigation
                 }
             }
         }
-        return character;
+        gameData.set(0, character);
+        return gameData;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////

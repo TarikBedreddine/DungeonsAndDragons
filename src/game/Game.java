@@ -34,6 +34,7 @@ public class Game {
     private String difficultLevel;
     private DataBase dataBase;
     private boolean restoredCharacter;
+    private ArrayList<Object> gameData;
 
     /**
      * Constructor
@@ -74,13 +75,17 @@ public class Game {
      */
     public void runGame() {
 
-        character = navigation.startMenu(dataBase);
+        gameData = navigation.startMenu(dataBase);
+        character = ((Character) gameData.get(0));
         if (character.getCharacterPosition() > 1) {
-            restoredCharacter = true;
+            this.restoredCharacter = true;
+            this.difficultLevel = ((String) gameData.get(1));
         }
 
+        if (this.difficultLevel.equals("")) {
+            this.difficultLevel = navigation.difficultLevel();
+        }
 
-        this.difficultLevel = navigation.difficultLevel();
         boardGame = new BoardGame();
         System.out.println("----------------------------------------------------------------------");
         System.out.println("--------------- Le jeu va débuter, êtes-vous prêts ? -----------------");
@@ -209,7 +214,7 @@ public class Game {
 
         if (interactionWithUser == 1 && !restoredCharacter) {
             try {
-                dataBase.saveCharacter(character.getClass().getSimpleName(), character.getName(), character.getLife(), character.getAttack(), character.getAttackEquipment().getEquipmentName(), character.getAttackEquipment().getEquipmentDamage(), character.getCharacterPosition());
+                dataBase.saveCharacter(character.getClass().getSimpleName(), character.getName(), character.getLife(), character.getAttack(), character.getAttackEquipment().getEquipmentName(), character.getAttackEquipment().getEquipmentDamage(), character.getCharacterPosition(), this.difficultLevel);
             } catch (Exception e) {
                 System.out.println(e);
             }
