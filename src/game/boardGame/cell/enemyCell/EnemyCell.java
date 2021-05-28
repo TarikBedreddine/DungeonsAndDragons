@@ -4,6 +4,7 @@ import character.Character;
 import game.boardGame.cell.attackEquipment.AttackEquipment;
 import game.Game;
 import game.boardGame.cell.Cell;
+import stuff.Stuff;
 
 /**
  * The Class handle Dragon, Goblin and Sorcerer interaction with the character
@@ -48,10 +49,11 @@ public abstract class EnemyCell implements Cell {
      *
      * @param character Character
      *
+     * @param stuff
      * @see AttackEquipment
      */
     @Override
-    public void interaction(Character character) {
+    public void interaction(Character character, Stuff stuff) {
         System.out.println("");
         System.out.println("Oh non ! un " + enemyName);
         while (this.getEnemyLife() > 0 && character.getLife() > 0) {
@@ -59,9 +61,9 @@ public abstract class EnemyCell implements Cell {
             System.out.println("Votre personnage attaque ... ");
 
             // Reduce enemy life
-            setEnemyLife(getEnemyLife() - character.getAttack() - character.getAttackEquipment().getEquipmentDamage());
+            setEnemyLife(getEnemyLife() - character.getTotalAttack());
 
-            System.out.println("Vous avez infligé " + (character.getAttack() + character.getAttackEquipment().getEquipmentDamage()) + " de dégâts. L'ennemi a désormais : " + this.getEnemyLife() + " points de vie");
+            System.out.println("Vous avez infligé " + (character.getTotalAttack()) + " de dégâts. L'ennemi a désormais : " + this.getEnemyLife() + " points de vie");
             if (this.getEnemyLife() > 0) {
                 character.setLife(character.getLife() - this.enemyAttack);
                 System.out.println("...");

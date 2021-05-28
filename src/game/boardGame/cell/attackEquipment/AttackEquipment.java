@@ -2,6 +2,7 @@ package game.boardGame.cell.attackEquipment;
 
 import character.Character;
 import game.boardGame.cell.Cell;
+import stuff.Stuff;
 
 /**
  * This Class represent the equipment of a character
@@ -29,8 +30,7 @@ public class AttackEquipment implements Cell {
      * {@link game.boardGame.cell.attackEquipment.weapon.Weapon#Weapon(String, int)}
      */
     public AttackEquipment() {
-        this.equipmentName = "Aucun";
-        this.equipmentDamage = 0;
+
     }
 
     /**
@@ -41,7 +41,7 @@ public class AttackEquipment implements Cell {
      *
      */
     @Override
-    public void interaction(Character character) {
+    public void interaction(Character character, Stuff stuff) {
 
     }
 
@@ -62,4 +62,11 @@ public class AttackEquipment implements Cell {
         this.equipmentDamage = equipmentDamage;
     }
 
+    @Override
+    public String toString() {
+        return "AttackEquipment{" +
+                "equipmentName='" + equipmentName + '\'' +
+                ", equipmentDamage=" + equipmentDamage +
+                '}';
+    }
 }

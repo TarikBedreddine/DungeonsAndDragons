@@ -31,10 +31,11 @@ public class Navigation
      * @param database
      * this param permit to restore a character
      *
-     * @return Character
-     *      Return the Character created
+     * @return Arraylist
+     *      Return the Character created. If the character is restored it return also the DifficultLevel
      *
      * @see Character
+     * @see DataBase
      *
      */
     public ArrayList<Object> startMenu(DataBase database) {
@@ -114,6 +115,7 @@ public class Navigation
                 }
             }
         }
+
         gameData.set(0, character);
         return gameData;
     }

@@ -8,6 +8,7 @@ import game.boardGame.cell.attackEquipment.weapon.Club;
 import game.boardGame.cell.attackEquipment.spell.Fireball;
 import game.boardGame.cell.attackEquipment.weapon.Sword;
 import game.boardGame.cell.attackEquipment.spell.Thunderbolt;
+import stuff.Stuff;
 
 public class SurpriseCell implements Cell {
 
@@ -19,7 +20,7 @@ public class SurpriseCell implements Cell {
 
     }
 
-    public void randomSurprise(Character character) {
+    public void randomSurprise(Character character, Stuff stuff) {
         int range = (6 - 1) + 1;
         int randomResult = (int)(Math.random() * range) + 1;
         switch (randomResult) {
@@ -28,7 +29,7 @@ public class SurpriseCell implements Cell {
                 System.out.println("");
                 System.out.println("Vous obtenez une potion standard !!!");
                 System.out.println("");
-                standardPotion.interaction(character);
+                standardPotion.interaction(character, stuff);
                 break;
             }
             case 2: {
@@ -36,7 +37,7 @@ public class SurpriseCell implements Cell {
                 System.out.println("");
                 System.out.println("Vous obtenez la grande Potion, quel chanceux !!!");
                 System.out.println("");
-                bigPotion.interaction(character);
+                bigPotion.interaction(character, stuff);
                 break;
             }
             case 3: {
@@ -44,7 +45,7 @@ public class SurpriseCell implements Cell {
                 System.out.println("");
                 System.out.println("Vous obtenez une massue, avec ça vous n'avez plus d'excuses !!!");
                 System.out.println("");
-                club.interaction(character);
+                club.interaction(character, stuff);
                 break;
             }
             case 4: {
@@ -52,7 +53,7 @@ public class SurpriseCell implements Cell {
                 System.out.println("");
                 System.out.println("Vous obtenez une boule de feu, à ce stade, vous êtes quasiement invisible ...");
                 System.out.println("");
-                fireball.interaction(character);
+                fireball.interaction(character, stuff);
                 break;
             }
             case 5: {
@@ -60,7 +61,7 @@ public class SurpriseCell implements Cell {
                 System.out.println("");
                 System.out.println("Vous obtenez une épée, faites en bon usage !!!");
                 System.out.println("");
-                sword.interaction(character);
+                sword.interaction(character, stuff );
                 break;
             }
             case 6: {
@@ -68,7 +69,7 @@ public class SurpriseCell implements Cell {
                 System.out.println("");
                 System.out.println("Vous obtenez l'éclair, la partie n'est elle pas gagné ?");
                 System.out.println("");
-                thunderbolt.interaction(character);
+                thunderbolt.interaction(character, stuff);
                 break;
             }
         }
@@ -76,10 +77,10 @@ public class SurpriseCell implements Cell {
 
     // Methods
     @Override
-    public void interaction(Character character) {
+    public void interaction(Character character, Stuff stuff) {
         System.out.println("");
         System.out.println("Oh yes ! une caisse surprise ...");
-        randomSurprise(character);
+        randomSurprise(character, stuff);
     }
 
     // Getters & Setters

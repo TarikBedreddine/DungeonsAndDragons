@@ -1,11 +1,10 @@
 package game.boardGame.cell.attackEquipment.spell;
 
 import character.Character;
-import character.Warrior;
 import character.Wizard;
 import game.Game;
-import game.boardGame.cell.Cell;
 import game.boardGame.cell.attackEquipment.AttackEquipment;
+import stuff.Stuff;
 
 /**
  *
@@ -54,10 +53,11 @@ public class Spell extends AttackEquipment {
      *
      * @param character Character
      *      Character to deal with the interaction
+     * @param stuff
      *
      */
     @Override
-    public void interaction(Character character) {
+    public void interaction(Character character, Stuff stuff) {
         if (character instanceof Wizard) {
             AttackEquipment currentWeapon = character.getAttackEquipment();
             if (currentWeapon.getEquipmentName() == null || (currentWeapon.getEquipmentName() != null && !currentWeapon.getEquipmentName().equals(this.spellName)) || currentWeapon.getEquipmentDamage() != this.spellDamage) {

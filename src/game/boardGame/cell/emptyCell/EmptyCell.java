@@ -2,6 +2,7 @@ package game.boardGame.cell.emptyCell;
 
 import character.Character;
 import game.boardGame.cell.Cell;
+import stuff.Stuff;
 
 /**
  * It handle interaction when the character found an empty cell
@@ -30,7 +31,7 @@ public class EmptyCell implements Cell {
      *
      */
     @Override
-    public void interaction(Character character) {
+    public void interaction(Character character, Stuff stuff) {
         System.out.println("");
         System.out.println("Cette case vide n'a aucun effet sur vous :)");
         System.out.println("Vous concervez vos propriétés : ");

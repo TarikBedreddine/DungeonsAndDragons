@@ -1,5 +1,6 @@
 package game.boardGame.cell;
 import character.Character;
+import stuff.Stuff;
 
 /**
  * Represent a Cell of the BoardGame
@@ -17,7 +18,8 @@ public interface Cell {
      *
      * @param character Character
      *      Character who will interact with Cell
+     * @param stuff
      */
-    void interaction(Character character);
+    void interaction(Character character, Stuff stuff);
 
 }

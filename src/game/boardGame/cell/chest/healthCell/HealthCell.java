@@ -2,6 +2,7 @@ package game.boardGame.cell.chest.healthCell;
 import character.Character;
 
 import game.boardGame.cell.Cell;
+import stuff.Stuff;
 
 /**
  * The Class is dedicated for all Characters.
@@ -46,7 +47,7 @@ public abstract class HealthCell implements Cell {
      *
      */
     @Override
-    public void interaction(Character character) {
+    public void interaction(Character character, Stuff stuff) {
         // Control if the character has his full life or not
         if (character.getLife() < character.getMinLife()) {
             character.setLife(character.getLife() + this.life);
@@ -56,9 +57,10 @@ public abstract class HealthCell implements Cell {
             }
             System.out.println("");
             System.out.println("Bonne nouvelle !! vous êtes tombé sur une " + this.name + ", vos points de vies sont maintenant de : " + character.getLife());
-        } else {
+        } else if (stuff.getStuffType().size() < 5 ) {
             System.out.println("");
-            System.out.println("Vous avez déjà tous vos points de vie, vous n'avez pas besoin de cette " + this.name);
+            System.out.println("Vous avez déjà tous vos points de vie, vous stocker " + this.name + " dans votre inventaire");
+            stuff.addItemToBackpack(this);
         }
     }
 
@@ -82,10 +84,8 @@ public abstract class HealthCell implements Cell {
 
     @Override
     public String toString() {
-        return "ShieldCell{" +
-                "name='" + name + '\'' +
-                ", life=" + life +
-                '}';
+        return  name + " restaure " +
+                life + " points de vie. ";
     }
 }
 

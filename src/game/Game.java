@@ -6,6 +6,7 @@ import game.boardGame.BoardGame;
 import game.boardGame.cell.Cell;
 import game.exceptions.CharacterOutsideBoardGame;
 import menu.Navigation;
+import stuff.Stuff;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,6 +36,7 @@ public class Game {
     private DataBase dataBase;
     private boolean restoredCharacter;
     private ArrayList<Object> gameData;
+    private Stuff stuff;
 
     /**
      * Constructor
@@ -49,6 +51,7 @@ public class Game {
         this.difficultLevel = "";
         this.dataBase = new DataBase();
         this.restoredCharacter = false;
+        this.stuff = new Stuff("");
     }
 
     /**
@@ -188,10 +191,11 @@ public class Game {
         // Check if there is an object in the List
         Cell cellContent = cellList.get(character.getCharacterPosition());
         if (cellContent != null) {
-            cellContent.interaction(character);
+            cellContent.interaction(character, stuff);
         }
         System.out.println("");
         System.out.println(character.toString());
+        System.out.println(stuff.toString());
     }
 
     /**

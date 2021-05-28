@@ -46,7 +46,7 @@ public abstract class Character {
         this.image = "";
         this.life = 0;
         this.attack = 0;
-        this.attackEquipment = new AttackEquipment();
+        this.attackEquipment = null;
     }
 
     /**
@@ -88,6 +88,14 @@ public abstract class Character {
         this.minLife = minLife;
         this.maxLife = maxLife;
         this.maxAttack = maxAttack;
+    }
+
+
+    public int getTotalAttack() {
+        if (attackEquipment != null) {
+            return attack + attackEquipment.getEquipmentDamage();
+        }
+        return attack;
     }
 
     // Getters
