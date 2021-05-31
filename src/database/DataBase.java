@@ -4,6 +4,9 @@ package database;
 import character.Character;
 import character.Warrior;
 import character.Wizard;
+import game.boardGame.cell.attackEquipment.AttackEquipment;
+import game.boardGame.cell.attackEquipment.spell.Spell;
+import game.boardGame.cell.attackEquipment.weapon.Weapon;
 import menu.Navigation;
 
 import java.io.FileInputStream;
@@ -80,11 +83,15 @@ public class DataBase {
     public void saveCharacter(String type, String name, int life, int attack, String attackEquipment, int attackEquipmentDamage, int characterPosition, String difficultLevel) throws Exception {
         Connection connection = loadDBConfigurationAndSetConnection();
 
-        // Insert into DB all information of the player (method without a prepared statement)
-        String requestSql = "INSERT INTO Hero (type, name, life, attack, attackEquipment, attackEquipmentDamage, characterPosition, difficultLevel) " +
-                "Values('" + type + "', '" + name + "', '" + life + "', '" + attack + "', '" + attackEquipment + "', '" + attackEquipmentDamage + "', '" + characterPosition + "','"+difficultLevel+"')";
-        try (Statement statement = connection.createStatement()) {
-            statement.executeUpdate(requestSql);
+        if (characterPosition != 64) {
+            // Insert into DB all information of the player (method without a prepared statement)
+            String requestSql = "INSERT INTO Hero (type, name, life, attack, attackEquipment, attackEquipmentDamage, characterPosition, difficultLevel) " +
+                    "Values('" + type + "', '" + name + "', '" + life + "', '" + attack + "', '" + attackEquipment + "', '" + attackEquipmentDamage + "', '" + characterPosition + "','"+difficultLevel+"')";
+            try (Statement statement = connection.createStatement()) {
+                statement.executeUpdate(requestSql);
+            }
+        } else {
+            System.out.println("Vous avez déjà fini le jeu, vous ne pouvez sauvegarder le personnage :)");
         }
     }
 
@@ -132,19 +139,22 @@ public class DataBase {
             // rs.absolute : moves the cursor to the related index
             if (rs.absolute(navInstance.askQuestion(questions))) {
 
+                String attackEquipmentName = rs.getString("attackEquipment");
+                int attackEquipmentDamage = rs.getInt("attackEquipmentDamage");
+
+
                 if (rs.getString("type").equals("Warrior")) {
-                    player = new Warrior();
-                    test.add(player);
+                    player = new Warrior(rs.getString("name"), "", 5, 5, 10, 10  );
+                    player.setAttackEquipment(new Weapon(attackEquipmentName, attackEquipmentDamage));
+
                 } else if (rs.getString("type").equals("Wizard")) {
-                    player = new Wizard();
+                    player = new Wizard(rs.getString("name"), "", 8, 3, 6, 15);
+                    player.setAttackEquipment(new Spell(attackEquipmentName, attackEquipmentDamage));
                 }
 
                 // Now we have either a Warrior or Wizard we can set him all data
-                player.setName(rs.getString("name"));
                 player.setLife(rs.getInt("life"));
                 player.setAttack(rs.getInt("attack"));
-                player.getAttackEquipment().setEquipmentName(rs.getString("attackEquipment"));
-                player.getAttackEquipment().setEquipmentDamage(rs.getInt("attackEquipmentDamage"));
                 player.setCharacterPosition(rs.getInt("characterPosition"));
                 this.characterId = rs.getInt("id");
 
@@ -206,7 +216,7 @@ public class DataBase {
     public void deleteCharacterInDB(int id) throws Exception {
         Connection connection = loadDBConfigurationAndSetConnection();
 
-        String updateString = "DELETE FROM hero WHERE hero.id = ?";
+        String updateString = "DELETE FROM Hero WHERE Hero.id = ?";
 
         // Delete the character with the correspondent id
         connection.setAutoCommit(false);
@@ -216,5 +226,7 @@ public class DataBase {
             updateHero.executeUpdate();
             connection.commit();
         }
+
+        System.out.println("Votre personnage n'a pas été supprimé car vous avez fini le jeu !");
     }
 }

@@ -8,11 +8,21 @@ public class Stuff {
 
     public Stuff(String nameOfTheStuff) {
         this.name = nameOfTheStuff;
-        this.stuffType = new ArrayList<>(3);
+        this.stuffType = new ArrayList<>(10);
+        for (int i = 0; i <= 10; i++) {
+            stuffType.add("-----------------");
+        }
+
     }
 
-    public void addItemToBackpack (Object itemToAdd) {
-        this.stuffType.add(itemToAdd);
+    public void addItemToBackpack (Object itemToAdd, String nameOfItem) {
+        for (int i = 0; i < stuffType.size(); i++) {
+            if (stuffType.get(i) instanceof String) {
+                this.stuffType.set(i, itemToAdd);
+                System.out.println("Vous stocker " + nameOfItem+ " dans votre inventaire :)");
+                break;
+            }
+        }
     }
 
     public void retrieveAnItemToUseIt(String objectToRetrieve) {
@@ -49,7 +59,7 @@ public class Stuff {
     public String toString() {
         String s = "";
         for (int i = 0; i < stuffType.size(); i++) {
-            s += "Stuff numéro " + (i + 1) + " ------ " + stuffType.get(i) + "\n";
+            s += "Stuff " + (i + 1) + " --- " + stuffType.get(i) + "\n";
             }
         return s;
     }

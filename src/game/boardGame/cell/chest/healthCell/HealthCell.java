@@ -57,10 +57,10 @@ public abstract class HealthCell implements Cell {
             }
             System.out.println("");
             System.out.println("Bonne nouvelle !! vous êtes tombé sur une " + this.name + ", vos points de vies sont maintenant de : " + character.getLife());
-        } else if (stuff.getStuffType().size() < 5 ) {
+        } else {
             System.out.println("");
-            System.out.println("Vous avez déjà tous vos points de vie, vous stocker " + this.name + " dans votre inventaire");
-            stuff.addItemToBackpack(this);
+            System.out.println("Vous avez déjà tous vos points de vie");
+            stuff.addItemToBackpack(this, this.name);
         }
     }
 

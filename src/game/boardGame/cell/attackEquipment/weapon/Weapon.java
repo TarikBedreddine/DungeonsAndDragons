@@ -2,9 +2,13 @@ package game.boardGame.cell.attackEquipment.weapon;
 
 import character.Character;
 import character.Warrior;
+import character.Wizard;
 import game.Game;
 import game.boardGame.cell.attackEquipment.AttackEquipment;
+import menu.Navigation;
 import stuff.Stuff;
+
+import java.util.ArrayList;
 
 /**
  * The Class is dedicated for Warrior.
@@ -18,8 +22,8 @@ import stuff.Stuff;
 public class Weapon extends AttackEquipment {
 
     // Attributes
-    private String weaponName;
-    private int weaponDamage;
+    private final String weaponName;
+    private final int weaponDamage;
 
     /**
      * Constructor
@@ -35,7 +39,8 @@ public class Weapon extends AttackEquipment {
      *
      */
     public Weapon(String weaponName, int weaponStrength) {
-        this.weaponName=  weaponName;
+        super(weaponName, weaponStrength);
+        this.weaponName = weaponName;
         this.weaponDamage = weaponStrength;
     }
 
@@ -54,13 +59,17 @@ public class Weapon extends AttackEquipment {
      */
     @Override
     public void interaction(Character character, Stuff stuff) {
+        AttackEquipment currentWeapon = character.getAttackEquipment();
         if (character instanceof Warrior) {
-           AttackEquipment currentWeapon = character.getAttackEquipment();
-            if (currentWeapon == null || (currentWeapon.getEquipmentName() != null && !currentWeapon.getEquipmentName().equals(this.weaponName))) {
+            if (currentWeapon == null) {
+                character.setAttackEquipment(new Weapon(this.weaponName, this.weaponDamage));
+                System.out.println("");
+                System.out.println("Vous êtes maintenant équipé de l'arme suivante : " + this.weaponName + ", elle fait " + this.weaponDamage + " de dégâts.");
+
+            } else if ((!currentWeapon.getEquipmentName().equals(this.weaponName))) {
                 // Equip the weapon only if it has more damage
-                if (currentWeapon == null) {
-                    character.setAttackEquipment(this);
-                    currentWeapon = character.getAttackEquipment();
+                if (currentWeapon.getEquipmentDamage() < this.weaponDamage) {
+                    character.setAttackEquipment(new Weapon(this.weaponName, this.weaponDamage));
 
                     // If the total attack is > max attack then total attack = max attack
                     if ((currentWeapon.getEquipmentDamage() + character.getAttack()) > character.getMaxAttack()) {
@@ -68,17 +77,21 @@ public class Weapon extends AttackEquipment {
                     }
                     System.out.println("");
                     System.out.println("Vous êtes maintenant équipé de l'arme suivante : " + this.weaponName + ", elle fait " + this.weaponDamage + " de dégâts.");
-                } else if (currentWeapon.getEquipmentDamage() < this.weaponDamage) {
-                    System.out.println("");
-                    System.out.println("Vous avez looté " + this.weaponName + " mais elle fait moins de dégâts (" + this.weaponDamage + ") que votre arme actuelle. Vous gardez donc votre arme !");
                 }
-            }  else {
-                System.out.println("");
-                System.out.println("Vous avez déjà looté " + this.weaponName);
+            } else if (currentWeapon.getEquipmentDamage() < this.weaponDamage) {
+                Navigation nav = new Navigation();
+                ArrayList<String> questions = new ArrayList<>();
+                questions.add("Vous avez looté "+weaponName+" elle fait moins de dégâts ("+weaponDamage+"), voulez vous le stocker dans votre inventaire ?");
+
+                questions.add("1 - OUI");
+                questions.add("2 - NON");
+                if (nav.askQuestion(questions) == 1) {
+                    stuff.addItemToBackpack(this, this.weaponName);
+                }
             }
         } else {
             System.out.println("");
-            System.out.println("Vous êtes un magicien, vous ne pouvez pas équiper cette arme (" +this.weaponName+")");
+            System.out.println("Vous êtes un Magicien, vous ne pouvez pas équiper ce sort (" + this.weaponName + ")");
         }
     }
 
@@ -89,10 +102,7 @@ public class Weapon extends AttackEquipment {
      */
     @Override
     public String toString() {
-        return "Weapon{" +
-                "weaponName='" + weaponName + '\'' +
-                ", weaponDamage=" + weaponDamage +
-                '}';
+        return weaponName + " inflige " + weaponDamage+ " de dégâts";
     }
 }
 

@@ -29,8 +29,9 @@ public class AttackEquipment implements Cell {
      * {@link game.boardGame.cell.attackEquipment.spell.Spell#Spell(String, int)}
      * {@link game.boardGame.cell.attackEquipment.weapon.Weapon#Weapon(String, int)}
      */
-    public AttackEquipment() {
-
+    public AttackEquipment(String equipmentName, int equipmentDamage) {
+        this.equipmentName = equipmentName;
+        this.equipmentDamage = equipmentDamage;
     }
 
     /**
